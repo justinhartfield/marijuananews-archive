@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { archivePageCount, articleUrl, excerpt, formatDate, getArticlesPage } from '../../lib/content';
+
+const page = 1;
+const pageArticles = getArticlesPage(page);
+---
+<BaseLayout title="Articles" description="Browse the recovered MarijuanaNews.com article archive from the legacy /articles route." canonical="/articles/">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Legacy route restored</p>
+      <h1>Articles.</h1>
+      <p class="lede">The old /articles route now resolves to the rebuilt public archive. Articles are sorted newest first using recovered publication dates where available.</p>
+      <div class="pill-row">
+        <a class="button" href="/search/">Search articles</a>
+        <a class="button secondary" href="/archive/">Browse paginated archive</a>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid three">
+      {pageArticles.map((article) => (
+        <article class="card">
+          <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
+          <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+          <p>{excerpt(article)}</p>
+        </article>
+      ))}
+    </div>
+    <div class="container pagination">
+      <span>Page {page} of {archivePageCount}</span>
+      {archivePageCount > 1 && <a class="button" href="/archive/2/">Older articles</a>}
+    </div>
+  </section>
+</BaseLayout>

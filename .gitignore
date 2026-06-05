@@ -3,6 +3,7 @@ dist/
 .wrangler/
 .astro/
 public/_backend/
+.superpowers/
 .DS_Store
 .env
 .env.*

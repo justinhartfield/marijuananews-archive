@@ -9,6 +9,14 @@ async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, 'utf8'));
 }
 
+async function readJsonOptional(filePath, fallback) {
+  try {
+    return await readJson(filePath);
+  } catch {
+    return fallback;
+  }
+}
+
 function fail(message, details = {}) {
   const error = new Error(message);
   error.details = details;
@@ -37,7 +45,7 @@ function collectImageUrls(article) {
   return urls;
 }
 
-const [articles, faqs, assets, rewriteMap, auditReport, liveReport, siteMetadata, bioProfile, backendIndex] = await Promise.all([
+const [articles, faqs, assets, rewriteMap, auditReport, liveReport, siteMetadata, bioProfile, backendIndex, memoryHoleReview, waybackBounded] = await Promise.all([
   readJson(path.join(dataDir, 'articles.json')),
   readJson(path.join(dataDir, 'faqs.json')),
   readJson(path.join(dataDir, 'asset-manifest.json')),
@@ -47,6 +55,8 @@ const [articles, faqs, assets, rewriteMap, auditReport, liveReport, siteMetadata
   readJson(path.join(dataDir, 'site-metadata.json')),
   readJson(path.join(dataDir, 'bio.json')),
   readJson(backendIndexPath),
+  readJson(path.join(dataDir, 'memory-hole-review.json')),
+  readJsonOptional(path.join(dataDir, 'wayback-manifest-bounded.json'), null),
 ]);
 
 assert(Array.isArray(articles) && articles.length >= 2500, 'article export is unexpectedly small', { count: articles.length });
@@ -74,6 +84,14 @@ assert(Number(liveReport.live_current_articles_seen || 0) >= 500, 'live report s
 assert(Number(liveReport.live_articles_matched || 0) >= 500, 'live report matched too few current articles', liveReport);
 assert(Number(auditReport.article_counts?.exported_total || 0) === articles.length, 'audit report article total does not match articles.json', { auditTotal: auditReport.article_counts?.exported_total, articles: articles.length });
 assert(Number(auditReport.assets?.total_unique_asset_urls || 0) === assets.length, 'audit report asset total does not match asset-manifest.json', { auditTotal: auditReport.assets?.total_unique_asset_urls, assets: assets.length });
+assert(Number(memoryHoleReview.summary?.total_review_records || 0) === 63, 'memory-hole review ledger must cover 63 skipped article rows', { summary: memoryHoleReview.summary });
+assert(memoryHoleReview.policy?.body_html_published === false, 'memory-hole review must not publish raw body HTML', { policy: memoryHoleReview.policy });
+if (waybackBounded) {
+  const mirrored = Object.keys(rewriteMap).length;
+  assert(Number(waybackBounded.candidate_total || 0) === assets.length, 'bounded Wayback candidate total does not match asset manifest', { wayback: waybackBounded.candidate_total, assets: assets.length });
+  assert(Number(waybackBounded.skipped_already_mirrored || 0) === mirrored, 'bounded Wayback mirrored skip count does not match rewrite map', { wayback: waybackBounded.skipped_already_mirrored, mirrored });
+  assert(Number(waybackBounded.lookup_total || 0) === Number(waybackBounded.selected_total || 0), 'bounded Wayback manifest is partial or interrupted', { lookup: waybackBounded.lookup_total, selected: waybackBounded.selected_total });
+}
 
 assert(backendIndex.schemaVersion === 1, 'backend index schema version changed unexpectedly', { schemaVersion: backendIndex.schemaVersion });
 assert(backendIndex.stats?.articles === articles.length, 'backend index article total does not match articles.json', { backend: backendIndex.stats?.articles, articles: articles.length });
@@ -91,6 +109,10 @@ const report = {
   liveMerged,
   liveCurrentArticlesSeen: liveReport.live_current_articles_seen,
   inlineDataImageLinksRemoved: liveReport.inline_data_image_links_removed || 0,
+  memoryHoleReviewRecords: memoryHoleReview.summary?.total_review_records || 0,
+  waybackBoundedLookups: waybackBounded?.lookup_total || 0,
+  waybackBoundedFound: waybackBounded?.found_total || 0,
+  waybackBoundedErrors: waybackBounded?.errored_total || 0,
   backendBytes: Buffer.byteLength(JSON.stringify(backendIndex)),
 };
 

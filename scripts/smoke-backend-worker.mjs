@@ -117,7 +117,24 @@ async function expectStatus(pathname, status, options) {
 }
 
 await expectStatus('/', 200);
+await expectStatus('/articles', 200);
+await expectStatus('/articles/', 200);
+await expectStatus('/chronological-index', 200);
+await expectStatus('/chronological-index/', 200);
+await expectStatus('/memory-hole', 200);
+await expectStatus('/memory-hole/', 200);
+await expectStatus('/search/', 200);
 await expectStatus('/_backend/index.json', 404);
+const publicSearch = await (await expectStatus('/api/search?q=Peter&limit=5', 200)).json();
+const preflight = await expectStatus('/api/search', 204, { method: 'OPTIONS', headers: { origin: 'https://example.org', 'access-control-request-method': 'GET' } });
+if (preflight.headers.get('access-control-allow-origin') !== '*') throw new Error('public API CORS preflight failed');
+if (!publicSearch.items.length || !publicSearch.items[0].title || publicSearch.items[0].migration) throw new Error('public search failed or leaked backend-only metadata');
+const publicArticles = await (await expectStatus('/api/articles?limit=3', 200)).json();
+if (publicArticles.items.length !== 3 || publicArticles.items.some((item) => item.contentLength || item.migration)) throw new Error('public articles API has wrong shape');
+const publicFaqs = await (await expectStatus('/api/faqs?limit=3', 200)).json();
+if (!publicFaqs.items.length || !publicFaqs.items[0].question) throw new Error('public FAQs API failed');
+const publicBio = await (await expectStatus('/api/bio', 200)).json();
+if (!publicBio.ok || !publicBio.bio) throw new Error('public bio API failed');
 const unauth = await expectStatus('/backend/', 401);
 if (!unauth.headers.get('www-authenticate')?.includes('MarijuanaNews Backend')) throw new Error('missing Basic auth challenge');
 await expectStatus('/backend/', 401, { headers: { authorization: authHeader('admin', 'wrong') } });
@@ -132,4 +149,4 @@ if (!files.objects.length || files.objects.some((object) => object.key.startsWit
 const directPrivate = await expectStatus('/backend/api/object?key=_backend/index.json', 400, { headers: { authorization: authHeader() } });
 if (!(await directPrivate.text()).includes('non-private key')) throw new Error('private object read was not blocked');
 
-console.log(JSON.stringify({ ok: true, checks: ['public route', 'private index block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));
+console.log(JSON.stringify({ ok: true, checks: ['public route', 'legacy route compatibility', 'public search api', 'public api cors preflight', 'public articles api', 'public faqs api', 'public bio api', 'private index block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));

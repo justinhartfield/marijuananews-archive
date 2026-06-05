@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { memoryHoleReview } from '../lib/content';
+
+const summary = (memoryHoleReview.summary || {}) as Record<string, any>;
+const counts = (summary.by_classification || {}) as Record<string, number>;
+const records = ((memoryHoleReview.records || []) as Array<Record<string, any>>).sort((a, b) => String(a.classification || '').localeCompare(String(b.classification || '')) || Number(a.id || 0) - Number(b.id || 0));
+const human = (value: string) => value.replace(/_/g, ' ');
+---
+<BaseLayout title="Memory Hole Review" description="Review ledger for MarijuanaNews.com records excluded from the public archive pending human approval." canonical="/memory-hole/">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Legacy route restored</p>
+      <h1>Memory hole review.</h1>
+      <p class="lede">These records were present in the source article table but excluded from the public archive because their source status was not classified as published. The page publishes only titles, IDs, classifications, and counts. Body HTML remains excluded unless a human explicitly approves it.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stat-grid">
+      <div class="stat"><strong>{summary.total_review_records || records.length}</strong><span>review records</span></div>
+      {Object.entries(counts).slice(0, 3).map(([name, count]) => <div class="stat"><strong>{count}</strong><span>{human(name)}</span></div>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid two">
+      <article class="card">
+        <h2>Public policy</h2>
+        <p>No raw body content from these rows is published here. Private, admin, user, and newsletter tables remain excluded. Candidate records need human review before they become article pages.</p>
+      </article>
+      <article class="card">
+        <h2>Decision so far</h2>
+        <p>The safe default is transparency without leakage: keep test placeholders and duplicates excluded, list review-needed candidates by title, and preserve the audit trail for future manual restoration.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header"><h2>Review ledger</h2><span class="meta">Body content intentionally not rendered</span></div>
+      <div class="review-table" role="table" aria-label="Memory hole review records">
+        <div class="review-row review-head" role="row"><span>ID</span><span>Title</span><span>Classification</span><span>Action</span></div>
+        {records.map((record) => (
+          <div class="review-row" role="row">
+            <span>{record.id}</span>
+            <span><strong>{record.title || 'Untitled'}</strong><br />{record.slug && <code>{record.slug}</code>}</span>
+            <span><span class="pill">{human(String(record.classification || 'review_needed'))}</span></span>
+            <span>{record.recommended_public_action}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -7,7 +7,7 @@ function urlEntry(path: string, lastmod?: string | null): string {
 }
 
 export async function GET() {
-  const paths: string[] = ['/', '/archive/', '/faq/', '/bio/', '/topics/', '/categories/', '/rss.xml'];
+  const paths: string[] = ['/', '/articles/', '/archive/', '/chronological-index/', '/search/', '/memory-hole/', '/faq/', '/bio/', '/topics/', '/categories/', '/rss.xml'];
   for (let page = 2; page <= archivePageCount; page++) paths.push(`/archive/${page}/`);
   for (const topic of topics) paths.push(`/topics/${topic.slug}/`);
   for (const category of categories) paths.push(`/categories/${category.slug}/`);

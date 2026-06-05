@@ -1,0 +1,853 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-06-05T17:35:23Z",
+  "source": "SQL articles excluded from public export because status was not in published_statuses=0; raw body remains excluded from this public review ledger.",
+  "policy": {
+    "body_html_published": false,
+    "private_admin_user_newsletter_tables_excluded": true,
+    "public_page_behavior": "Show counts, titles, and review classifications only. Do not publish full body content for these records without human approval."
+  },
+  "summary": {
+    "total_review_records": 63,
+    "by_classification": {
+      "public_candidate_review_needed": 30,
+      "duplicate_of_published": 25,
+      "test_or_placeholder": 7,
+      "duplicate_review_record": 1
+    },
+    "by_source_status": {
+      "1": 61,
+      "None": 2
+    }
+  },
+  "records": [
+    {
+      "id": "6142",
+      "slug": "will-we-finally-have-free-trade-for-marijuana-after-legalization",
+      "title": "Will We Finally Have Free Trade For Marijuana After Legalization?",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "3f280407cab95aa1",
+      "content_html_length": 8256,
+      "flags": []
+    },
+    {
+      "id": "6182",
+      "slug": "the-curious-case-of-gw-pharmaceuticals-1",
+      "title": "The Curious Case of GW Pharmaceuticals",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "f63beb358e4deaec",
+      "content_html_length": 9086,
+      "flags": []
+    },
+    {
+      "id": "6213",
+      "slug": "is-gw-epidiolex-better-than-the-cbd-products-that-i-can-buy-online-1",
+      "title": "Is GW Epidiolex Better Than The CBD Products That I Can Buy Online?",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "8519bb92771d18c6",
+      "content_html_length": 5573,
+      "flags": []
+    },
+    {
+      "id": "6227",
+      "slug": "we-must-end-marijuana-prohibition-for-economic-recovery-in-a-post-pandemic-world-1",
+      "title": "We Must End Marijuana Prohibition For Economic Recovery in a Post Pandemic World",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "65da64caa467ede5",
+      "content_html_length": 6436,
+      "flags": []
+    },
+    {
+      "id": "6232",
+      "slug": "is-it-a-good-idea-to-combine-cbd-thc-1",
+      "title": "Is It a Good Idea To Combine CBD & THC?",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "2c8045f77f3129dc",
+      "content_html_length": 2695,
+      "flags": []
+    },
+    {
+      "id": "6243",
+      "slug": "two-word-explanation-for-marijuana-prohibition-bad-journalism",
+      "title": "Two Word Explanation for Marijuana Prohibition: Bad Journalism",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "60bd0d7e3e413e15",
+      "content_html_length": 4989,
+      "flags": []
+    },
+    {
+      "id": "7785",
+      "slug": "busy-often-bizarre-time-in-the-world-of-cannabis-prohibition-still-bonkers-in-britain-rcmp-still-lying-in-canada-dutch-parliament-may-force-legalization",
+      "title": "Busy, Often Bizarre Time In the World of Cannabis Prohibition. Still Bonkers In Britain. RCMP Still Lying In Canada. Dutch Parliament May Force Legalization.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "f7fb7f573ac4497d",
+      "content_html_length": 19297,
+      "flags": []
+    },
+    {
+      "id": "7814",
+      "slug": "program-notes-for-the-marijuananews-world-report-july-4-2005-new-downing-street-memo-on-failure-of-drugwar-suppressed-mexico-pays-the-price-special-report-from-the-toker-s-bowl-1",
+      "title": "Program Notes for the MarijuanaNews World Report July 4, 2005 New Downing Street Memo On Failure of Drugwar Suppressed. Mexico Pays The Price. Special Report from the Tokers Bowl.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "0db0472d585b1348",
+      "content_html_length": 13795,
+      "flags": []
+    },
+    {
+      "id": "7855",
+      "slug": "richard-cowan-to-introduce-kubby-and-tuck-at-norml-conference-moving-beyond-marijuananews-to-making-democracy-work",
+      "title": "Richard Cowan to Introduce Kubby and Tuck at NORML Conference. Moving Beyond Marijuana News to Making Democracy Work.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "d592604a1e651a2f",
+      "content_html_length": 10433,
+      "flags": []
+    },
+    {
+      "id": "7881",
+      "slug": "annotated-norml-weekly-news-november-15-2007-sativex-relieves-pain-for-patients-will-it-cause-pain-for-prohibitionists-bear-market-for-cannabis-calling-all-lawyers-to-key-west",
+      "title": "Annotated NORML Weekly News  November 15, 2007. Sativex Relieves Pain for Patients; Will It Cause Pain for Prohibitionists? Bear Market for Cannabis? Calling All Lawyers to Key West.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "be7e971a622ff409",
+      "content_html_length": 18427,
+      "flags": []
+    },
+    {
+      "id": "7973",
+      "slug": "paralyzed-blind-man-with-aids-and-his-61-year-old-mother-jailed-after-tacoma-police-find-3-marijuana-plants-in-home-police-weren-t-sure-he-was-medical-user-2-stories",
+      "title": "Paralyzed Blind Man With AIDS and His 61 Year-old Mother Jailed After Tacoma Police Find 3 Marijuana Plants In Home. Police Weren't Sure He Was Medical User? -- 2 Stories",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "fe002fcd73435225",
+      "content_html_length": 10168,
+      "flags": [
+        "test_placeholder_language"
+      ]
+    },
+    {
+      "id": "8374",
+      "slug": "aclu-report-on-dea-s-operation-pipeline-documents-history-of-racial-inequity-in-traffic-stops",
+      "title": "ACLU Report On DEA’s \"Operation Pipeline\" Documents History Of Racial Inequity In Traffic Stops",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/aclu-drug-war-based-on-race/",
+      "content_hash": "bddae6f424e73320",
+      "content_html_length": 2686,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "8376",
+      "slug": "ottawa-citizen-practices-first-class-journalism-a-brilliantly-insightful-editorial-marijuana-isn-t-just-a-serious-issue-it-s-huge",
+      "title": "Ottawa Citizen Practices First Class Journalism A Brilliantly Insightful Editorial: \"Marijuana isn’t just a serious issue. It’s huge.\"",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "6b563915c8399ac3",
+      "content_html_length": 6760,
+      "flags": []
+    },
+    {
+      "id": "8469",
+      "slug": "postings-for-june-1999",
+      "title": "Postings For June 1999",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "c06cb4be40d98462",
+      "content_html_length": 13239,
+      "flags": []
+    },
+    {
+      "id": "9069",
+      "slug": "article-9069",
+      "title": "Article 9069",
+      "status": null,
+      "source_reason": "unknown_status_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "edefd43c42ac5b11",
+      "content_html_length": 15737,
+      "flags": []
+    },
+    {
+      "id": "9103",
+      "slug": "author-publisher-aids-cancer-patient-handcuffed-as-work-on-medical-marijuana-seized-by-dea-1",
+      "title": "AUTHOR-PUBLISHER, AIDS-CANCER PATIENT HANDCUFFED AS WORK ON MEDICAL MARIJUANA SEIZED BY DEA.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "75835cf5838c5392",
+      "content_html_length": 22587,
+      "flags": []
+    },
+    {
+      "id": "9191",
+      "slug": "australian-study-shows-marijuana-laws-not-a-deterrent-to-use-but-they-often-wreck-lives",
+      "title": "Australian Study Shows Marijuana Laws Not A Deterrent To Use, But They Often Wreck Lives",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "5ddae2954d899481",
+      "content_html_length": 11055,
+      "flags": []
+    },
+    {
+      "id": "9194",
+      "slug": "fetal-alcohol-syndrome",
+      "title": "Fetal Alcohol Syndrome:",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "61b6ea0da268a585",
+      "content_html_length": 4989,
+      "flags": []
+    },
+    {
+      "id": "9195",
+      "slug": "australian-medical-and-legal-associations-support-medical-marijuana",
+      "title": "Australian Medical And Legal Associations Support Medical Marijuana",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "8be8c30b964042a8",
+      "content_html_length": 7811,
+      "flags": []
+    },
+    {
+      "id": "9383",
+      "slug": "adverse-pharmaceuticals-reaction",
+      "title": "adverse pharmaceuticals reaction",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "52ba394052324d2d",
+      "content_html_length": 10768,
+      "flags": []
+    },
+    {
+      "id": "9994",
+      "slug": "amma-to-file-petitions-in-3-more-counties-amma-to-file-petitions-in-3-more-counties",
+      "title": "AMMA TO FILE PETITIONS IN 3 MORE COUNTIES AMMA TO FILE PETITIONS IN 3 MORE COUNTIES",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/amma-to-file-petitions-in-3-more-counties/",
+      "content_hash": "add562506d8c8765",
+      "content_html_length": 15509,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10011",
+      "slug": "welcome-to-the-return-of-marijuananews-com-with-over-2-500-articles-dating-back-to-1997-richard-cowan",
+      "title": "Welcome to the Return of MarijuanaNews.com With Over 2,500: Articles Dating Back to 1997. Richard Cowan",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "cc8debc61bb61004",
+      "content_html_length": 15226,
+      "flags": []
+    },
+    {
+      "id": "10012",
+      "slug": "testing-archive-function",
+      "title": "Testing Archive function",
+      "status": null,
+      "source_reason": "unknown_status_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "dd814c0ab7f28edb",
+      "content_html_length": 16,
+      "flags": [
+        "test_placeholder_language",
+        "thin_content"
+      ]
+    },
+    {
+      "id": "10013",
+      "slug": "testing-archive-function-1",
+      "title": "Testing Archive function",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "dd814c0ab7f28edb",
+      "content_html_length": 16,
+      "flags": [
+        "test_placeholder_language",
+        "thin_content"
+      ]
+    },
+    {
+      "id": "10014",
+      "slug": "new-test",
+      "title": "New Test",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "65bbc7cbfca81328",
+      "content_html_length": 21,
+      "flags": [
+        "test_placeholder_language",
+        "thin_content"
+      ]
+    },
+    {
+      "id": "10015",
+      "slug": "prohibitionists-to-patients-drop-dead-police-politicians-and-quacks-put-cannabis-prohibition-ahead-of-the-sick-dying-and-disabled-to-jail-in-an-ambulance",
+      "title": "Prohibitionists to Patients: “Drop Dead!” Police, Politicians, and Quacks Put Cannabis Prohibition Ahead of the Sick, Dying and Disabled. “To Jail In An Ambulance.”",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "117e482697a4572e",
+      "content_html_length": 6508,
+      "flags": []
+    },
+    {
+      "id": "10019",
+      "slug": "major-innovation-in-prohibitionist-propaganda-marijuana-is-now-the-initiator-drug-we-couldn-t-make-this-up-but-they-do-1",
+      "title": "Major Innovation In Prohibitionist Propaganda: Marijuana Is Now the “Initiator Drug”! We Couldn’t Make This Up, But They Do.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "8e885699520730d6",
+      "content_html_length": 19886,
+      "flags": []
+    },
+    {
+      "id": "10020",
+      "slug": "major-innovation-in-prohibitionist-propaganda-marijuana-is-now-the-initiator-drug-we-couldn-t-make-this-up-but-they-do-2",
+      "title": "Major Innovation In Prohibitionist Propaganda: Marijuana Is Now the “Initiator Drug”! We Couldn’t Make This Up, But They Do.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_review_record",
+      "recommended_public_action": "keep excluded; duplicate content of review record id 10019",
+      "content_hash": "8e885699520730d6",
+      "content_html_length": 19886,
+      "flags": [
+        "duplicate_review_hash"
+      ]
+    },
+    {
+      "id": "10029",
+      "slug": "major-innovation-in-prohibitionist-propaganda-marijuana-is-now-the-initiator-drug-we-couldn-t-make-this-up-but-they-do-3",
+      "title": "Major Innovation In Prohibitionist Propaganda: Marijuana Is Now the “Initiator Drug”! We Couldn’t Make This Up, But They Do.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "62a03be63b596197",
+      "content_html_length": 19565,
+      "flags": []
+    },
+    {
+      "id": "10036",
+      "slug": "annotated-norml-weekly-news-for-january-10-2008-new-norml-report-on-pot-and-driving-risk-will-agitate-activists-who-don-t-read-it-may-be-more-help-for-dutch-1",
+      "title": "Annotated NORML Weekly News for January 10, 2008; New NORML Report on “Pot and Driving Risk” Will Agitate Activists Who Don’t Read It. May Be More Help for Dutch.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "bcfd5da5c2434074",
+      "content_html_length": 16355,
+      "flags": []
+    },
+    {
+      "id": "10038",
+      "slug": "marc-emery-forced-to-accept-plea-bargain-for-five-years-in-a-canadian-prison-charges-against-co-defendants-to-be-dropped-canada-betrays-its-citizens-and-its-sovereignty",
+      "title": "Marc Emery Forced to Accept Plea Bargain for Five Years in A Canadian Prison. Charges Against Co-Defendants to Be Dropped. Canada Betrays Its Citizens and Its Sovereignty.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "9fe7eaece36971ef",
+      "content_html_length": 7210,
+      "flags": []
+    },
+    {
+      "id": "10040",
+      "slug": "420-feds-invade-humboldt-but-the-secret-was-out-weeks-ago-all-u-hauls-rented-only-going-after-corporate-not-medical-growers",
+      "title": "420 Feds Invade Humboldt, But The Secret Was Out Weeks Ago. All U-Hauls Rented. Only Going After “Corporate” – Not Medical – Growers?",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/420-feds-invade-humboldt-but-the-secret-was-out-weeks-ago-all-u-hauls-rented-only-going-after-corporate-not-medical-growers-1/",
+      "content_hash": "e9a06573429d6b4e",
+      "content_html_length": 4881,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10075",
+      "slug": "the-curious-case-of-gw-pharmaceuticals-2",
+      "title": "The Curious Case of GW Pharmaceuticals.",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "6172ccb1768fd76e",
+      "content_html_length": 17772,
+      "flags": []
+    },
+    {
+      "id": "10120",
+      "slug": "test-post",
+      "title": "Test Post",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "abd626e7d7a690ce",
+      "content_html_length": 84,
+      "flags": [
+        "test_placeholder_language",
+        "thin_content"
+      ]
+    },
+    {
+      "id": "10121",
+      "slug": "title",
+      "title": "Title",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "4a7d20f4220ffbdf",
+      "content_html_length": 140,
+      "flags": [
+        "test_placeholder_language",
+        "thin_content"
+      ]
+    },
+    {
+      "id": "10124",
+      "slug": "the-perils-of-potent-pot-party-line-blaming-marijuana-legalization-for-increase-in-thc-levels",
+      "title": "The Perils of Potent Pot Party Line: Blaming Marijuana Legalization for Increase in THC Levels",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-perils-of-potent-pot-party-line-blaming-marijuana-legalization-for-increase-in-thc-levels-1/",
+      "content_hash": "ab8f2c43570a287d",
+      "content_html_length": 11022,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10126",
+      "slug": "new-article",
+      "title": "New Article",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "test_or_placeholder",
+      "recommended_public_action": "keep excluded; likely admin/test placeholder",
+      "content_hash": "2c00032e034b2885",
+      "content_html_length": 12,
+      "flags": [
+        "test_placeholder_language",
+        "thin_content"
+      ]
+    },
+    {
+      "id": "10496",
+      "slug": "government-health-officials-deny-marijuana-and-pain-study-again-1",
+      "title": "Government Health Officials Deny Marijuana and Pain Study, Again",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "a50ac0132dc41144",
+      "content_html_length": 5683,
+      "flags": []
+    },
+    {
+      "id": "10509",
+      "slug": "why-is-it-thailand-s-fault-that-stupid-tourists-from-stupid-prohibitionist-countries-try-to-smuggle-out-cannabis-1",
+      "title": "Why Is It Thailand’s Fault That Stupid Tourists from Stupid Prohibitionist Countries Try to Smuggle Out Cannabis?",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/why-is-it-thailand-s-fault-that-stupid-tourists-from-stupid-prohibitionist-countries-try-to-smuggle-out-cannabis/",
+      "content_hash": "69b7bcad33b1cbcd",
+      "content_html_length": 4803,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10518",
+      "slug": "new-york-times-runs-pro-medical-marijuana-op-ed-by-national-review-senior-editor-richard-brookhiser-1",
+      "title": "New York Times Runs Pro-Medical Marijuana Op-ed By National Review Senior Editor Richard Brookhiser",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "10b3086a73c09090",
+      "content_html_length": 6600,
+      "flags": []
+    },
+    {
+      "id": "10529",
+      "slug": "government-health-officials-deny-marijuana-and-pain-study-again-2",
+      "title": "Government Health Officials Deny Marijuana and Pain Study, Again",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "4fecf10f46014e54",
+      "content_html_length": 6438,
+      "flags": []
+    },
+    {
+      "id": "10548",
+      "slug": "the-lancet-canadian-judge-allows-marijuana-as-therapy-1",
+      "title": "The Lancet \"CANADIAN JUDGE ALLOWS MARIJUANA AS THERAPY\"",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "823f26a900e7d358",
+      "content_html_length": 2612,
+      "flags": []
+    },
+    {
+      "id": "10549",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10551",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-2",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10552",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-3",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10553",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-4",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10554",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-5",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10555",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-6",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10556",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-7",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10557",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-8",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10558",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-9",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10559",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-10",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10560",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-11",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10561",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-12",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10562",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-13",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10563",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-14",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10564",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-15",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10565",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-16",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10566",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-17",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10567",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-18",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10568",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-19",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-1/",
+      "content_hash": "5378c1b41683cfaa",
+      "content_html_length": 15745,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    },
+    {
+      "id": "10594",
+      "slug": "summer-break-for-marijuananews-will-return-on-august-4th",
+      "title": "Summer Break for MarijuanaNews: Will Return on August 4th!",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "public_candidate_review_needed",
+      "recommended_public_action": "keep excluded until human review; title listed for audit only",
+      "content_hash": "47c682405cce5da7",
+      "content_html_length": 116,
+      "flags": []
+    },
+    {
+      "id": "10686",
+      "slug": "a-love-letter-and-a-wake-up-call-to-the-cannabis-industry",
+      "title": "A Love Letter And A Wake-up Call To The Cannabis Industry",
+      "status": "1",
+      "source_reason": "non_published_or_archived_review_needed",
+      "classification": "duplicate_of_published",
+      "recommended_public_action": "keep excluded; duplicate of published /articles/a-love-letter-and-a-wake-up-call-to-the-cannabis-industry-1/",
+      "content_hash": "04df98ad4a57f013",
+      "content_html_length": 9532,
+      "flags": [
+        "matches_published_content_hash"
+      ]
+    }
+  ]
+}

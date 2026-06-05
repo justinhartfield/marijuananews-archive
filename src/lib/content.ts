@@ -6,6 +6,7 @@ import auditReportData from '../data/public-content/audit-report.json';
 import assetRewriteMapData from '../data/public-content/asset-rewrite-map.json';
 import siteMetadataData from '../data/public-content/site-metadata.json';
 import bioData from '../data/public-content/bio.json';
+import memoryHoleReviewData from '../data/public-content/memory-hole-review.json';
 
 export const PAGE_SIZE = 48;
 
@@ -93,6 +94,11 @@ export interface BioProfile {
 
 export const siteMetadata = siteMetadataData as SiteMetadata;
 export const bioProfile = bioData as BioProfile;
+export const memoryHoleReview = memoryHoleReviewData as JsonMap & {
+  summary?: JsonMap;
+  records?: Array<JsonMap>;
+  policy?: JsonMap;
+};
 
 export const SITE_URL = cleanLabel(siteMetadata.canonical_origin) || 'https://marijuananews.com';
 export const SOURCE_SITE_TITLE = cleanLabel(siteMetadata.site_name || siteMetadata.title) || 'MarijuanaNews.com';

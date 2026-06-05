@@ -11,11 +11,13 @@
     "sync:content": "node scripts/sync-content.mjs",
     "redirects": "node scripts/generate-redirects.mjs",
     "audit:migration": "node scripts/audit-public-data.mjs",
+    "wayback:bounded": "node scripts/collect-wayback-bounded.mjs",
     "mirror:assets": "node scripts/mirror-assets.mjs",
     "upload:r2": "node scripts/upload-r2-dist.mjs",
     "deploy": "wrangler deploy",
     "deploy:dry-run": "wrangler deploy --dry-run",
-    "smoke:backend": "node scripts/smoke-backend-worker.mjs"
+    "smoke:backend": "node scripts/smoke-backend-worker.mjs",
+    "smoke:live": "node scripts/smoke-live-worker.mjs"
   },
   "devDependencies": {
     "astro": "latest",

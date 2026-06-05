@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { categories } from '../lib/content';
+---
+<BaseLayout title="Search" description="Search the recovered MarijuanaNews.com public article archive." canonical="/search/">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Public search</p>
+      <h1>Search the archive.</h1>
+      <p class="lede">Search article titles, excerpts, keywords, categories, topics, sources, and years. Results come from the public read-only archive API.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <form class="search-panel" id="archive-search" action="/search/" method="get">
+        <label>
+          <span class="label-text">Query</span>
+          <input id="q" name="q" type="search" placeholder="medical marijuana, prohibition, NORML…" autocomplete="off" />
+        </label>
+        <label>
+          <span class="label-text">Category</span>
+          <select id="category" name="category">
+            <option value="">All categories</option>
+            {categories.map((category) => <option value={category.slug}>{category.name} ({category.count})</option>)}
+          </select>
+        </label>
+        <label>
+          <span class="label-text">Year</span>
+          <input id="year" name="year" inputmode="numeric" pattern="[0-9]{4}" placeholder="1998" />
+        </label>
+        <button class="button" type="submit">Search</button>
+      </form>
+      <p id="search-status" class="meta">Enter a query or use filters.</p>
+      <div id="search-results" class="grid three" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const form = document.getElementById('archive-search');
+    const q = document.getElementById('q');
+    const category = document.getElementById('category');
+    const year = document.getElementById('year');
+    const status = document.getElementById('search-status');
+    const results = document.getElementById('search-results');
+
+    function text(tag, value, className) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      node.textContent = value || '';
+      return node;
+    }
+
+    function renderCard(article) {
+      const card = document.createElement('article');
+      card.className = 'card';
+      const meta = text('p', `${article.publicationDate ? article.publicationDate.slice(0, 10) : 'Undated'} · ${article.category || 'General'}`, 'meta');
+      const h3 = document.createElement('h3');
+      const link = document.createElement('a');
+      link.href = article.path;
+      link.textContent = article.title;
+      h3.append(link);
+      card.append(meta, h3, text('p', article.excerpt || article.description || ''));
+      return card;
+    }
+
+    async function runSearch(pushState = true) {
+      const params = new URLSearchParams();
+      if (q.value.trim()) params.set('q', q.value.trim());
+      if (category.value) params.set('category', category.value);
+      if (year.value.trim()) params.set('year', year.value.trim());
+      params.set('limit', '60');
+      if (pushState) history.replaceState(null, '', `/search/?${params.toString()}`);
+      status.textContent = 'Searching…';
+      results.textContent = '';
+      try {
+        const response = await fetch(`/api/search?${params.toString()}`, { headers: { accept: 'application/json' } });
+        if (!response.ok) throw new Error(await response.text());
+        const data = await response.json();
+        status.textContent = `${data.total.toLocaleString()} matches`;
+        if (!data.items.length) {
+          results.append(text('p', 'No matches. Try a broader query.', 'meta'));
+          return;
+        }
+        for (const article of data.items) results.append(renderCard(article));
+      } catch (error) {
+        status.textContent = 'Search API failed.';
+        results.append(text('p', error.message || String(error), 'meta'));
+      }
+    }
+
+    const initial = new URLSearchParams(window.location.search);
+    q.value = initial.get('q') || '';
+    category.value = initial.get('category') || '';
+    year.value = initial.get('year') || '';
+    form.addEventListener('submit', (event) => { event.preventDefault(); runSearch(); });
+    if (window.location.search) runSearch(false);
+  </script>
+</BaseLayout>

@@ -1,6 +1,7 @@
 const REDIRECTS_KEY = '_redirects';
 const BACKEND_PREFIX = '/backend';
 const BACKEND_API_PREFIX = '/backend/api';
+const PUBLIC_API_PREFIX = '/api';
 const BACKEND_INDEX_KEY = '_backend/index.json';
 const BACKEND_DEFAULT_USER = 'admin';
 
@@ -133,6 +134,28 @@ function jsonResponse(data, status = 200) {
     status,
     headers: noStoreHeaders('application/json; charset=utf-8')
   });
+}
+
+function publicApiHeaders(contentType = 'application/json; charset=utf-8', status = 200) {
+  return {
+    'content-type': contentType,
+    'cache-control': status === 200 ? 'public, max-age=300' : 'public, max-age=60',
+    'access-control-allow-origin': '*',
+    'access-control-allow-methods': 'GET, HEAD, OPTIONS',
+    'access-control-allow-headers': 'content-type',
+    'x-content-type-options': 'nosniff'
+  };
+}
+
+function publicJsonResponse(data, status = 200) {
+  return new Response(JSON.stringify(data, null, 2), {
+    status,
+    headers: publicApiHeaders('application/json; charset=utf-8', status)
+  });
+}
+
+function publicOptionsResponse() {
+  return new Response(null, { status: 204, headers: publicApiHeaders('text/plain; charset=utf-8', 200) });
 }
 
 function htmlResponse(html, status = 200) {
@@ -337,6 +360,85 @@ async function handleObjectApi(env, url) {
     payload.preview = (await object.text()).slice(0, 12000);
   }
   return jsonResponse(payload);
+}
+
+function publicArticle(article) {
+  return {
+    id: article.id,
+    slug: article.slug,
+    path: article.path,
+    title: article.title,
+    description: article.description,
+    excerpt: article.excerpt,
+    category: article.category,
+    categorySlug: article.categorySlug,
+    topic: article.topic,
+    topicSlug: article.topicSlug,
+    publicationDate: article.publicationDate,
+    year: article.year,
+    source: article.source,
+    sourceUrl: article.sourceUrl,
+    readTime: article.readTime,
+    image: article.image,
+    keywords: article.keywords,
+    language: article.language,
+    wordCount: article.wordCount
+  };
+}
+
+function publicFaq(faq) {
+  return {
+    id: faq.id,
+    question: faq.question,
+    category: faq.category,
+    excerpt: faq.excerpt
+  };
+}
+
+function publicOverview(index) {
+  return {
+    ok: true,
+    generatedAt: index.generatedAt,
+    site: {
+      name: index.site?.name,
+      publicUrl: index.site?.publicUrl,
+      source: index.site?.source
+    },
+    stats: index.stats,
+    topCategories: index.facets.categories.slice(0, 12),
+    topTopics: index.facets.topics.slice(0, 12),
+    topYears: index.facets.years.slice(0, 20),
+    latestArticles: index.articles.slice(0, 12).map(publicArticle)
+  };
+}
+
+async function handlePublicApi(request, env, url) {
+  if (request.method === 'OPTIONS') return publicOptionsResponse();
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return publicJsonResponse({ ok: false, error: 'Method Not Allowed' }, 405);
+  }
+
+  const index = await getBackendIndex(env);
+  const path = url.pathname.slice(PUBLIC_API_PREFIX.length) || '/overview';
+
+  if (path === '/overview' || path === '/') return publicJsonResponse(publicOverview(index));
+  if (path === '/search' || path === '/articles') {
+    const page = paginate(filterArticles(index, url).map(publicArticle), url, 100);
+    return publicJsonResponse({ ok: true, ...page });
+  }
+  if (path === '/article') {
+    const slug = (url.searchParams.get('slug') || '').trim();
+    const article = index.articles.find((item) => item.slug === slug);
+    return article ? publicJsonResponse({ ok: true, article: publicArticle(article) }) : publicJsonResponse({ ok: false, error: 'Article not found.', slug }, 404);
+  }
+  if (path === '/faqs' || path === '/faq') {
+    const page = paginate(filterList(index.faqs, url, ['question', 'category', 'excerpt']).map(publicFaq), url, 100);
+    return publicJsonResponse({ ok: true, ...page });
+  }
+  if (path === '/bio') return publicJsonResponse({ ok: true, bio: index.site?.bio || null });
+  if (path === '/facets') return publicJsonResponse({ ok: true, facets: index.facets });
+
+  return publicJsonResponse({ ok: false, error: 'Unknown public endpoint.', path }, 404);
 }
 
 async function handleBackendApi(request, env, url) {
@@ -609,11 +711,15 @@ function backendHtml() {
 
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url);
+
+    if (url.pathname === PUBLIC_API_PREFIX || url.pathname.startsWith(`${PUBLIC_API_PREFIX}/`)) {
+      return handlePublicApi(request, env, url);
+    }
+
     if (request.method !== 'GET' && request.method !== 'HEAD') {
       return new Response('Method Not Allowed', { status: 405, headers: { allow: 'GET, HEAD' } });
     }
-
-    const url = new URL(request.url);
 
     if (url.pathname === BACKEND_PREFIX || url.pathname.startsWith(`${BACKEND_PREFIX}/`)) {
       return handleBackend(request, env, url);
