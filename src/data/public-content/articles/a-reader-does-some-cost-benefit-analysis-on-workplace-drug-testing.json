@@ -1,0 +1,41 @@
+{
+  "id": 7465,
+  "slug": "a-reader-does-some-cost-benefit-analysis-on-workplace-drug-testing",
+  "canonical_path": "/articles/a-reader-does-some-cost-benefit-analysis-on-workplace-drug-testing/",
+  "title": "A Reader Does Some Cost/Benefit Analysis On Workplace \"Drug\" Testing",
+  "description": "From A Reader\"While reading the Federal Times piece about workplace drug testing I noticed there were some figures not mentioned.See Officials Involved In Workplace Drug Testing Get A Chilling Reminder Of The Hazards Of False ReadingsOf 111 agencies that reported drug-testing results between April...",
+  "publication_date": "1998-02-25",
+  "source": "Richard Cowan",
+  "source_url": null,
+  "category": "news",
+  "topic": {
+    "id": "3",
+    "name": "Drug Testing",
+    "description": "Articles related to Drug Testing",
+    "created_at": "2025-03-30 11:01:43.703054",
+    "updated_at": "2025-03-30 11:01:43.703054"
+  },
+  "read_time": 2,
+  "image_link": "",
+  "keywords": "",
+  "language": null,
+  "article_type": 0,
+  "source_status_value": "0",
+  "publication_status_inferred": "published_likely",
+  "is_featured": false,
+  "likes_count": null,
+  "meta_title": null,
+  "meta_description": null,
+  "seo_keywords": null,
+  "seo_score": 0,
+  "created_at": "2025-01-04 20:51:01.592151",
+  "updated_at": "2025-03-30 11:03:20.788173",
+  "content_html_sanitized": "<p><strong>From A Reader<br></strong></p><p><strong>\"While reading the Federal Times piece about workplace drug testing I noticed there were some figures not mentioned.<br>See </strong><a rel=\"noopener noreferrer nofollow\" target=\"_blank\" href=\"https://web.archive.org/web/20080122205953/http://www.marijuananews.com/marijuananews/cowan/officials_involved_in_workplace_.htm\">Officials Involved In Workplace Drug Testing Get A Chilling Reminder Of The Hazards Of False Readings</a><br><strong><br>Of 111 agencies that reported drug-testing results between April and September 1995, some 49 agencies conducted 44,193 tests. Of those, 342, about .8%, had positive use readings, HHS documents say. Of those who tested positive, 199, or 58%, were for marijuana; 96, or 28%, were for cocaine; 37,or 11% were for amphetamines. Opiates and PCP showed up eight times each. The six-month reporting period in 1995 cost $4.9 million, or about $56 per person tested, HHS documents say.</strong></p><p></p><p><strong>By my calculation, the ‘per person tested’ figure is actually a little over $110 each. The more revealing number I think is when you divide the cost, $4.9 million, by the number of successful (positive) results, 342, which gives you $14,327, the cost ‘per positive test’. You shouldn’t count your misses, just your hits, or kills.</strong></p><p></p><p><strong>They spent $2,851,073 just to detect and reject 199 people with more than 15 nanograms of THC metabolites in their urine. Another $1,375,392 per cocaine user, etc. Apparently a few were even ‘multiple’ positives. Maybe even a dozen false positives. That they don’t mention.</strong></p><p></p><p><strong>What a colossal waste! This from government agencies bound by the Constitution. Meanwhile the private corporations act as <em>de facto</em> drug law enforcers and tax collectors for the government as well. I continually wonder how these people morally, legally, or economically justify their demand of a biological sample to prove you’re qualified for a job. Do they not teach cost/benefit analysis anymore? Don’t forget to factor in the loss of employee trust.</strong></p><p></p><p><strong>Urinalysis is indeed an expensive habit. They must be in denial.\"</strong></p>",
+  "plain_text_excerpt": "From A Reader \"While reading the Federal Times piece about workplace drug testing I noticed there were some figures not mentioned. See Officials Involved In Workplace Drug Testing Get A Chilling Reminder Of The Hazards Of False Readings Of 111 agencies that reported drug-testing results between April and September 1995, some 49 agencies conducted 44,193 tests. Of those, 342, about .8%, had positive use readings, HHS documents say. Of those who tested positive, 199, or 58%, were for marijuana; 96",
+  "migration": {
+    "source_table": "articles",
+    "source_id": "7465",
+    "sanitized": true,
+    "raw_html_excluded": true
+  }
+}

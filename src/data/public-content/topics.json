@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "General News",
+    "slug": "general-news",
+    "description": "Articles related to General News",
+    "created_at": "2025-03-30 11:01:43.649683",
+    "updated_at": "2025-03-30 11:01:43.649683"
+  },
+  {
+    "id": 2,
+    "name": "Medical Marijuana",
+    "slug": "medical-marijuana",
+    "description": "Articles related to Medical Marijuana",
+    "created_at": "2025-03-30 11:01:43.683117",
+    "updated_at": "2025-03-30 11:01:43.683117"
+  },
+  {
+    "id": 3,
+    "name": "Drug Testing",
+    "slug": "drug-testing",
+    "description": "Articles related to Drug Testing",
+    "created_at": "2025-03-30 11:01:43.703054",
+    "updated_at": "2025-03-30 11:01:43.703054"
+  },
+  {
+    "id": 4,
+    "name": "Important Cases",
+    "slug": "important-cases",
+    "description": "Articles related to Important Cases",
+    "created_at": "2025-03-30 11:01:43.715977",
+    "updated_at": "2025-03-30 11:01:43.715977"
+  },
+  {
+    "id": 5,
+    "name": "NORML News",
+    "slug": "norml-news",
+    "description": "Articles related to NORML News",
+    "created_at": "2025-03-30 11:01:43.728935",
+    "updated_at": "2025-03-30 11:01:43.728935"
+  },
+  {
+    "id": 6,
+    "name": "Vaporizers",
+    "slug": "vaporizers",
+    "description": "Articles related to Vaporizers",
+    "created_at": "2025-03-30 11:01:43.744055",
+    "updated_at": "2025-03-30 11:01:43.744055"
+  },
+  {
+    "id": 7,
+    "name": "Analysis",
+    "slug": "analysis",
+    "description": "Articles related to Analysis",
+    "created_at": "2025-03-30 11:01:43.764665",
+    "updated_at": "2025-03-30 11:01:43.764665"
+  },
+  {
+    "id": 8,
+    "name": "Hemp",
+    "slug": "hemp",
+    "description": "Articles related to Hemp",
+    "created_at": "2025-03-30 11:01:43.787524",
+    "updated_at": "2025-03-30 11:01:43.787524"
+  },
+  {
+    "id": 9,
+    "name": "Marijuana Fun!",
+    "slug": "marijuana-fun",
+    "description": "Articles related to Marijuana Fun!",
+    "created_at": "2025-03-30 11:01:43.801730",
+    "updated_at": "2025-03-30 11:01:43.801730"
+  },
+  {
+    "id": 10,
+    "name": "Uh Oh, Canada",
+    "slug": "uh-oh-canada",
+    "description": "Articles related to Uh Oh, Canada",
+    "created_at": "2025-03-30 11:01:43.819593",
+    "updated_at": "2025-03-30 11:01:43.819593"
+  },
+  {
+    "id": 11,
+    "name": "Go Dutch!",
+    "slug": "go-dutch",
+    "description": "Articles related to Go Dutch!",
+    "created_at": "2025-03-30 11:01:43.839685",
+    "updated_at": "2025-03-30 11:01:43.839685"
+  },
+  {
+    "id": 12,
+    "name": "Data",
+    "slug": "data",
+    "description": "Articles related to Data",
+    "created_at": "2025-03-30 11:01:43.858871",
+    "updated_at": "2025-03-30 11:01:43.858871"
+  },
+  {
+    "id": 13,
+    "name": "Cannabis Quotes",
+    "slug": "cannabis-quotes",
+    "description": "Articles related to Cannabis Quotes",
+    "created_at": "2025-03-30 11:01:43.880494",
+    "updated_at": "2025-03-30 11:01:43.880494"
+  },
+  {
+    "id": 14,
+    "name": "Media Criticism",
+    "slug": "media-criticism",
+    "description": "Articles related to Media Criticism",
+    "created_at": "2025-03-30 11:01:43.897063",
+    "updated_at": "2025-03-30 11:01:43.897063"
+  },
+  {
+    "id": 16,
+    "name": "drug policy",
+    "slug": "drug-policy",
+    "description": "",
+    "created_at": "2025-08-03 11:53:54.870959",
+    "updated_at": "2025-08-03 11:53:54.870959"
+  }
+]

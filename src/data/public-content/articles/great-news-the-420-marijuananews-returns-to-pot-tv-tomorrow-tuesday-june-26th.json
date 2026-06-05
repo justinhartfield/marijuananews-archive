@@ -1,0 +1,41 @@
+{
+  "id": 7490,
+  "slug": "great-news-the-420-marijuananews-returns-to-pot-tv-tomorrow-tuesday-june-26th",
+  "canonical_path": "/articles/great-news-the-420-marijuananews-returns-to-pot-tv-tomorrow-tuesday-june-26th/",
+  "title": "Great News! The 420 MarijuanaNews Returns to Pot-TV Tomorrow, Tuesday, June 26th.",
+  "description": "Posted June 25, 2001There will not be a news posting today. This is news enough for now.This and all programming is Copyright material.Request permission to reprint any portion of Marijuananews.Com",
+  "publication_date": "2001-06-25",
+  "source": "Richard Cowan",
+  "source_url": "https://web.archive.org/web/20071130180208/http://marijuananews.com/news.php3?sid=466",
+  "category": "General News",
+  "topic": {
+    "id": "14",
+    "name": "Media Criticism",
+    "description": "Articles related to Media Criticism",
+    "created_at": "2025-03-30 11:01:43.897063",
+    "updated_at": "2025-03-30 11:01:43.897063"
+  },
+  "read_time": 1,
+  "image_link": "",
+  "keywords": "",
+  "language": "en",
+  "article_type": 1,
+  "source_status_value": "0",
+  "publication_status_inferred": "published_likely",
+  "is_featured": false,
+  "likes_count": null,
+  "meta_title": null,
+  "meta_description": null,
+  "seo_keywords": null,
+  "seo_score": 0,
+  "created_at": "2025-01-14 04:14:07.798640",
+  "updated_at": "2025-03-30 11:03:21.299820",
+  "content_html_sanitized": "<p><strong>Posted June 25, 2001</strong></p><p><strong>There will not be a news posting today. This is news enough for now.</strong></p><p></p><img src=\" https://web.archive.org/web/20071201130542im_/http://marijuananews.com/ads/adlog.php?bannerid=2&amp;clientid=7&amp;zoneid=0&amp;source=&amp;block=0&amp;capping=0&amp;cb=b43b29ddc80cab431cce56ea9276bd4a \" alt=\" \" loading=\"lazy\" decoding=\"async\"><p></p><p>This and all programming is Copyright material.<br><a rel=\"nofollow noopener noreferrer\" href=\" /articles/because-of-technical-problems-thevoiceofcannabis-com-and-thevictimfiles-com-have-been-delayed/legacy \">Request permission to reprint any portion of Marijuananews.Com</a><br></p>",
+  "plain_text_excerpt": "Posted June 25, 2001 There will not be a news posting today. This is news enough for now. This and all programming is Copyright material. Request permission to reprint any portion of Marijuananews.Com",
+  "migration": {
+    "source_table": "articles",
+    "source_id": "7490",
+    "sanitized": true,
+    "raw_html_excluded": true
+  }
+}

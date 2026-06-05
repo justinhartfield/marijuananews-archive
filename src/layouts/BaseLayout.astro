@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import { SITE_DESCRIPTION, SITE_TITLE, absoluteUrl } from '../lib/content';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  canonical = '/',
+} = Astro.props;
+
+const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
+const canonicalUrl = canonical.startsWith('http') ? canonical : absoluteUrl(canonical);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content={SITE_TITLE} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS`} href="/rss.xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="/" aria-label="MarijuanaNews.com Archive home">
+          <span class="brand-mark">MN</span>
+          <span>
+            <strong>MarijuanaNews.com</strong>
+            <small>public archive</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="/archive/">Archive</a>
+          <a href="/topics/">Topics</a>
+          <a href="/categories/">Categories</a>
+          <a href="/faq/">FAQ</a>
+          <a href="/bio/">Bio</a>
+          <a href="/rss.xml">RSS</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <p><strong>MarijuanaNews.com Archive</strong> rebuilt from public database content. Raw private/auth/newsletter tables are excluded from the static export.</p>
+        <p><a href="/sitemap.xml">Sitemap</a> · <a href="/rss.xml">RSS</a> · <a href="/archive/">Archive</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

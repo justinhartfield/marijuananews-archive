@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { archivePageCount, articleUrl, excerpt, formatDate, getArticlesPage } from '../../lib/content';
+const page = 1;
+const pageArticles = getArticlesPage(page);
+---
+<BaseLayout title="Archive" description="Browse the recovered MarijuanaNews.com public article archive." canonical="/archive/">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Archive</p>
+      <h1>All recovered articles.</h1>
+      <p class="lede">Page {page} of {archivePageCount}. Articles are sorted newest first using recovered publication dates where available.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid three">
+      {pageArticles.map((article) => (
+        <article class="card">
+          <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
+          <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+          <p>{excerpt(article)}</p>
+        </article>
+      ))}
+    </div>
+    <div class="container pagination">
+      <span></span>
+      {archivePageCount > 1 && <a class="button" href="/archive/2/">Older articles</a>}
+    </div>
+  </section>
+</BaseLayout>

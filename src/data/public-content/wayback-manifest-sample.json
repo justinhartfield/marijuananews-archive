@@ -1,0 +1,47 @@
+{
+  "candidate_total": 1580,
+  "lookup_total": 1,
+  "found_total": 1,
+  "lookups": [
+    {
+      "url": "http://www.marijuananews.com/banners/michellerainey_banner.jpg",
+      "found": true,
+      "timestamp": "20080828133214",
+      "original": "http://www.marijuananews.com/banners/michellerainey_banner.jpg",
+      "statuscode": "200",
+      "mimetype": "image/jpeg",
+      "digest": "FUG4DUDE236V5BNPPK5BRU5QTRQCVRM3",
+      "length": "23180",
+      "wayback_url": "https://web.archive.org/web/20080828133214id_/http://www.marijuananews.com/banners/michellerainey_banner.jpg",
+      "sources": [
+        "asset-manifest"
+      ],
+      "metadata": {
+        "asset": {
+          "url": "http://www.marijuananews.com/banners/michellerainey_banner.jpg",
+          "sources": [
+            "articles.content_html.img"
+          ],
+          "article_ids": [
+            "9241"
+          ],
+          "article_slugs": [
+            "oakland-city-council-votes-to-allow-patients-one-and-half-pounds-of-medical-marijuana"
+          ],
+          "active_storage_keys": [],
+          "filenames": [],
+          "content_types": [],
+          "byte_sizes": [],
+          "suggested_local_path": "assets/5af215a81f775a5e.jpg",
+          "wayback_lookup_recommended": true
+        }
+      }
+    }
+  ],
+  "domain_discovery": {
+    "domain": null,
+    "total": 0,
+    "error": null,
+    "records": []
+  }
+}

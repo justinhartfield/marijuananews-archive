@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { articles, categories, topics, faqs, auditReport, articleUrl, excerpt, formatDate, rewriteAssetUrl, SITE_DESCRIPTION } from '../lib/content';
+
+const latest = articles.slice(0, 12);
+const featured = articles.find((article) => article.image_link) || articles[0];
+const featuredImage = rewriteAssetUrl(featured?.image_link);
+const exportedTotal = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
+const assetTotal = Number((auditReport.assets as any)?.total_unique_asset_urls || 0).toLocaleString();
+---
+<BaseLayout title="MarijuanaNews.com Archive" description={SITE_DESCRIPTION} canonical="/">
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Recovered public archive</p>
+      <h1>Cannabis policy history, rebuilt.</h1>
+      <p class="lede">A static, searchable shell for the recovered MarijuanaNews.com public corpus: articles, FAQs, topics, source links, redirects, RSS, and migration audit data.</p>
+      <div class="pill-row">
+        <a class="button" href="/archive/">Browse the archive</a>
+        <a class="button secondary" href="/faq/">Read FAQ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container stat-grid">
+      <div class="stat"><strong>{exportedTotal}</strong><span>public articles</span></div>
+      <div class="stat"><strong>{topics.length}</strong><span>topics</span></div>
+      <div class="stat"><strong>{faqs.length}</strong><span>FAQs</span></div>
+      <div class="stat"><strong>{assetTotal}</strong><span>asset references</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="card featured">
+        <div>
+          <p class="eyebrow">Featured recovered article</p>
+          <h2><a href={articleUrl(featured)}>{featured.title}</a></h2>
+          <p class="meta">{formatDate(featured.publication_date)} · {featured.category || 'General'}</p>
+          <p>{excerpt(featured, 260)}</p>
+          <p><a class="button" href={articleUrl(featured)}>Read article</a></p>
+        </div>
+        {featuredImage && <img class="card-image" src={featuredImage} alt="" loading="lazy" decoding="async" />}
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Latest articles</h2>
+        <a href="/archive/">Full archive</a>
+      </div>
+      <div class="grid three">
+        {latest.map((article) => (
+          <article class="card">
+            <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
+            <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+            <p>{excerpt(article)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid two">
+      <div class="card">
+        <div class="section-header"><h2>Top categories</h2><a href="/categories/">All categories</a></div>
+        <div class="pill-row">
+          {categories.slice(0, 12).map((category) => <a class="pill" href={`/categories/${category.slug}/`}><strong>{category.name}</strong>&nbsp;{category.count}</a>)}
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-header"><h2>Topics</h2><a href="/topics/">All topics</a></div>
+        <div class="pill-row">
+          {topics.slice(0, 12).map((topic) => <a class="pill" href={`/topics/${topic.slug}/`}>{topic.name}</a>)}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

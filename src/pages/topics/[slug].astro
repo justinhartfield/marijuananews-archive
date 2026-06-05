@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { articles, articleTopicSlug, articleUrl, excerpt, formatDate, topics } from '../../lib/content';
+
+export function getStaticPaths() {
+  return topics.map((topic) => ({ params: { slug: topic.slug }, props: { topic } }));
+}
+
+const { topic } = Astro.props;
+const matches = articles.filter((article) => articleTopicSlug(article) === topic.slug);
+---
+<BaseLayout title={topic.name} description={topic.description || `Recovered MarijuanaNews.com articles about ${topic.name}.`} canonical={`/topics/${topic.slug}/`}>
+  <section class="hero"><div class="container"><p class="eyebrow">Topic</p><h1>{topic.name}</h1><p class="lede">{topic.description || `${matches.length} recovered articles.`}</p></div></section>
+  <section class="section"><div class="container grid three">
+    {matches.map((article) => <article class="card"><p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p><h3><a href={articleUrl(article)}>{article.title}</a></h3><p>{excerpt(article)}</p></article>)}
+  </div></section>
+</BaseLayout>

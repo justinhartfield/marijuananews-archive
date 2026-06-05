@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { archivePageCount, articleUrl, excerpt, formatDate, getArticlesPage } from '../../lib/content';
+
+export function getStaticPaths() {
+  return Array.from({ length: Math.max(0, archivePageCount - 1) }, (_, index) => {
+    const page = index + 2;
+    return { params: { page: String(page) }, props: { page } };
+  });
+}
+
+const { page } = Astro.props;
+const pageArticles = getArticlesPage(page);
+const prevUrl = page === 2 ? '/archive/' : `/archive/${page - 1}/`;
+const nextUrl = page < archivePageCount ? `/archive/${page + 1}/` : null;
+---
+<BaseLayout title={`Archive page ${page}`} description={`Browse MarijuanaNews.com archive page ${page}.`} canonical={`/archive/${page}/`}>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Archive</p>
+      <h1>Articles, page {page}.</h1>
+      <p class="lede">Page {page} of {archivePageCount}. Articles are sorted newest first using recovered publication dates where available.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid three">
+      {pageArticles.map((article) => (
+        <article class="card">
+          <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
+          <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+          <p>{excerpt(article)}</p>
+        </article>
+      ))}
+    </div>
+    <div class="container pagination">
+      <a class="button secondary" href={prevUrl}>Newer articles</a>
+      {nextUrl ? <a class="button" href={nextUrl}>Older articles</a> : <span></span>}
+    </div>
+  </section>
+</BaseLayout>

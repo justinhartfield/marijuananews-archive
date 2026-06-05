@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { faqs, rewriteLegacyHtml } from '../lib/content';
+---
+<BaseLayout title="FAQ" description="Recovered MarijuanaNews.com FAQ entries rendered from sanitized legacy HTML." canonical="/faq/">
+  <section class="hero"><div class="container"><p class="eyebrow">FAQ</p><h1>Recovered FAQ.</h1><p class="lede">These entries are rendered from sanitized public FAQ rows. Scripts, unsafe URLs, event handlers, and legacy active content are stripped by the migration exporter.</p></div></section>
+  <section class="section"><div class="container grid two">
+    {faqs.map((faq) => <article class="card"><p class="meta">FAQ #{faq.id}</p><h2>{faq.question}</h2><div class="legacy-content" set:html={rewriteLegacyHtml(faq.content_html_sanitized)}></div></article>)}
+  </div></section>
+</BaseLayout>

@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "marijuananews-archive",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-06-05",
+  "r2_buckets": [
+    {
+      "binding": "ARCHIVE_ASSETS",
+      "bucket_name": "marijuananews-archive-assets"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

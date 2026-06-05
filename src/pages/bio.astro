@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { articles, auditReport } from '../lib/content';
+const sourceCounts = new Map<string, number>();
+for (const article of articles) {
+  const source = (article.source || '').trim();
+  if (source) sourceCounts.set(source, (sourceCounts.get(source) || 0) + 1);
+}
+const topSources = Array.from(sourceCounts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 8);
+const privateTables = (auditReport.private_tables_intentionally_excluded as string[]) || [];
+---
+<BaseLayout title="Bio and archive note" description="Source and provenance note for the rebuilt MarijuanaNews.com archive." canonical="/bio/">
+  <section class="hero"><div class="container"><p class="eyebrow">Bio and provenance</p><h1>What this archive preserves.</h1><p class="lede">This rebuild restores the public MarijuanaNews.com reading surface from the recovered Rails/MySQL export. It is not a recreation of the private admin app.</p></div></section>
+  <section class="section"><div class="container article-shell">
+    <article class="legacy-content">
+      <h2>Richard Cowan and MarijuanaNews.com</h2>
+      <p>Recovered article metadata repeatedly identifies <strong>Richard Cowan</strong> as a former <strong>NORML National Director</strong>, and many records preserve source attribution and original source URLs when those fields existed in the dump.</p>
+      <p>This page is intentionally conservative. It only uses facts present in the recovered public content export. More biographical copy can be added later from verified source material or Wayback captures.</p>
+      <h2>Migration boundaries</h2>
+      <p>The static site renders only sanitized public content. The exporter stripped scripts, unsafe URLs, event handlers, iframes, inline styling cruft, and other active legacy markup before Astro receives the HTML.</p>
+      <p>Private/auth/newsletter/admin tables were excluded from the public build.</p>
+    </article>
+    <aside class="sidebar">
+      <div class="card"><h2>Top recovered source labels</h2><ul class="list">{topSources.map(([name, count]) => <li><strong>{name}</strong><br /><span class="meta">{count} articles</span></li>)}</ul></div>
+      <div class="card"><h2>Excluded private tables</h2><div class="pill-row">{privateTables.map((name) => <span class="pill">{name}</span>)}</div></div>
+    </aside>
+  </div></section>
+</BaseLayout>

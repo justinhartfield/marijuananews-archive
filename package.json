@@ -1,0 +1,22 @@
+{
+  "name": "marijuananews-archive",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "sync:content": "node scripts/sync-content.mjs",
+    "redirects": "node scripts/generate-redirects.mjs",
+    "mirror:assets": "node scripts/mirror-assets.mjs",
+    "upload:r2": "node scripts/upload-r2-dist.mjs",
+    "deploy": "wrangler deploy",
+    "deploy:dry-run": "wrangler deploy --dry-run"
+  },
+  "devDependencies": {
+    "astro": "latest",
+    "typescript": "latest",
+    "wrangler": "^4.98.0"
+  }
+}

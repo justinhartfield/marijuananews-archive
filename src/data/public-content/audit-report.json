@@ -1,0 +1,568 @@
+{
+  "source_sql": "/tmp/mjnews_prod_20260522_170808.sql",
+  "site_origin": "https://www.marijuananews.com",
+  "asset_origin": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews",
+  "table_count": 23,
+  "loaded_table_counts": {
+    "active_storage_attachments": 84,
+    "active_storage_blobs": 89,
+    "articles": 2986,
+    "faqs": 21,
+    "topics": 15
+  },
+  "private_tables_intentionally_excluded": [
+    "newsletter_subscriptions",
+    "notifications",
+    "permissions",
+    "role_permissions",
+    "roles",
+    "saved_articles",
+    "user_roles",
+    "users"
+  ],
+  "article_counts": {
+    "raw_total": 2986,
+    "exported_total": 2923,
+    "skipped_review_needed_total": 63,
+    "missing_slug_total": 1,
+    "duplicate_slug_total": 0,
+    "missing_content_html_total": 0,
+    "missing_image_link_total": 2794
+  },
+  "status_counts": {
+    "0": 2923,
+    "1": 61,
+    "None": 2
+  },
+  "article_type_counts": {
+    "1": 2374,
+    "0": 612
+  },
+  "top_categories": {
+    "general": 1594,
+    "news": 342,
+    "General News": 266,
+    "Cannabis Culture": 179,
+    "opinion": 175,
+    "Politics": 139,
+    "research": 117,
+    "Cannabis": 99,
+    "Health": 28,
+    "Cannabis & Legal": 22,
+    "policy": 10,
+    "Cannabis & Health & Medicine": 6,
+    "Cannabis & Drug Policy": 4,
+    "Cannabis & International": 3,
+    "Business": 2
+  },
+  "sanitization": {
+    "stripped_tags": {
+      "big": 522,
+      "body": 1847,
+      "font": 4834,
+      "html": 1847,
+      "iframe": 13,
+      "o:p": 468,
+      "script": 46,
+      "section": 46,
+      "style": 4
+    },
+    "stripped_attrs": {
+      "align": 728,
+      "aria-describedby": 8,
+      "aria-level": 1,
+      "bgcolor": 6,
+      "border": 248,
+      "cellpadding": 1,
+      "cellspacing": 1,
+      "class": 16041,
+      "clear": 1,
+      "color": 5,
+      "data-ccp-props": 42,
+      "data-contrast": 175,
+      "data-endpoint": 4,
+      "data-event-click-tracking": 90,
+      "data-rc-widget": 4,
+      "data-td-block-uid": 2,
+      "data-widget-host": 4,
+      "data-widget-id": 4,
+      "fetchpriority": 9,
+      "green": 2,
+      "height": 1,
+      "hspace": 34,
+      "itemprop": 46,
+      "lang": 934,
+      "onmouseout": 7,
+      "onmouseover": 7,
+      "sizes": 12,
+      "src": 29,
+      "srcset": 12,
+      "start": 11,
+      "style": 45958,
+      "target": 6933,
+      "valign": 2,
+      "width": 16
+    },
+    "unsafe_urls": 29,
+    "scripts_seen": 46,
+    "styles_seen": 4
+  },
+  "assets": {
+    "total_unique_asset_urls": 1580,
+    "active_storage_blob_rows": 89,
+    "active_storage_attachment_rows": 84,
+    "wayback_lookup_recommended_total": 530
+  },
+  "external_links": {
+    "total_unique_http_urls_in_article_html": 13415,
+    "wayback_lookup_recommended_total": 4369
+  },
+  "skipped_articles_sample": [
+    {
+      "id": "6142",
+      "slug": "will-we-finally-have-free-trade-for-marijuana-after-legalization",
+      "title": "Will We Finally Have Free Trade For Marijuana After Legalization?",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "6182",
+      "slug": "the-curious-case-of-gw-pharmaceuticals-1",
+      "title": "The Curious Case of GW Pharmaceuticals",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "6213",
+      "slug": "is-gw-epidiolex-better-than-the-cbd-products-that-i-can-buy-online-1",
+      "title": "Is GW Epidiolex Better Than The CBD Products That I Can Buy Online?",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "6227",
+      "slug": "we-must-end-marijuana-prohibition-for-economic-recovery-in-a-post-pandemic-world-1",
+      "title": "We Must End Marijuana Prohibition For Economic Recovery in a Post Pandemic World",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "6232",
+      "slug": "is-it-a-good-idea-to-combine-cbd-thc-1",
+      "title": "Is It a Good Idea To Combine CBD & THC?",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "6243",
+      "slug": "two-word-explanation-for-marijuana-prohibition-bad-journalism",
+      "title": "Two Word Explanation for Marijuana Prohibition: Bad Journalism",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "7785",
+      "slug": "busy-often-bizarre-time-in-the-world-of-cannabis-prohibition-still-bonkers-in-britain-rcmp-still-lying-in-canada-dutch-parliament-may-force-legalization",
+      "title": "Busy, Often Bizarre Time In the World of Cannabis Prohibition. Still Bonkers In Britain. RCMP Still Lying In Canada. Dutch Parliament May Force Legalization.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "7814",
+      "slug": "program-notes-for-the-marijuananews-world-report-july-4-2005-new-downing-street-memo-on-failure-of-drugwar-suppressed-mexico-pays-the-price-special-report-from-the-toker-s-bowl-1",
+      "title": "Program Notes for the MarijuanaNews World Report July 4, 2005 New Downing Street Memo On Failure of Drugwar Suppressed. Mexico Pays The Price. Special Report from the Tokers Bowl.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "7855",
+      "slug": "richard-cowan-to-introduce-kubby-and-tuck-at-norml-conference-moving-beyond-marijuananews-to-making-democracy-work",
+      "title": "Richard Cowan to Introduce Kubby and Tuck at NORML Conference. Moving Beyond Marijuana News to Making Democracy Work.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "7881",
+      "slug": "annotated-norml-weekly-news-november-15-2007-sativex-relieves-pain-for-patients-will-it-cause-pain-for-prohibitionists-bear-market-for-cannabis-calling-all-lawyers-to-key-west",
+      "title": "Annotated NORML Weekly News  November 15, 2007. Sativex Relieves Pain for Patients; Will It Cause Pain for Prohibitionists? Bear Market for Cannabis? Calling All Lawyers to Key West.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "7973",
+      "slug": "paralyzed-blind-man-with-aids-and-his-61-year-old-mother-jailed-after-tacoma-police-find-3-marijuana-plants-in-home-police-weren-t-sure-he-was-medical-user-2-stories",
+      "title": "Paralyzed Blind Man With AIDS and His 61 Year-old Mother Jailed \n    After Tacoma Police Find 3 Marijuana Plants In Home.  \n    Police Weren't Sure He Was Medical User? -- 2 Stories",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "8374",
+      "slug": "aclu-report-on-dea-s-operation-pipeline-documents-history-of-racial-inequity-in-traffic-stops",
+      "title": "ACLU Report On DEA’s \"Operation Pipeline\"\n    Documents\n    History Of Racial Inequity In Traffic Stops",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "8376",
+      "slug": "ottawa-citizen-practices-first-class-journalism-a-brilliantly-insightful-editorial-marijuana-isn-t-just-a-serious-issue-it-s-huge",
+      "title": "Ottawa Citizen Practices First Class\n    Journalism\n    A Brilliantly Insightful Editorial: \"Marijuana isn’t just a serious issue.\n    It’s huge.\"",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "8469",
+      "slug": "postings-for-june-1999",
+      "title": "Postings For June 1999",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "9069",
+      "slug": "",
+      "title": "",
+      "status": null,
+      "reason": "unknown_status_review_needed"
+    },
+    {
+      "id": "9103",
+      "slug": "author-publisher-aids-cancer-patient-handcuffed-as-work-on-medical-marijuana-seized-by-dea-1",
+      "title": "AUTHOR-PUBLISHER, AIDS-CANCER PATIENT HANDCUFFED AS WORK ON MEDICAL MARIJUANA SEIZED BY DEA.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "9191",
+      "slug": "australian-study-shows-marijuana-laws-not-a-deterrent-to-use-but-they-often-wreck-lives",
+      "title": "Australian Study Shows Marijuana Laws Not A Deterrent To Use, But They Often Wreck Lives",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "9194",
+      "slug": "fetal-alcohol-syndrome",
+      "title": "Fetal Alcohol Syndrome:",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "9195",
+      "slug": "australian-medical-and-legal-associations-support-medical-marijuana",
+      "title": "Australian Medical And Legal Associations Support Medical Marijuana",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "9383",
+      "slug": "adverse-pharmaceuticals-reaction",
+      "title": "adverse pharmaceuticals reaction",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "9994",
+      "slug": "amma-to-file-petitions-in-3-more-counties-amma-to-file-petitions-in-3-more-counties",
+      "title": "AMMA TO FILE PETITIONS IN 3 MORE COUNTIES AMMA TO FILE PETITIONS IN 3 MORE COUNTIES",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10011",
+      "slug": "welcome-to-the-return-of-marijuananews-com-with-over-2-500-articles-dating-back-to-1997-richard-cowan",
+      "title": "Welcome to the Return of MarijuanaNews.com With Over 2,500: Articles Dating Back to 1997. Richard Cowan ",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10012",
+      "slug": "testing-archive-function",
+      "title": "Testing Archive function",
+      "status": null,
+      "reason": "unknown_status_review_needed"
+    },
+    {
+      "id": "10013",
+      "slug": "testing-archive-function-1",
+      "title": "Testing Archive function",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10014",
+      "slug": "new-test",
+      "title": "New Test",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10015",
+      "slug": "prohibitionists-to-patients-drop-dead-police-politicians-and-quacks-put-cannabis-prohibition-ahead-of-the-sick-dying-and-disabled-to-jail-in-an-ambulance",
+      "title": "Prohibitionists to Patients: “Drop Dead!” Police, Politicians, and Quacks Put Cannabis Prohibition Ahead of the Sick, Dying and Disabled. “To Jail In An Ambulance.”",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10019",
+      "slug": "major-innovation-in-prohibitionist-propaganda-marijuana-is-now-the-initiator-drug-we-couldn-t-make-this-up-but-they-do-1",
+      "title": "Major Innovation In Prohibitionist Propaganda: Marijuana Is Now the “Initiator Drug”! We  Couldn’t Make This Up, But They Do.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10020",
+      "slug": "major-innovation-in-prohibitionist-propaganda-marijuana-is-now-the-initiator-drug-we-couldn-t-make-this-up-but-they-do-2",
+      "title": "Major Innovation In Prohibitionist Propaganda: Marijuana Is Now the “Initiator Drug”! We  Couldn’t Make This Up, But They Do.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10029",
+      "slug": "major-innovation-in-prohibitionist-propaganda-marijuana-is-now-the-initiator-drug-we-couldn-t-make-this-up-but-they-do-3",
+      "title": "Major Innovation In Prohibitionist Propaganda: Marijuana Is Now the “Initiator Drug”! We  Couldn’t Make This Up, But They Do.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10036",
+      "slug": "annotated-norml-weekly-news-for-january-10-2008-new-norml-report-on-pot-and-driving-risk-will-agitate-activists-who-don-t-read-it-may-be-more-help-for-dutch-1",
+      "title": "Annotated NORML Weekly News for January 10, 2008; New NORML Report on “Pot and  Driving Risk” Will Agitate Activists Who Don’t Read It. May Be More Help for Dutch.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10038",
+      "slug": "marc-emery-forced-to-accept-plea-bargain-for-five-years-in-a-canadian-prison-charges-against-co-defendants-to-be-dropped-canada-betrays-its-citizens-and-its-sovereignty",
+      "title": "Marc Emery Forced to Accept Plea Bargain for Five Years in A Canadian Prison. Charges  Against Co-Defendants to Be Dropped. Canada Betrays Its Citizens and Its Sovereignty.",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10040",
+      "slug": "420-feds-invade-humboldt-but-the-secret-was-out-weeks-ago-all-u-hauls-rented-only-going-after-corporate-not-medical-growers",
+      "title": "420 Feds Invade Humboldt, But The Secret Was Out Weeks Ago. All U-Hauls Rented. Only  Going After “Corporate” – Not Medical – Growers?",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10075",
+      "slug": "the-curious-case-of-gw-pharmaceuticals-2",
+      "title": "The Curious Case of GW Pharmaceuticals. ",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10120",
+      "slug": "test-post",
+      "title": "Test Post",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10121",
+      "slug": "title",
+      "title": "Title",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10124",
+      "slug": "the-perils-of-potent-pot-party-line-blaming-marijuana-legalization-for-increase-in-thc-levels",
+      "title": "The Perils of Potent Pot Party Line: Blaming Marijuana Legalization for Increase in THC Levels",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10126",
+      "slug": "new-article",
+      "title": "New Article",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10496",
+      "slug": "government-health-officials-deny-marijuana-and-pain-study-again-1",
+      "title": "Government Health Officials Deny Marijuana and Pain Study, Again",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10509",
+      "slug": "why-is-it-thailand-s-fault-that-stupid-tourists-from-stupid-prohibitionist-countries-try-to-smuggle-out-cannabis-1",
+      "title": "Why Is It Thailand’s Fault That Stupid Tourists from Stupid Prohibitionist Countries Try to Smuggle Out Cannabis?",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10518",
+      "slug": "new-york-times-runs-pro-medical-marijuana-op-ed-by-national-review-senior-editor-richard-brookhiser-1",
+      "title": "New York Times Runs Pro-Medical Marijuana Op-ed By National Review Senior Editor Richard Brookhiser",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10529",
+      "slug": "government-health-officials-deny-marijuana-and-pain-study-again-2",
+      "title": "Government Health Officials Deny Marijuana and Pain Study, Again",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10548",
+      "slug": "the-lancet-canadian-judge-allows-marijuana-as-therapy-1",
+      "title": "The Lancet  \"CANADIAN JUDGE ALLOWS MARIJUANA AS THERAPY\"",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10549",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10551",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-2",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10552",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-3",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10553",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-4",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10554",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-5",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10555",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-6",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10556",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-7",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10557",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-8",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10558",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-9",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10559",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-10",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10560",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-11",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10561",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-12",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10562",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-13",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10563",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-14",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10564",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-15",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10565",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-16",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10566",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-17",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10567",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-18",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10568",
+      "slug": "the-scientist-magazine-does-a-reverent-interview-with-the-head-of-nida-19",
+      "title": "The Scientist Magazine Does A Reverent Interview with the Head of NIDA",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10594",
+      "slug": "summer-break-for-marijuananews-will-return-on-august-4th",
+      "title": "Summer Break for MarijuanaNews: Will Return on August 4th!",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    },
+    {
+      "id": "10686",
+      "slug": "a-love-letter-and-a-wake-up-call-to-the-cannabis-industry",
+      "title": "A Love Letter And A Wake-up Call To The Cannabis Industry",
+      "status": "1",
+      "reason": "non_published_or_archived_review_needed"
+    }
+  ],
+  "notes": [
+    "Raw content_html is intentionally excluded from article JSON; render content_html_sanitized only.",
+    "Status mapping is inferred. Use --include-review-needed if you want non-status-0 records exported for manual review.",
+    "Use collect_wayback_fallbacks.py for missing assets/pages; do not rely on the old developer's app source."
+  ]
+}
