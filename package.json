@@ -5,14 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
-    "build": "astro build",
+    "backend:index": "node scripts/generate-backend-index.mjs",
+    "build": "npm run backend:index && astro build",
     "preview": "astro preview --host 127.0.0.1",
     "sync:content": "node scripts/sync-content.mjs",
     "redirects": "node scripts/generate-redirects.mjs",
     "mirror:assets": "node scripts/mirror-assets.mjs",
     "upload:r2": "node scripts/upload-r2-dist.mjs",
     "deploy": "wrangler deploy",
-    "deploy:dry-run": "wrangler deploy --dry-run"
+    "deploy:dry-run": "wrangler deploy --dry-run",
+    "smoke:backend": "node scripts/smoke-backend-worker.mjs"
   },
   "devDependencies": {
     "astro": "latest",

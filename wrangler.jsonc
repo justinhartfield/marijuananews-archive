@@ -11,5 +11,8 @@
   ],
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "BACKEND_USER": "admin"
   }
 }

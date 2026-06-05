@@ -1,0 +1,135 @@
+import { readFile, readdir, stat } from 'node:fs/promises';
+import path from 'node:path';
+import worker from '../worker/index.js';
+
+const root = process.cwd();
+const distDir = path.join(root, 'dist');
+const TEST_PASSWORD = 'test-password-not-secret';
+
+const CONTENT_TYPES = new Map([
+  ['.html', 'text/html; charset=utf-8'],
+  ['.xml', 'application/xml; charset=utf-8'],
+  ['.txt', 'text/plain; charset=utf-8'],
+  ['.json', 'application/json; charset=utf-8'],
+  ['.js', 'text/javascript; charset=utf-8'],
+  ['.css', 'text/css; charset=utf-8'],
+  ['.svg', 'image/svg+xml'],
+  ['.png', 'image/png'],
+  ['.jpg', 'image/jpeg'],
+  ['.jpeg', 'image/jpeg'],
+  ['.gif', 'image/gif'],
+  ['.webp', 'image/webp'],
+  ['.ico', 'image/x-icon'],
+]);
+
+function contentTypeFor(key) {
+  return CONTENT_TYPES.get(path.extname(key).toLowerCase()) || 'application/octet-stream';
+}
+
+async function walk(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) files.push(...await walk(full));
+    else if (entry.isFile()) files.push(full);
+  }
+  return files;
+}
+
+class LocalR2Object {
+  constructor(key, filePath, body, stats) {
+    this.key = key;
+    this.filePath = filePath;
+    this.body = body;
+    this.size = stats.size;
+    this.uploaded = stats.mtime;
+    this.etag = `local-${stats.size}`;
+    this.httpEtag = `"local-${stats.size}"`;
+    this.httpMetadata = { contentType: contentTypeFor(key) };
+  }
+
+  async text() {
+    return this.body.toString('utf8');
+  }
+
+  writeHttpMetadata(headers) {
+    headers.set('content-type', this.httpMetadata.contentType);
+    headers.set('content-length', String(this.size));
+  }
+}
+
+class LocalR2Bucket {
+  constructor(files) {
+    this.files = files;
+  }
+
+  static async fromDist() {
+    const files = new Map();
+    for (const file of await walk(distDir)) {
+      const key = path.relative(distDir, file).split(path.sep).join('/');
+      files.set(key, file);
+    }
+    return new LocalR2Bucket(files);
+  }
+
+  async get(key) {
+    const file = this.files.get(key);
+    if (!file) return null;
+    const [body, stats] = await Promise.all([readFile(file), stat(file)]);
+    return new LocalR2Object(key, file, body, stats);
+  }
+
+  async list(options = {}) {
+    const prefix = options.prefix || '';
+    const limit = options.limit || 1000;
+    const all = Array.from(this.files.keys()).filter((key) => key.startsWith(prefix)).sort();
+    return {
+      objects: all.slice(0, limit).map((key) => ({
+        key,
+        size: 1,
+        uploaded: new Date(0),
+        etag: 'local',
+        httpEtag: '"local"',
+        httpMetadata: { contentType: contentTypeFor(key) },
+      })),
+      truncated: all.length > limit,
+      cursor: all.length > limit ? String(limit) : undefined,
+    };
+  }
+}
+
+function authHeader(username = 'admin', password = TEST_PASSWORD) {
+  return 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64');
+}
+
+async function request(pathname, options = {}) {
+  const env = { ARCHIVE_ASSETS: await LocalR2Bucket.fromDist(), BACKEND_USER: 'admin', BACKEND_PASSWORD: TEST_PASSWORD };
+  return worker.fetch(new Request(`https://example.test${pathname}`, options), env, {});
+}
+
+async function expectStatus(pathname, status, options) {
+  const response = await request(pathname, options);
+  if (response.status !== status) {
+    throw new Error(`${pathname} expected ${status}, got ${response.status}: ${await response.text()}`);
+  }
+  return response;
+}
+
+await expectStatus('/', 200);
+await expectStatus('/_backend/index.json', 404);
+const unauth = await expectStatus('/backend/', 401);
+if (!unauth.headers.get('www-authenticate')?.includes('MarijuanaNews Backend')) throw new Error('missing Basic auth challenge');
+await expectStatus('/backend/', 401, { headers: { authorization: authHeader('admin', 'wrong') } });
+const html = await (await expectStatus('/backend/', 200, { headers: { authorization: authHeader() } })).text();
+if (!html.includes('MarijuanaNews Backend') || !html.includes('/backend/api')) throw new Error('backend HTML shell missing expected tokens');
+const overview = await (await expectStatus('/backend/api/overview', 200, { headers: { authorization: authHeader() } })).json();
+if (overview.stats.articles < 2900 || overview.stats.redirects < 10000) throw new Error(`bad overview stats ${JSON.stringify(overview.stats)}`);
+const search = await (await expectStatus('/backend/api/search?q=Peter&limit=5', 200, { headers: { authorization: authHeader() } })).json();
+if (!search.items.length || !search.items[0].title) throw new Error('search did not return article records');
+const files = await (await expectStatus('/backend/api/files?prefix=articles/&limit=5', 200, { headers: { authorization: authHeader() } })).json();
+if (!files.objects.length || files.objects.some((object) => object.key.startsWith('_backend/'))) throw new Error('files endpoint failed or leaked private backend key');
+const directPrivate = await expectStatus('/backend/api/object?key=_backend/index.json', 400, { headers: { authorization: authHeader() } });
+if (!(await directPrivate.text()).includes('non-private key')) throw new Error('private object read was not blocked');
+
+console.log(JSON.stringify({ ok: true, checks: ['public route', 'private index block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));
