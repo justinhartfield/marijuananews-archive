@@ -27,7 +27,7 @@
     "missing_slug_total": 1,
     "duplicate_slug_total": 0,
     "missing_content_html_total": 0,
-    "missing_image_link_total": 2794
+    "missing_image_link_total": 2693
   },
   "status_counts": {
     "0": 2923,
@@ -35,8 +35,8 @@
     "None": 2
   },
   "article_type_counts": {
-    "1": 2374,
-    "0": 612
+    "0": 612,
+    "1": 2374
   },
   "top_categories": {
     "general": 1594,
@@ -564,5 +564,50 @@
     "Raw content_html is intentionally excluded from article JSON; render content_html_sanitized only.",
     "Status mapping is inferred. Use --include-review-needed if you want non-status-0 records exported for manual review.",
     "Use collect_wayback_fallbacks.py for missing assets/pages; do not rely on the old developer's app source."
-  ]
+  ],
+  "live_public_api_migration": {
+    "source": "https://www.marijuananews.com",
+    "generated_at": "2026-06-05T15:40:13.011Z",
+    "live_current_articles_seen": 563,
+    "existing_articles_before": 2923,
+    "articles_after": 2923,
+    "live_articles_matched": 563,
+    "live_articles_created": 0,
+    "articles_changed": 0,
+    "article_image_links_added": 0,
+    "inline_data_image_links_removed": 0,
+    "missing_image_link_before": 2693,
+    "missing_image_link_after": 2693,
+    "live_faqs_seen": 21,
+    "faqs_before": 21,
+    "faqs_after": 21,
+    "faqs_added": 0,
+    "faqs_changed": 21,
+    "bio_html_bytes": 10942,
+    "asset_references_added_from_live_images": 0,
+    "sitemap_routes_imported": 6,
+    "site_metadata_fields": [
+      "source",
+      "fetched_at",
+      "title",
+      "site_name",
+      "description",
+      "og",
+      "twitter",
+      "google_analytics_id",
+      "favicon",
+      "logo",
+      "canonical_origin",
+      "legacy_origin",
+      "sitemap_routes",
+      "schema"
+    ],
+    "skipped_private_live_endpoints": [
+      "admin",
+      "auth",
+      "users",
+      "comments",
+      "likes"
+    ]
+  }
 }

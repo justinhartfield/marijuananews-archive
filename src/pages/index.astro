@@ -1,14 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { articles, categories, topics, faqs, auditReport, articleUrl, excerpt, formatDate, rewriteAssetUrl, SITE_DESCRIPTION } from '../lib/content';
+import { articles, categories, topics, faqs, auditReport, articleUrl, articleImageUrl, excerpt, formatDate, SITE_DESCRIPTION, SITE_TITLE } from '../lib/content';
 
 const latest = articles.slice(0, 12);
-const featured = articles.find((article) => article.image_link) || articles[0];
-const featuredImage = rewriteAssetUrl(featured?.image_link);
+const featured = articles.find((article) => articleImageUrl(article)) || articles[0];
+const featuredImage = featured ? articleImageUrl(featured) : '';
 const exportedTotal = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
 const assetTotal = Number((auditReport.assets as any)?.total_unique_asset_urls || 0).toLocaleString();
 ---
-<BaseLayout title="MarijuanaNews.com Archive" description={SITE_DESCRIPTION} canonical="/">
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} canonical="/">
   <section class="hero">
     <div class="container">
       <p class="eyebrow">Recovered public archive</p>

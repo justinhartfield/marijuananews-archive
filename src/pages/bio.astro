@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { articles, auditReport } from '../lib/content';
+import { articles, auditReport, bioProfile, displayAssetUrl, rewriteLegacyHtml, SOURCE_SITE_TITLE } from '../lib/content';
 const sourceCounts = new Map<string, number>();
 for (const article of articles) {
   const source = (article.source || '').trim();
@@ -8,14 +8,21 @@ for (const article of articles) {
 }
 const topSources = Array.from(sourceCounts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 8);
 const privateTables = (auditReport.private_tables_intentionally_excluded as string[]) || [];
+const bioHtml = bioProfile.content_html_sanitized ? rewriteLegacyHtml(bioProfile.content_html_sanitized) : '';
+const bioImageRecord = (bioProfile.image_urls || []).find((image: any) => typeof image?.url === 'string');
+const bioImage = displayAssetUrl((bioImageRecord as any)?.url || '');
+const bioName = bioProfile.name || 'Richard Cowan';
+const bioRole = bioProfile.role || 'Publisher';
 ---
 <BaseLayout title="Bio and archive note" description="Source and provenance note for the rebuilt MarijuanaNews.com archive." canonical="/bio/">
   <section class="hero"><div class="container"><p class="eyebrow">Bio and provenance</p><h1>What this archive preserves.</h1><p class="lede">This rebuild restores the public MarijuanaNews.com reading surface from the recovered Rails/MySQL export. It is not a recreation of the private admin app.</p></div></section>
   <section class="section"><div class="container article-shell">
     <article class="legacy-content">
-      <h2>Richard Cowan and MarijuanaNews.com</h2>
-      <p>Recovered article metadata repeatedly identifies <strong>Richard Cowan</strong> as a former <strong>NORML National Director</strong>, and many records preserve source attribution and original source URLs when those fields existed in the dump.</p>
-      <p>This page is intentionally conservative. It only uses facts present in the recovered public content export. More biographical copy can be added later from verified source material or Wayback captures.</p>
+      <h2>{bioName}</h2>
+      {bioImage && <img class="bio-image" src={bioImage} alt="" loading="lazy" decoding="async" />}
+      <p><strong>{bioName}</strong>{bioRole && <span> is listed by the live public {SOURCE_SITE_TITLE} bio endpoint as <strong>{bioRole}</strong>.</span>}</p>
+      {bioHtml ? <div set:html={bioHtml}></div> : <p>Recovered article metadata repeatedly identifies <strong>Richard Cowan</strong> as a former <strong>NORML National Director</strong>, and many records preserve source attribution and original source URLs when those fields existed in the dump.</p>}
+      <p>This page uses only sanitized public bio/article content from the recovered export and live public endpoints. Private/admin records remain excluded.</p>
       <h2>Migration boundaries</h2>
       <p>The static site renders only sanitized public content. The exporter stripped scripts, unsafe URLs, event handlers, iframes, inline styling cruft, and other active legacy markup before Astro receives the HTML.</p>
       <p>Private/auth/newsletter/admin tables were excluded from the public build.</p>

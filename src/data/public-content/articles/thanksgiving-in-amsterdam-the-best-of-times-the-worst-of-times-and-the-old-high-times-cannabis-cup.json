@@ -16,7 +16,7 @@
     "updated_at": "2025-03-30 11:01:43.839685"
   },
   "read_time": 3,
-  "image_link": "",
+  "image_link": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb",
   "keywords": null,
   "language": null,
   "article_type": 0,
@@ -36,6 +36,31 @@
     "source_table": "articles",
     "source_id": "10694",
     "sanitized": true,
-    "raw_html_excluded": true
-  }
+    "raw_html_excluded": true,
+    "live_api": {
+      "source": "https://www.marijuananews.com/api/articles",
+      "fetched_at": "2026-06-05T15:40:13.011Z",
+      "matched_by": "id_or_slug",
+      "fields_merged": [
+        "image_url",
+        "thumbnails",
+        "status",
+        "topic_id",
+        "content_html_length"
+      ]
+    }
+  },
+  "image_url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb",
+  "thumbnails": {
+    "sm": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb",
+    "md": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb",
+    "lg": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb",
+    "xl": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb",
+    "original": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gtr84yj0e7kdro4py7091qe8o6wb"
+  },
+  "permanent_slug": null,
+  "live_status": "active",
+  "archived_at": null,
+  "archived_by": null,
+  "topic_id": 11
 }

@@ -69,11 +69,21 @@ function hostOf(raw) {
   }
 }
 
+function firstArticleImage(article) {
+  return article.image_link
+    || article.image_url
+    || article.thumbnails?.xl
+    || article.thumbnails?.lg
+    || article.thumbnails?.md
+    || article.thumbnails?.sm
+    || '';
+}
+
 async function readJson(name) {
   return JSON.parse(await readFile(path.join(dataDir, name), 'utf8'));
 }
 
-const [rawArticles, rawFaqs, rawTopics, rawRedirects, rawExternalLinks, rawAssets, rawRewriteMap, auditReport] = await Promise.all([
+const [rawArticles, rawFaqs, rawTopics, rawRedirects, rawExternalLinks, rawAssets, rawRewriteMap, auditReport, siteMetadata, bioProfile] = await Promise.all([
   readJson('articles.json'),
   readJson('faqs.json'),
   readJson('topics.json'),
@@ -82,6 +92,8 @@ const [rawArticles, rawFaqs, rawTopics, rawRedirects, rawExternalLinks, rawAsset
   readJson('asset-manifest.json'),
   readJson('asset-rewrite-map.json'),
   readJson('audit-report.json'),
+  readJson('site-metadata.json'),
+  readJson('bio.json'),
 ]);
 
 const articles = rawArticles
@@ -102,6 +114,8 @@ const articles = rawArticles
       .slice(0, 18);
     const wordCount = fullText ? fullText.split(/\s+/).filter(Boolean).length : 0;
     const path = article.canonical_path || `/articles/${article.slug}/`;
+    const image = firstArticleImage(article);
+    const rewrittenImage = rawRewriteMap[image] || rawRewriteMap[image.startsWith('//') ? `https:${image}` : image] || image;
     return {
       id: article.id,
       slug: article.slug,
@@ -118,15 +132,22 @@ const articles = rawArticles
       source: cleanLabel(article.source),
       sourceUrl: article.source_url || '',
       readTime: Number(article.read_time || 0) || Math.max(1, Math.round(wordCount / 225)),
-      image: article.image_link || '',
+      image: rewrittenImage,
+      imageOriginal: image,
+      thumbnails: article.thumbnails || null,
       keywords: Array.from(new Set(keywords)),
       language: article.language || '',
       articleType: article.article_type || '',
-      status: article.publication_status_inferred || article.source_status_value || '',
+      status: article.publication_status_inferred || article.live_status || article.source_status_value || '',
+      liveStatus: article.live_status || '',
+      permanentSlug: article.permanent_slug || '',
+      topicId: article.topic_id || article.topic?.id || '',
+      featured: Boolean(article.is_featured),
+      likesCount: Number(article.likes_count || 0),
       seoScore: article.seo_score ?? null,
       wordCount,
       contentLength: String(article.content_html_sanitized || '').length,
-      hasImage: Boolean(article.image_link),
+      hasImage: Boolean(rewrittenImage),
       migration: article.migration || null,
     };
   });
@@ -183,7 +204,15 @@ const index = {
   site: {
     name: 'MarijuanaNews.com Archive',
     publicUrl: 'https://marijuananews-archive.hartjr.workers.dev',
-    source: 'Recovered public archive artifacts',
+    source: 'Recovered public archive artifacts plus live public metadata endpoints',
+    liveMetadata: siteMetadata,
+    bio: {
+      name: bioProfile.name || '',
+      role: bioProfile.role || '',
+      birthDate: bioProfile.birth_date || null,
+      excerpt: clampText(stripHtml(bioProfile.content_html_sanitized || bioProfile.plain_text_excerpt || ''), 500),
+      imageCount: Array.isArray(bioProfile.image_urls) ? bioProfile.image_urls.length : 0,
+    },
   },
   stats: {
     articles: articles.length,

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { articles, articleUrl, articleCategorySlug, articleTopicSlug, excerpt, formatDate, getRelatedArticles, keywords, rewriteAssetUrl, rewriteLegacyHtml } from '../../lib/content';
+import { articles, articleUrl, articleCategorySlug, articleImageUrl, articleTopicSlug, excerpt, formatDate, getRelatedArticles, keywords, rewriteLegacyHtml } from '../../lib/content';
 
 export function getStaticPaths() {
   return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
@@ -8,7 +8,7 @@ export function getStaticPaths() {
 
 const { article } = Astro.props;
 const html = rewriteLegacyHtml(article.content_html_sanitized || '');
-const cover = rewriteAssetUrl(article.image_link);
+const cover = articleImageUrl(article);
 const related = getRelatedArticles(article, 5);
 const title = article.meta_title || article.title;
 const description = article.meta_description || excerpt(article, 165);
@@ -41,6 +41,9 @@ const tags = keywords(article);
         <ul class="list">
           <li><strong>Date:</strong> {formatDate(article.publication_date)}</li>
           {article.source && <li><strong>Source:</strong> {article.source}</li>}
+          {article.live_status && <li><strong>Live status:</strong> {article.live_status}</li>}
+          {article.topic_id && <li><strong>Live topic ID:</strong> {article.topic_id}</li>}
+          {typeof article.likes_count === 'number' && <li><strong>Live likes:</strong> {article.likes_count}</li>}
           {article.source_url && <li><a href={article.source_url} rel="noopener noreferrer nofollow">Original/source URL</a></li>}
           <li><strong>Archive path:</strong><br /><code>{canonical}</code></li>
         </ul>

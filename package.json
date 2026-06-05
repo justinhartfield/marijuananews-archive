@@ -10,6 +10,7 @@
     "preview": "astro preview --host 127.0.0.1",
     "sync:content": "node scripts/sync-content.mjs",
     "redirects": "node scripts/generate-redirects.mjs",
+    "audit:migration": "node scripts/audit-public-data.mjs",
     "mirror:assets": "node scripts/mirror-assets.mjs",
     "upload:r2": "node scripts/upload-r2-dist.mjs",
     "deploy": "wrangler deploy",

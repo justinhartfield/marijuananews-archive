@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Emerald green cannabis leaf design -->
+  <g fill="#1FAB89"> <!-- Emerald green color -->
+    <!-- Main stem -->
+    <path d="M50 85 L50 45 Q50 40 50 40 Z" stroke="#1FAB89" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Leaf parts -->
+    <path d="M50 45 C20 20, 15 5, 10 5 C15 15, 25 25, 50 40" />
+    <path d="M50 45 C80 20, 85 5, 90 5 C85 15, 75 25, 50 40" />
+    
+    <path d="M50 45 C30 30, 20 15, 15 10 C25 20, 35 30, 50 45" />
+    <path d="M50 45 C70 30, 80 15, 85 10 C75 20, 65 30, 50 45" />
+    
+    <path d="M50 45 C40 25, 30 15, 25 15 C35 25, 45 35, 50 50" />
+    <path d="M50 45 C60 25, 70 15, 75 15 C65 25, 55 35, 50 50" />
+    
+    <path d="M50 60 C40 45, 30 40, 25 40 C35 45, 45 55, 48 65" />
+    <path d="M50 60 C60 45, 70 40, 75 40 C65 45, 55 55, 52 65" />
+  </g>
+</svg>

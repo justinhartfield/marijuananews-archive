@@ -4,10 +4,9 @@ import topicsData from '../data/public-content/topics.json';
 import redirectsData from '../data/public-content/redirects.json';
 import auditReportData from '../data/public-content/audit-report.json';
 import assetRewriteMapData from '../data/public-content/asset-rewrite-map.json';
+import siteMetadataData from '../data/public-content/site-metadata.json';
+import bioData from '../data/public-content/bio.json';
 
-export const SITE_URL = 'https://www.marijuananews.com';
-export const SITE_TITLE = 'MarijuanaNews.com Archive';
-export const SITE_DESCRIPTION = 'A rebuilt public archive of MarijuanaNews.com articles, FAQs, topics, and source-preserved cannabis policy history.';
 export const PAGE_SIZE = 48;
 
 type JsonMap = Record<string, unknown>;
@@ -37,9 +36,16 @@ export interface Article {
   category?: string | null;
   topic?: Topic | null;
   image_link?: string | null;
+  image_url?: string | null;
+  thumbnails?: Record<string, string> | null;
   keywords?: string | null;
   seo_keywords?: string | null;
   read_time?: number | string | null;
+  permanent_slug?: string | null;
+  live_status?: string | null;
+  topic_id?: number | string | null;
+  is_featured?: boolean | null;
+  likes_count?: number | null;
 }
 
 export interface Faq {
@@ -60,6 +66,40 @@ export interface RedirectRule {
   to: string;
   status: number;
 }
+
+export interface SiteMetadata {
+  title?: string | null;
+  site_name?: string | null;
+  description?: string | null;
+  canonical_origin?: string | null;
+  legacy_origin?: string | null;
+  google_analytics_id?: string | null;
+  favicon?: string | null;
+  logo?: string | null;
+  og?: Record<string, string> | null;
+  twitter?: Record<string, string> | null;
+  schema?: JsonMap | null;
+}
+
+export interface BioProfile {
+  name?: string | null;
+  role?: string | null;
+  birth_date?: string | null;
+  social_links?: Record<string, string> | null;
+  image_urls?: Array<Record<string, unknown>> | null;
+  content_html_sanitized?: string | null;
+  plain_text_excerpt?: string | null;
+}
+
+export const siteMetadata = siteMetadataData as SiteMetadata;
+export const bioProfile = bioData as BioProfile;
+
+export const SITE_URL = cleanLabel(siteMetadata.canonical_origin) || 'https://marijuananews.com';
+export const SOURCE_SITE_TITLE = cleanLabel(siteMetadata.site_name || siteMetadata.title) || 'MarijuanaNews.com';
+export const SITE_TITLE = SOURCE_SITE_TITLE.toLowerCase().includes('archive') ? SOURCE_SITE_TITLE : `${SOURCE_SITE_TITLE} Archive`;
+export const SITE_DESCRIPTION = cleanLabel(siteMetadata.description)
+  ? `A rebuilt public archive preserving ${SOURCE_SITE_TITLE}: ${cleanLabel(siteMetadata.description)}`
+  : 'A rebuilt public archive of MarijuanaNews.com articles, FAQs, topics, and source-preserved cannabis policy history.';
 
 export const articles = (articlesData as Article[])
   .filter((article) => article.slug && article.title)
@@ -96,6 +136,18 @@ export function getArticleBySlug(slug: string): Article | undefined {
 export function articleUrl(article: Article): string {
   const path = article.canonical_path || `/articles/${article.slug}/`;
   return path.endsWith('/') ? path : `${path}/`;
+}
+
+export function articleImageUrl(article: Article): string {
+  return displayAssetUrl(
+    article.image_link
+    || article.image_url
+    || article.thumbnails?.xl
+    || article.thumbnails?.lg
+    || article.thumbnails?.md
+    || article.thumbnails?.sm
+    || ''
+  );
 }
 
 export function absoluteUrl(path: string): string {
@@ -183,16 +235,42 @@ export function rewriteAssetUrl(url?: string | null): string {
   if (!url) return '';
   const raw = url.trim();
   if (!raw || raw.startsWith('#') || raw.startsWith('mailto:') || raw.startsWith('tel:')) return raw;
+  if (/^(data:|javascript:|vbscript:)/i.test(raw)) return '';
   const normalized = raw.startsWith('//') ? `https:${raw}` : raw;
   return assetRewriteMap[raw] || assetRewriteMap[normalized] || normalized;
 }
 
+export function displayAssetUrl(url?: string | null): string {
+  const raw = (url || '').trim();
+  if (!raw || /^(data:|javascript:|vbscript:|mailto:|tel:)/i.test(raw)) return '';
+  const normalized = raw.startsWith('//') ? `https:${raw}` : raw;
+  const rewritten = assetRewriteMap[raw] || assetRewriteMap[normalized];
+  if (rewritten) return rewritten;
+  if (normalized.startsWith('/')) return normalized;
+  if (isBlockedLegacyAssetHost(normalized)) return '';
+  return normalized;
+}
+
+function isBlockedLegacyAssetHost(url: string): boolean {
+  try {
+    const { hostname } = new URL(url);
+    return hostname === 'marijuananews.sfo3.digitaloceanspaces.com';
+  } catch {
+    return false;
+  }
+}
+
 export function rewriteLegacyHtml(html: string): string {
   return html
-    .replace(/\b(src|href)=(['"])(.*?)\2/gi, (_match, attr: string, quote: string, value: string) => {
-      return `${attr}=${quote}${escapeAttribute(rewriteAssetUrl(value))}${quote}`;
+    .replace(/<img\b[^>]*\bsrc=(['"])(.*?)\1[^>]*>/gi, (match: string, quote: string, value: string) => {
+      const displayUrl = displayAssetUrl(value);
+      if (!displayUrl) return '';
+      const rewritten = match.replace(/\bsrc=(['"])(.*?)\1/i, `src=${quote}${escapeAttribute(displayUrl)}${quote}`);
+      return /\bloading=/i.test(rewritten) ? rewritten : rewritten.replace(/<img\b/i, '<img loading="lazy" decoding="async"');
     })
-    .replace(/<img\b(?![^>]*\bloading=)/gi, '<img loading="lazy" decoding="async"');
+    .replace(/\b(href)=(['"])(.*?)\2/gi, (_match, attr: string, quote: string, value: string) => {
+      return `${attr}=${quote}${escapeAttribute(rewriteAssetUrl(value))}${quote}`;
+    });
 }
 
 export function escapeHtml(value: string): string {

@@ -25,10 +25,16 @@ const sleepMs = Number(args.get('sleep-ms') || 150);
 const timeoutMs = Number(args.get('timeout-ms') || 15000);
 const workers = Math.max(1, Number(args.get('workers') || 1));
 const dryRun = Boolean(args.get('dry-run'));
+const force = Boolean(args.get('force'));
 
 function normalizeUrl(url) {
   if (!url) return '';
   return url.startsWith('//') ? `https:${url}` : url;
+}
+
+function isMirrorableUrl(url) {
+  const normalized = normalizeUrl(url);
+  return /^https?:\/\//i.test(normalized);
 }
 
 function fallbackExtension(asset, response) {
@@ -62,6 +68,23 @@ async function loadWaybackMap() {
   return map;
 }
 
+async function loadJsonObject(filePath) {
+  try {
+    return JSON.parse(await readFile(filePath, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function cleanRewriteMap(map) {
+  return Object.fromEntries(Object.entries(map || {}).filter(([source, destination]) => (
+    isMirrorableUrl(source)
+    && typeof destination === 'string'
+    && destination.startsWith('/')
+    && !destination.includes('\n')
+  )));
+}
+
 async function fetchBinary(url) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -82,9 +105,19 @@ async function sleep(ms) {
 }
 
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
-const assets = manifest.filter((asset) => asset?.url).slice(0, limit || undefined);
+const existingRewriteMap = cleanRewriteMap(await loadJsonObject(rewriteMapPath));
+const assets = manifest
+  .filter((asset) => asset?.url)
+  .filter((asset) => isMirrorableUrl(asset.url))
+  .filter((asset) => {
+    if (force) return true;
+    const original = asset.url;
+    const normalized = normalizeUrl(original);
+    return !existingRewriteMap[original] && !existingRewriteMap[normalized];
+  })
+  .slice(0, limit || undefined);
 const waybackMap = await loadWaybackMap();
-const rewriteMap = {};
+const rewriteMap = { ...existingRewriteMap };
 const failures = [];
 let nextIndex = 0;
 let attempted = 0;

@@ -1,0 +1,231 @@
+{
+  "source": "https://www.marijuananews.com/api/bio",
+  "fetched_at": "2026-06-05T15:40:13.011Z",
+  "name": "Richard Cowan",
+  "role": "Publisher",
+  "birth_date": "1940-06-26",
+  "social_links": {
+    "linkedin": "",
+    "twitter": "",
+    "email": ""
+  },
+  "image_urls": [
+    {
+      "id": 8,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/9tvnsjteqpnw0evi64t86fr8oquj",
+      "filename": "desktop-wallpaper-4-land-rover-discovery-discovery-4.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-28T02:45:54.577Z"
+    },
+    {
+      "id": 12,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/vviwkm3cgh0zm7jlbmxb1lmplz2k",
+      "filename": "desktop-wallpaper-4-land-rover-discovery-discovery-4.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-28T08:40:00.861Z"
+    },
+    {
+      "id": 13,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/l8t1n1je550ww28fk1sxa3wzso2s",
+      "filename": "disco4.jpeg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-28T08:40:01.078Z"
+    },
+    {
+      "id": 14,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/8fik5vf888ooty2wcu1cro10nbft",
+      "filename": "Screenshot 2025-03-26 at 13.36.32.png",
+      "content_type": "image/png",
+      "created_at": "2025-03-28T08:59:17.088Z"
+    },
+    {
+      "id": 15,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/1poymoh3ldvaol9eovz7bygeprog",
+      "filename": "disco4.jpeg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-28T15:24:41.446Z"
+    },
+    {
+      "id": 16,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/d5gwkji98d4iilndfmjanbmz5gbo",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-28T16:38:16.904Z"
+    },
+    {
+      "id": 17,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/q28hppwu7pn6ckpptyev6uiamwb8",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-28T16:42:52.829Z"
+    },
+    {
+      "id": 19,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/2zvx2dc2dtif77ahfevd5h24b3ke",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:12:15.020Z"
+    },
+    {
+      "id": 20,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/z3mr58r033btou8w757ykbiec3gm",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:16:18.938Z"
+    },
+    {
+      "id": 21,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/i88i3fsyp2cpk55djmpo1hsg0c0f",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:20:40.062Z"
+    },
+    {
+      "id": 22,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/o4yun6hdckpq6et28zofhhkvs368",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:22:20.378Z"
+    },
+    {
+      "id": 23,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/gv1hmirlm51k7un1dkgak92fsbeh",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:30:34.497Z"
+    },
+    {
+      "id": 24,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/snjik1ww54hjqvu8npgu5pscykrn",
+      "filename": "729621b6-d52d-4ed8-a067-becd06c2ed63.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:36:37.625Z"
+    },
+    {
+      "id": 25,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/m6co3udum5ojzpmmzfwlc29ww506",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:45:08.298Z"
+    },
+    {
+      "id": 26,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/tdqmm76a26o937u6v5lln03kfxpn",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:48:39.703Z"
+    },
+    {
+      "id": 27,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/rsx546fp52etp4tiguwrsyk6kgh2",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:52:36.653Z"
+    },
+    {
+      "id": 28,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/ppa8g2r8noxjpl1l05pyk09tdo6z",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T16:59:52.169Z"
+    },
+    {
+      "id": 29,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/xsjok3qa4q4h9qcexu63vsuopy5c",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T17:01:35.149Z"
+    },
+    {
+      "id": 30,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/tmhr90d2246hpaqmbvjvlzkgm3u5",
+      "filename": "729621b6-d52d-4ed8-a067-becd06c2ed63.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T17:04:30.419Z"
+    },
+    {
+      "id": 31,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/c1eg87mj0azi3oxvpmk99kj0crwl",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T17:36:42.031Z"
+    },
+    {
+      "id": 32,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/1pjv7ban9msulc8rdx9r46ce4n0u",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T17:47:01.062Z"
+    },
+    {
+      "id": 35,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/yjnh39yyntacd56o8tyv0llc19a8",
+      "filename": "the-cannabis-plant-ganja-in-the-flowerpot-T3GNPB.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-29T17:59:58.961Z"
+    },
+    {
+      "id": 40,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/kwdqs0bpwdlf7cgbwvf90iubuv6h",
+      "filename": "729621b6-d52d-4ed8-a067-becd06c2ed63.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T11:50:56.754Z"
+    },
+    {
+      "id": 41,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/fuszy7o0cyll9evj07ey5ow59vq4",
+      "filename": "729621b6-d52d-4ed8-a067-becd06c2ed63.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T12:17:44.766Z"
+    },
+    {
+      "id": 44,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/llvqzqjgfok95kipeww4tvsezbxi",
+      "filename": "729621b6-d52d-4ed8-a067-becd06c2ed63.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T12:50:18.801Z"
+    },
+    {
+      "id": 45,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/ditjr8sxxhdjre6iu4njttf3ps8x",
+      "filename": "Screenshot 2025-03-26 at 13.36.32.png",
+      "content_type": "image/png",
+      "created_at": "2025-03-30T12:51:06.532Z"
+    },
+    {
+      "id": 46,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/xl692702ni4f521u0z0f3alcmiq0",
+      "filename": "desktop-wallpaper-4-land-rover-discovery-discovery-4.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T13:07:25.466Z"
+    },
+    {
+      "id": 49,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/10k7qq0k6waturg232l0c51hc0nm",
+      "filename": "729621b6-d52d-4ed8-a067-becd06c2ed63.jpg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T13:15:47.853Z"
+    },
+    {
+      "id": 50,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/2w6my1auod7kdjzsjo51ug99npwd",
+      "filename": "disco4.jpeg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T13:16:56.194Z"
+    },
+    {
+      "id": 51,
+      "url": "https://marijuananews.sfo3.digitaloceanspaces.com/marijuananews/5v7grwj39s8pjset6hz13ylaswi1",
+      "filename": "disco4.jpeg",
+      "content_type": "image/jpeg",
+      "created_at": "2025-03-30T13:18:01.060Z"
+    }
+  ],
+  "content_html_sanitized": "\n            <h2>Who Is Richard Cowan and Why Is He Saying All Those Horrible Things About Marijuana Prohibition?</h2>\n            <div>\n<p>I was born in Fort Worth, Texas, in 1940, to fortunate circumstances. I graduated from high school there in 1958. I got a degree in Economics from Yale University in 1962 and later held executive positions in various companies involved in manufacturing and natural resources, including publicly owned firms.</p>\n<p>While I was at Yale, I got involved in campus politics and became Chairman of the Party of the Right in the Yale Political Union. That’s where I discovered that I love to argue.</p>\n<p>I was also a founding member of Young Americans for Freedom, the national Conservative student group founded in 1960 by the late William F. Buckley, Jr., one of the most influential Conservative thinkers of the 20th century. Buckley’s friendship had a major impact on my life.</p>\n<p>Speaking of education, back in Fort Worth in 1967 a childhood friend asked me, “Do you want to smoke some grass?” Somehow I wasn’t shocked and a few days later I bought my first “lid” (an ounce) for ten dollars. (Approximately $95 today) I blame The Beatles.</p>\n<p>Five years later, in 1972, I went to my tenth class reunion where some old friends who were active in the Republican Party suggested that I should go to Washington where they were sure I could get a job with the Committee to Reelect the President (Nixon), appropriately called CREEP.</p>\n<p>It was only my second trip to DC and I have had terrible timing. My first trip was on November 21, 1963, the day before the Kennedy Assissination. This time I arrived just before the Watergate burglary.</p>\n<p>When I went to the CREEP offices they were actually changing the locks. The coverup had begun, but I rented a small apartment and waited for things to calm down.</p>\n<p>About this time, I saw a story in Playboy magazine, which I only bought for the cartoons, about a young man whose life had been ruined by being arrested for a small amount of marijuana. I saw that there was something called the National Organization for the Reform of the Marijuana Laws, <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://NORML.ORG\">NORML.ORG</a>, that had an office nearby, so I walked over to join for $15, still about the price of a lid.</p>\n<p>Keith Stroup, the founder of NORML, understandably thought that I was a Narc, but when I asked him if he had any more horror stories like the one in Playboy, he pointed to a room with filing cabinets full of them. After reading as much as I could stand, I told Stroup that I wanted to volunteer, and then I called up my Republican friends and told them to stop looking, because I was going to be working for NORML, which I had to spell out for them.</p>\n<p>Well, I didn’t hear from them too much after that. I just said that I had gone to work for a better class of criminals.</p>\n<p>Later that summer, NORML had its first conference, called The First People’s Pot Conference, as best I can remember. And for the first time in my life, I actually saw someone get arrested.</p>\n<p>After that, I decided to write to Buckley, with the draft of a brief article, “Why Conservatives Should Support the Legalization of Marijuana”. I had never written anything for publication before. My note began “Dear Bill, guess who’s gone to pot.”</p>\n<p>To my amazement, he responded a couple of weeks later with pure Buckley, “My inclination is to run it, and National Review has a way of indulging my inclinations.” (I lost it somewhere along the way.)</p>\n<p>He wanted to wait until after the elections (“not to embarrass our friends”.) So I headed back to Texas to wait, but on December 6, 1972, National Review really did publish my article as a cover story. Honestly, it wasn’t very well written and it took a lot of editing, but it had an impact.</p>\n<p>In his book Smoke and Mirrors: The War on Drugs and the Politics of Failure, <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://en.m.wikipedia.org/wiki/Smoke_and_Mirrors:_The_War_on_Drugs_and_the_Politics_of_Failure\">https://en.m.wikipedia.org/wiki/Smoke_and_Mirrors:_The_War_on_Drugs_and_the_Politics_of_Failure</a> the late Dan Baum wrote that it “opened a second front in the War on Drugs.”</p>\n<p>Even Time Magazine and The New York Times covered the piece, surprised that a conservative voice would take such a stance. They certainly did not have the integrity to do so.</p>\n<p>In early 1973, I got a few hundred extra copies of National Review and moved to Austin to work with activists to reform Texas’s brutal marijuana laws.</p>\n<p>At the time, over 800 people were in prison in Texas for possession of less than an ounce of marijuana. Thirty were actually serving life sentences.</p>\n<p>A few months later, in May, the final day of the legislative session, with just five votes to spare, we passed a bill that reduced the penalty to six months—and 800 people were released. I walked outside the Capitol, sat on the steps, and wept. That was my introduction to the real world.</p>\n<p>With an odd coincidence fourteen years later, on December 5, 1986, National Review published another article as a cover story: “How the Narcs Created Crack.” <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://marijuananews.com/articles/how-the-narcs-created-crack-by-richard-c-cowan/legacy\">https://marijuananews.com/articles/how-the-narcs-created-crack-by-richard-c-cowan/legacy</a></p>\n<p>That article has since been cited in various scholarly journals for introducing the economic principle now known as “The Iron Law of Prohibition” <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://en.m.wikipedia.org/wiki/Iron_law_of_prohibition\">https://en.m.wikipedia.org/wiki/Iron_law_of_prohibition</a></p>\n<p>“The harder the enforcement, the harder the drugs.”</p>\n<p>In 1986, I became a founding board member of the Drug Policy Foundation with my friend, the late American University law professor Arnold Trebach, a wonderful and brilliant man. The DPF conferences had guests from The Netherlands, so I got to meet several brilliant Dutch activists, academics and lawyers, who became great friends.</p>\n<p>My father died in 1991, and I had no further commitments to Texas, so in 1992 I moved to D. C. and served as Executive Director of NORML until the fall of 1995.</p>\n<p>While I was NORML’s Executive Director, our board included the late Dr. Lester Grinspoon, Nobel Laureate Kary Mullis, Ann Druyan (co-producer of Cosmos with her late husband, Carl Sagan, a truly amazing couple), the late David Boaz of the Cato Institute, and others. It was a great honor that I owe to Dr. Grinspoon.</p>\n<p>One of the greatest joys of my life in a very difficult time, was serving with Allen St. Pierre, the Assistant National Director, who did all the real work. However, it was emotionally exhausting, so I resigned in the Fall of 1995, and in early 1996, I moved to Amsterdam.</p>\n<p>Later that year, Buckley once again changed my life by introducing me to his friend Peter McWilliams, <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://en.m.wikipedia.org/wiki/Peter_McWilliams\">https://en.m.wikipedia.org/wiki/Peter_McWilliams</a> a libertarian author diagnosed with AIDS and cancer. Peter had turned to medical marijuana after California’s Proposition 215 <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://en.m.wikipedia.org/wiki/Proposition_215\">https://en.m.wikipedia.org/wiki/Proposition_215</a> passed.</p>\n<p>Peter thought the Los Angeles medical marijuana Buyers Club was overcharging patients, so he brought in my friend Todd McCormick, a childhood cancer survivor and talented cannabis gardener, to start a large “garden.”</p>\n<p>We believed it was safe, based on the precedent set by the Buyers Club. But the federal government, which had ignored the Buyers Club, went after Peter and Todd. Todd was sentenced to five years in federal prison, and Peter died.</p>\n<p><em>KILLING IN THE NAME OF JUSTICE? The Story of Todd McCormick and Peter McWilliams </em><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"https://seoklaw.com/killing-in-the-name-of-justice-the-story-of-todd-mccormick-and-peter-mcwilliams/\">https://seoklaw.com/killing-in-the-name-of-justice-the-story-of-todd-mccormick-and-peter-mcwilliams/</a></p>\n<p>On Buckley’s recommendation, Peter had hired me to launch a new website called <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://MarijuanaMagazine.com\">MarijuanaMagazine.com</a>. After Peter’s arrest, he encouraged me to keep it going under a different domain name to avoid federal scrutiny. So I moved back to Texas and launched <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://MarijuanaNews.com\">MarijuanaNews.com</a> in late 1997. It’s been called one of the first true “blogs” of any kind.</p>\n<p>From 2000 to 2005, I was invited to do the 420 MarijuanaNews video series on Marc Emory’s <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://Pot.TV\">Pot.TV</a> in Vancouver—one of the earliest Internet video “podcasts”, before the term even existed.</p>\n<p>In 2005, I had to move back to the US, and Marc was sentenced to five years in the US Federal prison for the crime of shipping cannabis seeds to the US. That was the only such prosecution ever.</p>\n<p>And the U.S. government continued trying to kill American medical marijuana patients, Steve Tuck and Steve Kubby, who had fled to Canada. There’s a lot more about that in the archives.</p>\n<p>In the meantime, I wrote intermittently and in 2014 I was invited to debate at the Oxford Union and in 2013 I spoke before a congressional committee in Mexico. Viva Mexico!</p>\n<p>I’ve lived in Fort Worth and Dallas, Vancouver, Amsterdam, Washington D.C., Irvine and Palm Springs, and Madrid. Now, I live in Valencia, Spain, where I work as an economics consultant for a private international investment firm.</p>\n<p>In May 2024, I became CEO of <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://WEED.DE\">WEED.DE</a>, a German site that helps Germans and other EU citizens access newly legalized cannabis for medical and recreational use under Germany’s new law.</p>\n<p>I’m especially focused on helping seniors exercise their rights. I believe that my generation especially needs cannabinoid medicine, and everyone needs freedom.</p>\n<p>I will also be writing regularly for <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://WEED.DE\">WEED.DE</a>, and you’ll find those articles in English along with others—on <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://MarijuanaNews.com\">MarijuanaNews.com</a>.</p>\n<p>In all this time, I have never been arrested or even had a narc be rude to me. As I said, I was born to fortunate circumstances. So far, so good.</p>\n<p>Gratefully.</p>\n</div>\n          ",
+  "plain_text_excerpt": "Who Is Richard Cowan and Why Is He Saying All Those Horrible Things About Marijuana Prohibition? I was born in Fort Worth, Texas, in 1940, to fortunate circumstances. I graduated from high school there in 1958. I got a degree in Economics from Yale University in 1962 and later held executive positions in various companies involved in manufacturing and natural resources, including publicly owned firms. While I was at Yale, I got involved in campus politics and became Chairman of the Party of the Right in the Yale Political Union. That’s where I discovered that I love to argue. I was also a founding member of Young Americans for Freedom, the national Conservative student group founded in 1960",
+  "migration": {
+    "source_endpoint": "https://www.marijuananews.com/api/bio",
+    "sanitized": true,
+    "raw_html_excluded": true
+  }
+}

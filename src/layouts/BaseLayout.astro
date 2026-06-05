@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE_DESCRIPTION, SITE_TITLE, absoluteUrl } from '../lib/content';
+import { SITE_DESCRIPTION, SITE_TITLE, absoluteUrl, rewriteAssetUrl, siteMetadata } from '../lib/content';
 
 interface Props {
   title?: string;
@@ -16,6 +16,10 @@ const {
 
 const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
 const canonicalUrl = canonical.startsWith('http') ? canonical : absoluteUrl(canonical);
+const faviconHref = rewriteAssetUrl(siteMetadata.favicon || '/favicon.svg');
+const logoHref = rewriteAssetUrl(siteMetadata.logo || '');
+const analyticsId = siteMetadata.google_analytics_id || '';
+const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '';
 ---
 <!doctype html>
 <html lang="en">
@@ -25,13 +29,19 @@ const canonicalUrl = canonical.startsWith('http') ? canonical : absoluteUrl(cano
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {faviconHref && <link rel="icon" href={faviconHref} />}
     <meta property="og:site_name" content={SITE_TITLE} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {logoHref && <meta property="og:image" content={absoluteUrl(logoHref)} />}
+    <meta name="twitter:card" content={logoHref ? 'summary_large_image' : 'summary'} />
+    {logoHref && <meta name="twitter:image" content={absoluteUrl(logoHref)} />}
     <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS`} href="/rss.xml" />
+    {schemaJson && <script type="application/ld+json" set:html={schemaJson}></script>}
+    {analyticsId && <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>}
+    {analyticsId && <script is:inline define:vars={{ analyticsId }}>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', analyticsId);</script>}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

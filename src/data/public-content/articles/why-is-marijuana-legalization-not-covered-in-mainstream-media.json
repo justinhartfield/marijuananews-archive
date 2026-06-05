@@ -36,6 +36,32 @@
     "source_table": "articles",
     "source_id": "6237",
     "sanitized": true,
-    "raw_html_excluded": true
-  }
+    "raw_html_excluded": true,
+    "live_api": {
+      "source": "https://www.marijuananews.com/api/articles",
+      "fetched_at": "2026-06-05T15:40:13.011Z",
+      "matched_by": "id_or_slug",
+      "fields_merged": [
+        "url",
+        "image_url",
+        "thumbnails",
+        "status",
+        "topic_id",
+        "content_html_length"
+      ]
+    }
+  },
+  "image_url": "https://www.laweekly.com/wp-content/uploads/2020/04/03-wednesday-image-989184-759x500.jpg",
+  "thumbnails": {
+    "sm": "https://www.laweekly.com/wp-content/uploads/2020/04/03-wednesday-image-989184-759x500.jpg",
+    "md": "https://www.laweekly.com/wp-content/uploads/2020/04/03-wednesday-image-989184-759x500.jpg",
+    "lg": "https://www.laweekly.com/wp-content/uploads/2020/04/03-wednesday-image-989184-759x500.jpg",
+    "xl": "https://www.laweekly.com/wp-content/uploads/2020/04/03-wednesday-image-989184-759x500.jpg",
+    "original": "https://www.laweekly.com/wp-content/uploads/2020/04/03-wednesday-image-989184-759x500.jpg"
+  },
+  "permanent_slug": null,
+  "live_status": "active",
+  "archived_at": null,
+  "archived_by": null,
+  "topic_id": 14
 }
