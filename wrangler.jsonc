@@ -10,6 +10,16 @@
     }
   ],
   "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "marijuananews.com/*",
+      "zone_name": "marijuananews.com"
+    },
+    {
+      "pattern": "www.marijuananews.com/*",
+      "zone_name": "marijuananews.com"
+    }
+  ],
   "observability": {
     "enabled": true
   },
