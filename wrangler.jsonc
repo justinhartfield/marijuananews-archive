@@ -9,6 +9,7 @@
       "bucket_name": "marijuananews-archive-assets"
     }
   ],
+  "workers_dev": true,
   "observability": {
     "enabled": true
   },
