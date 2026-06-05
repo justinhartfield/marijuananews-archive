@@ -22,42 +22,36 @@ const tags = keywords(article);
     <div class="container">
       <p class="eyebrow">Recovered article</p>
       <h1>{article.title}</h1>
+      <p class="meta">{formatDate(article.publication_date)}{article.category && <> · <a href={`/categories/${categorySlug}/`}>{article.category}</a></>}{article.topic?.name && topicSlug && <> · <a href={`/topics/${topicSlug}/`}>{article.topic.name}</a></>}{article.source && <> · {article.source}</>}</p>
       <p class="lede">{description}</p>
-      <div class="pill-row">
-        <span class="pill">{formatDate(article.publication_date)}</span>
-        {article.category && <a class="pill" href={`/categories/${categorySlug}/`}>{article.category}</a>}
-        {article.topic?.name && topicSlug && <a class="pill" href={`/topics/${topicSlug}/`}>{article.topic.name}</a>}
-        {article.source && <span class="pill">Source: {article.source}</span>}
-      </div>
       {cover && <img class="article-cover" src={cover} alt="" loading="eager" decoding="async" />}
     </div>
   </header>
 
   <div class="container article-shell">
     <article class="legacy-content" set:html={html}></article>
-    <aside class="sidebar">
-      <div class="card">
-        <h2>Article data</h2>
-        <ul class="list">
-          <li><strong>Date:</strong> {formatDate(article.publication_date)}</li>
-          {article.source && <li><strong>Source:</strong> {article.source}</li>}
-          {article.live_status && <li><strong>Live status:</strong> {article.live_status}</li>}
-          {article.topic_id && <li><strong>Live topic ID:</strong> {article.topic_id}</li>}
-          {typeof article.likes_count === 'number' && <li><strong>Live likes:</strong> {article.likes_count}</li>}
-          {article.source_url && <li><a href={article.source_url} rel="noopener noreferrer nofollow">Original/source URL</a></li>}
-          <li><strong>Archive path:</strong><br /><code>{canonical}</code></li>
-        </ul>
-      </div>
-      {tags.length > 0 && <div class="card">
+    <aside class="sidebar" aria-label="Article clipping details">
+      <section class="clipping-record">
+        <h2>Clipping record</h2>
+        <dl>
+          <div><dt>Date</dt><dd>{formatDate(article.publication_date)}</dd></div>
+          {article.category && <div><dt>Category</dt><dd><a href={`/categories/${categorySlug}/`}>{article.category}</a></dd></div>}
+          {article.topic?.name && topicSlug && <div><dt>Topic</dt><dd><a href={`/topics/${topicSlug}/`}>{article.topic.name}</a></dd></div>}
+          {article.source && <div><dt>Source</dt><dd>{article.source}</dd></div>}
+          {article.source_url && <div><dt>Source URL</dt><dd><a href={article.source_url} rel="noopener noreferrer nofollow">Original record</a></dd></div>}
+          <div><dt>Archive path</dt><dd><code>{canonical}</code></dd></div>
+        </dl>
+      </section>
+      {tags.length > 0 && <section class="card">
         <h2>Keywords</h2>
-        <div class="pill-row">{tags.map((tag) => <span class="pill">{tag}</span>)}</div>
-      </div>}
-      {related.length > 0 && <div class="card">
-        <h2>Related</h2>
+        <div class="topic-chip-list">{tags.map((tag) => <span class="pill">{tag}</span>)}</div>
+      </section>}
+      {related.length > 0 && <section class="card">
+        <h2>Related clippings</h2>
         <ul class="list">
           {related.map((item) => <li><a href={articleUrl(item)}>{item.title}</a><br /><span class="meta">{formatDate(item.publication_date)}</span></li>)}
         </ul>
-      </div>}
+      </section>}
     </aside>
   </div>
 </BaseLayout>

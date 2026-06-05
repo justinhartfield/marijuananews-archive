@@ -3,8 +3,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { categories } from '../../lib/content';
 ---
 <BaseLayout title="Categories" description="Browse recovered MarijuanaNews.com articles by category." canonical="/categories/">
-  <section class="hero"><div class="container"><p class="eyebrow">Categories</p><h1>Category index.</h1><p class="lede">Legacy categories normalized into static category pages.</p></div></section>
-  <section class="section"><div class="container grid three">
-    {categories.map((category) => <article class="card"><h3><a href={`/categories/${category.slug}/`}>{category.name}</a></h3><p class="meta">{category.count} articles</p></article>)}
-  </div></section>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Category desk</p>
+      <h1>Index by file.</h1>
+      <p class="lede">Legacy categories normalized into public category pages, with counts kept visible for trust and navigation.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid three">
+      {categories.map((category) => <article class="card"><p class="meta">{category.count} articles</p><h3><a href={`/categories/${category.slug}/`}>{category.name}</a></h3></article>)}
+    </div>
+  </section>
 </BaseLayout>

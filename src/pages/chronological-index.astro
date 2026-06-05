@@ -21,8 +21,8 @@ const years = Array.from(byYear.keys()).sort((a, b) => {
     <div class="container">
       <p class="eyebrow">Legacy route restored</p>
       <h1>Chronological index.</h1>
-      <p class="lede">A year by year path through the recovered public corpus. Dates come from migrated publication, update, and creation timestamps.</p>
-      <div class="pill-row"><a class="button" href="/search/">Search the archive</a><a class="button secondary" href="/archive/">Archive pages</a></div>
+      <p class="lede">A year by year path through the public corpus. Dates come from migrated publication, update, and creation timestamps.</p>
+      <div class="front-lead-actions"><a class="button" href="/search/">Search the archive</a><a class="button secondary" href="/archive/">Archive pages</a></div>
     </div>
   </section>
   <section class="section">
@@ -32,12 +32,11 @@ const years = Array.from(byYear.keys()).sort((a, b) => {
         return (
           <section class="year-block" id={`year-${year}`}>
             <div class="section-header"><h2>{year}</h2><span class="meta">{matches.length} articles</span></div>
-            <div class="grid three">
+            <div class="article-list">
               {matches.slice(0, 24).map((article) => (
-                <article class="card compact-card">
-                  <p class="meta">{formatDate(article.publication_date || article.updated_at || article.created_at)} · {article.category || 'General'}</p>
-                  <h3><a href={articleUrl(article)}>{article.title}</a></h3>
-                  <p>{excerpt(article, 150)}</p>
+                <article class="article-row">
+                  <div class="meta-rail">{formatDate(article.publication_date || article.updated_at || article.created_at)}<br />{article.category || 'General'}</div>
+                  <div><h3><a href={articleUrl(article)}>{article.title}</a></h3><p>{excerpt(article, 170)}</p></div>
                 </article>
               ))}
             </div>

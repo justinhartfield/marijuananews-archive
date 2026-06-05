@@ -19,22 +19,24 @@ const nextUrl = page < archivePageCount ? `/archive/${page + 1}/` : null;
     <div class="container">
       <p class="eyebrow">Archive</p>
       <h1>Articles, page {page}.</h1>
-      <p class="lede">Page {page} of {archivePageCount}. Articles are sorted newest first using recovered publication dates where available.</p>
+      <p class="lede">Page {page} of {archivePageCount}. Each entry keeps the recovered date and category in the left rail for fast scanning.</p>
     </div>
   </section>
   <section class="section">
-    <div class="container grid three">
+    <div class="container article-list">
       {pageArticles.map((article) => (
-        <article class="card">
-          <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
-          <h3><a href={articleUrl(article)}>{article.title}</a></h3>
-          <p>{excerpt(article)}</p>
+        <article class="article-row">
+          <div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div>
+          <div>
+            <h2><a href={articleUrl(article)}>{article.title}</a></h2>
+            <p>{excerpt(article, 220)}</p>
+          </div>
         </article>
       ))}
     </div>
     <div class="container pagination">
       <a class="button secondary" href={prevUrl}>Newer articles</a>
-      {nextUrl ? <a class="button" href={nextUrl}>Older articles</a> : <span></span>}
+      {nextUrl ? <a class="button" href={nextUrl}>Older articles</a> : <span>End of archive</span>}
     </div>
   </section>
 </BaseLayout>

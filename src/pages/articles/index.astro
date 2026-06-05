@@ -5,25 +5,27 @@ import { archivePageCount, articleUrl, excerpt, formatDate, getArticlesPage } fr
 const page = 1;
 const pageArticles = getArticlesPage(page);
 ---
-<BaseLayout title="Articles" description="Browse the recovered MarijuanaNews.com article archive from the legacy /articles route." canonical="/articles/">
+<BaseLayout title="Articles" description="Browse the recovered MarijuanaNews.com article archive from the legacy articles route." canonical="/articles/">
   <section class="hero">
     <div class="container">
       <p class="eyebrow">Legacy route restored</p>
-      <h1>Articles.</h1>
-      <p class="lede">The old /articles route now resolves to the rebuilt public archive. Articles are sorted newest first using recovered publication dates where available.</p>
-      <div class="pill-row">
+      <h1>Articles in public order.</h1>
+      <p class="lede">The old articles route now opens into the recovered paper. Dates, categories, and excerpts are kept close to each headline so long legacy titles remain scannable.</p>
+      <div class="front-lead-actions">
         <a class="button" href="/search/">Search articles</a>
-        <a class="button secondary" href="/archive/">Browse paginated archive</a>
+        <a class="button secondary" href="/archive/">Paginated archive</a>
       </div>
     </div>
   </section>
   <section class="section">
-    <div class="container grid three">
+    <div class="container article-list">
       {pageArticles.map((article) => (
-        <article class="card">
-          <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
-          <h3><a href={articleUrl(article)}>{article.title}</a></h3>
-          <p>{excerpt(article)}</p>
+        <article class="article-row">
+          <div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div>
+          <div>
+            <h2><a href={articleUrl(article)}>{article.title}</a></h2>
+            <p>{excerpt(article, 220)}</p>
+          </div>
         </article>
       ))}
     </div>

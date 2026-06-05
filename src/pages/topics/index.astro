@@ -3,11 +3,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { topics, articles, articleTopicSlug } from '../../lib/content';
 ---
 <BaseLayout title="Topics" description="Browse recovered MarijuanaNews.com articles by topic." canonical="/topics/">
-  <section class="hero"><div class="container"><p class="eyebrow">Topics</p><h1>Topic index.</h1><p class="lede">Recovered topic records from the public export, linked to matching article pages.</p></div></section>
-  <section class="section"><div class="container grid three">
-    {topics.map((topic) => {
-      const count = articles.filter((article) => articleTopicSlug(article) === topic.slug).length;
-      return <article class="card"><h3><a href={`/topics/${topic.slug}/`}>{topic.name}</a></h3><p>{topic.description || `${count} recovered articles.`}</p><p class="meta">{count} articles</p></article>;
-    })}
-  </div></section>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Topic desk</p>
+      <h1>Index by subject.</h1>
+      <p class="lede">Recovered topic records from the public export, presented as a compact newspaper desk index.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid three">
+      {topics.map((topic) => {
+        const count = articles.filter((article) => articleTopicSlug(article) === topic.slug).length;
+        return <article class="card"><p class="meta">{count} articles</p><h3><a href={`/topics/${topic.slug}/`}>{topic.name}</a></h3><p>{topic.description || `Recovered MarijuanaNews.com clippings filed under ${topic.name}.`}</p></article>;
+      })}
+    </div>
+  </section>
 </BaseLayout>

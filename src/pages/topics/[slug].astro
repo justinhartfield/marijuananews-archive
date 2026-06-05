@@ -10,8 +10,18 @@ const { topic } = Astro.props;
 const matches = articles.filter((article) => articleTopicSlug(article) === topic.slug);
 ---
 <BaseLayout title={topic.name} description={topic.description || `Recovered MarijuanaNews.com articles about ${topic.name}.`} canonical={`/topics/${topic.slug}/`}>
-  <section class="hero"><div class="container"><p class="eyebrow">Topic</p><h1>{topic.name}</h1><p class="lede">{topic.description || `${matches.length} recovered articles.`}</p></div></section>
-  <section class="section"><div class="container grid three">
-    {matches.map((article) => <article class="card"><p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p><h3><a href={articleUrl(article)}>{article.title}</a></h3><p>{excerpt(article)}</p></article>)}
-  </div></section>
+  <section class="hero">
+    <div class="container">
+      <p class="eyebrow">Topic file</p>
+      <h1>{topic.name}</h1>
+      <p class="lede">{topic.description || `${matches.length} recovered articles filed under this subject.`}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      {matches.length === 0 ? <p class="empty-note">No recovered articles are filed under this topic.</p> : <div class="article-list">
+        {matches.map((article) => <article class="article-row"><div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div><div><h2><a href={articleUrl(article)}>{article.title}</a></h2><p>{excerpt(article, 220)}</p></div></article>)}
+      </div>}
+    </div>
+  </section>
 </BaseLayout>

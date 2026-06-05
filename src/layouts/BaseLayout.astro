@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import { SITE_DESCRIPTION, SITE_TITLE, absoluteUrl, rewriteAssetUrl, siteMetadata } from '../lib/content';
+import globalCss from '../styles/global.css?raw';
+import { SITE_DESCRIPTION, SITE_TITLE, absoluteUrl, rewriteAssetUrl, siteMetadata, articles, auditReport } from '../lib/content';
 
 interface Props {
   title?: string;
@@ -20,6 +20,9 @@ const faviconHref = rewriteAssetUrl(siteMetadata.favicon || '/favicon.svg');
 const logoHref = rewriteAssetUrl(siteMetadata.logo || '');
 const analyticsId = siteMetadata.google_analytics_id || '';
 const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '';
+const articleCount = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
+const privateExcluded = ((auditReport.private_tables_intentionally_excluded as string[]) || []).length;
+const buildDate = 'Recovered public archive';
 ---
 <!doctype html>
 <html lang="en">
@@ -30,6 +33,7 @@ const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     {faviconHref && <link rel="icon" href={faviconHref} />}
+    <style is:inline set:html={globalCss}></style>
     <meta property="og:site_name" content={SITE_TITLE} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -45,16 +49,24 @@ const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <div class="container nav-shell">
-        <a class="brand" href="/" aria-label="MarijuanaNews.com Archive home">
-          <span class="brand-mark">MN</span>
-          <span>
-            <strong>MarijuanaNews.com</strong>
-            <small>public archive</small>
-          </span>
+    <header class="publication-header">
+      <div class="archive-strip">
+        <div class="container">
+          <span>{buildDate}</span>
+          <span>{articleCount} public articles · {privateExcluded} private table groups excluded</span>
+        </div>
+      </div>
+      <div class="container masthead-shell">
+        <div class="masthead-kicker">Cannabis policy record</div>
+        <a class="masthead" href="/" aria-label="Marijuana News home">
+          <span class="masthead-title">Marijuana News</span>
+          <span class="masthead-subtitle">Independent reform paper archive</span>
         </a>
-        <nav class="site-nav" aria-label="Primary navigation">
+        <div class="masthead-date">Public source edition</div>
+      </div>
+      <div class="nav-bar">
+        <nav class="container site-nav" aria-label="Primary navigation">
+          <a href="/archive/">Archive</a>
           <a href="/articles/">Articles</a>
           <a href="/search/">Search</a>
           <a href="/topics/">Topics</a>
@@ -71,7 +83,7 @@ const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '
     </main>
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p><strong>MarijuanaNews.com Archive</strong> rebuilt from public database content. Raw private/auth/newsletter tables are excluded from the static export.</p>
+        <p><strong>MarijuanaNews.com Archive</strong> preserves the public reading record. Private auth, admin, newsletter, and user tables are not part of this static edition.</p>
         <p><a href="/sitemap.xml">Sitemap</a> · <a href="/rss.xml">RSS</a> · <a href="/search/">Search</a> · <a href="/articles/">Articles</a></p>
       </div>
     </footer>

@@ -1,81 +1,105 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { articles, categories, topics, faqs, auditReport, articleUrl, articleImageUrl, excerpt, formatDate, SITE_DESCRIPTION, SITE_TITLE } from '../lib/content';
+import { articles, categories, topics, faqs, redirects, auditReport, articleUrl, articleImageUrl, articleCategorySlug, excerpt, formatDate, SITE_DESCRIPTION, SITE_TITLE } from '../lib/content';
 
-const latest = articles.slice(0, 12);
 const featured = articles.find((article) => articleImageUrl(article)) || articles[0];
 const featuredImage = featured ? articleImageUrl(featured) : '';
+const latest = articles.filter((article) => article.slug !== featured?.slug).slice(0, 10);
 const exportedTotal = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
 const assetTotal = Number((auditReport.assets as any)?.total_unique_asset_urls || 0).toLocaleString();
+const redirectTotal = redirects.length.toLocaleString();
+const firstLatest = latest.slice(0, 5);
+const secondLatest = latest.slice(5, 10);
 ---
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} canonical="/">
   <section class="hero">
-    <div class="container">
-      <p class="eyebrow">Recovered public archive</p>
-      <h1>Cannabis policy history, preserved.</h1>
-      <p class="lede">A rebuilt public record of MarijuanaNews.com: articles, FAQs, topics, source links, redirects, RSS, and migration audit data preserved without private/auth/newsletter tables.</p>
-      <div class="pill-row">
-        <a class="button" href="/search/">Search the archive</a>
-        <a class="button secondary" href="/articles/">Browse articles</a>
-        <a class="button secondary" href="/memory-hole/">Review excluded records</a>
+    <div class="container front-page-layout">
+      <div class="front-lead">
+        <p class="eyebrow">Recovered public archive</p>
+        <h1>Cannabis policy history, preserved in print.</h1>
+        <p class="lede">A restored public edition of MarijuanaNews.com: the articles, source labels, dates, topics, FAQs, redirects, and audit trail that survived the old site, without the private admin machinery.</p>
+        <div class="front-lead-actions">
+          <a class="button" href="/archive/">Read the archive</a>
+          <a class="button secondary" href="/search/">Search by issue</a>
+        </div>
       </div>
+      <aside class="archive-stat-box" aria-label="Archive audit summary">
+        <p class="eyebrow">Archive ledger</p>
+        <dl>
+          <div><dt>Articles</dt><dd>{exportedTotal}</dd></div>
+          <div><dt>Topics</dt><dd>{topics.length}</dd></div>
+          <div><dt>FAQs</dt><dd>{faqs.length}</dd></div>
+          <div><dt>Assets</dt><dd>{assetTotal}</dd></div>
+          <div><dt>Redirects</dt><dd>{redirectTotal}</dd></div>
+        </dl>
+      </aside>
     </div>
   </section>
 
   <section class="section">
-    <div class="container stat-grid">
-      <div class="stat"><strong>{exportedTotal}</strong><span>public articles</span></div>
-      <div class="stat"><strong>{topics.length}</strong><span>topics</span></div>
-      <div class="stat"><strong>{faqs.length}</strong><span>FAQs</span></div>
-      <div class="stat"><strong>{assetTotal}</strong><span>asset references</span></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <article class="card featured">
+    <div class="container front-page-layout">
+      <article class="featured-story">
         <div>
-          <p class="eyebrow">Featured recovered article</p>
+          <p class="eyebrow">Front page clipping</p>
           <h2><a href={articleUrl(featured)}>{featured.title}</a></h2>
-          <p class="meta">{formatDate(featured.publication_date)} · {featured.category || 'General'}</p>
-          <p>{excerpt(featured, 260)}</p>
+          <p class="meta">{formatDate(featured.publication_date)}{featured.category && <> · <a href={`/categories/${articleCategorySlug(featured)}/`}>{featured.category}</a></>}{featured.source && <> · {featured.source}</>}</p>
+          <p>{excerpt(featured, 280)}</p>
           <p><a class="button" href={articleUrl(featured)}>Read article</a></p>
         </div>
-        {featuredImage && <img class="card-image" src={featuredImage} alt="" loading="lazy" decoding="async" />}
+        {featuredImage && <img class="featured-image" src={featuredImage} alt="" loading="eager" decoding="async" />}
       </article>
+      <aside class="public-notice">
+        <p class="eyebrow">Public notice</p>
+        <p><strong>This is a historical public archive.</strong> It preserves cannabis policy writing and source metadata for research and reference. Private, auth, admin, newsletter, and user tables were intentionally excluded.</p>
+      </aside>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Latest articles</h2>
+        <h2>Latest recovered articles</h2>
         <a href="/archive/">Full archive</a>
       </div>
-      <div class="grid three">
-        {latest.map((article) => (
-          <article class="card">
-            <p class="meta">{formatDate(article.publication_date)} · {article.category || 'General'}</p>
-            <h3><a href={articleUrl(article)}>{article.title}</a></h3>
-            <p>{excerpt(article)}</p>
-          </article>
-        ))}
+      <div class="grid two">
+        <div class="article-list">
+          {firstLatest.map((article) => (
+            <article class="article-row">
+              <div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div>
+              <div>
+                <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+                <p>{excerpt(article, 185)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="article-list">
+          {secondLatest.map((article) => (
+            <article class="article-row">
+              <div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div>
+              <div>
+                <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+                <p>{excerpt(article, 185)}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container grid two">
-      <div class="card">
-        <div class="section-header"><h2>Top categories</h2><a href="/categories/">All categories</a></div>
-        <div class="pill-row">
-          {categories.slice(0, 12).map((category) => <a class="pill" href={`/categories/${category.slug}/`}><strong>{category.name}</strong>&nbsp;{category.count}</a>)}
+      <div>
+        <div class="section-header"><h2>Issue categories</h2><a href="/categories/">All categories</a></div>
+        <div class="topic-chip-list">
+          {categories.slice(0, 14).map((category) => <a href={`/categories/${category.slug}/`}><strong>{category.name}</strong>&nbsp;{category.count}</a>)}
         </div>
       </div>
-      <div class="card">
-        <div class="section-header"><h2>Topics</h2><a href="/topics/">All topics</a></div>
-        <div class="pill-row">
-          {topics.slice(0, 12).map((topic) => <a class="pill" href={`/topics/${topic.slug}/`}>{topic.name}</a>)}
+      <div>
+        <div class="section-header"><h2>Topic desk</h2><a href="/topics/">All topics</a></div>
+        <div class="topic-chip-list">
+          {topics.slice(0, 14).map((topic) => <a href={`/topics/${topic.slug}/`}>{topic.name}</a>)}
         </div>
       </div>
     </div>
