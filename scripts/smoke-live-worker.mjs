@@ -1,5 +1,6 @@
 const base = (process.env.SITE_URL || process.argv[2] || 'https://marijuananews.com').replace(/\/$/, '');
 const expectedTitle = 'Marijuana News';
+const SITE_TAGLINE = 'Freedom has nothing to fear from the truth.';
 
 const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
@@ -56,18 +57,20 @@ async function assertNoBrokenLocalFileLinks() {
     while (cursor < paths.length) {
       const path = paths[cursor++];
       const { text } = await fetchText(path);
-      if (hasBrokenLocalFileLink(text)) failures.push(path);
+      if (hasBrokenLocalFileLink(text)) failures.push(`${path}: broken local/FrontPage link`);
+      if (!text.includes(SITE_TAGLINE)) failures.push(`${path}: missing global tagline`);
       if (failures.length >= 40) return;
     }
   }
 
   await Promise.all(Array.from({ length: concurrency }, () => worker()));
-  assert(failures.length === 0, 'live site still has broken local/FrontPage links', { count: failures.length, sample: failures.slice(0, 20) });
+  assert(failures.length === 0, 'live site still has broken local links or missing global tagline', { count: failures.length, sample: failures.slice(0, 20) });
   return paths.length;
 }
 
 const home = await fetchText('/');
 assert(home.text.includes(expectedTitle), 'home page missing Marijuana News title');
+assert(home.text.includes(SITE_TAGLINE), 'home page missing global footer tagline');
 assert(home.text.includes('Daily cannabis news'), 'home page missing live publication framing');
 assert(home.text.includes('Subscribe to Newsletter'), 'home page missing newsletter signup');
 assert(home.text.includes('class="tag-cloud"'), 'home page missing topic tag cloud');
@@ -114,7 +117,7 @@ assert(privateIndex.status === 404, 'private backend index should not be public'
 console.log(JSON.stringify({
   ok: true,
   base,
-  checks: ['home', 'legacy route compatibility', 'rendered legacy link repair', 'full live local-file link scan', 'rss', 'sitemap', 'public overview api', 'public search api', 'public articles api', 'public CORS preflight', 'private backend block'],
+  checks: ['home', 'legacy route compatibility', 'rendered legacy link repair', 'full live local-file link scan', 'global footer tagline', 'rss', 'sitemap', 'public overview api', 'public search api', 'public articles api', 'public CORS preflight', 'private backend block'],
   stats: overview.stats,
   scannedPages,
   firstResult: search.items[0]?.title

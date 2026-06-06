@@ -224,7 +224,12 @@ h3 { font-size: clamp(1.15rem, 1.7vw, 1.5rem); }
 .stat strong { display: block; font-size: 1.6rem; line-height: 1; }
 .stat span { font-family: var(--mono); color: var(--muted); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; }
 .site-footer { margin-top: 3rem; border-top: 1px solid var(--line); padding: 1.6rem 0 2.2rem; color: var(--muted); font-family: var(--sans); background: rgba(255,255,255,.42); }
-.footer-grid { display: flex; justify-content: space-between; gap: 1rem; }
+.footer-grid { display: flex; justify-content: space-between; gap: 1.4rem; }
+.footer-copy { max-width: 760px; }
+.footer-copy p { margin: 0; }
+.footer-copy p + p { margin-top: .45rem; }
+.footer-tagline { color: var(--green-dark); font-weight: 900; font-size: clamp(1rem, 1.4vw, 1.18rem); letter-spacing: -.015em; }
+.footer-links { flex: 0 0 auto; margin: 0; }
 .search-panel { display: grid; grid-template-columns: minmax(220px, 1.4fr) minmax(180px, .8fr) minmax(120px, .45fr) auto; gap: .8rem; align-items: end; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); box-shadow: var(--shadow-soft); padding: 1rem; margin-bottom: 1rem; }
 .search-panel label { display: grid; gap: .35rem; }
 input, select { width: 100%; border: 1px solid var(--line); border-radius: 7px; background: var(--card-2); color: var(--ink); padding: .62rem .7rem; font: inherit; }
