@@ -9,17 +9,17 @@ export function getStaticPaths() {
 const { topic } = Astro.props;
 const matches = articles.filter((article) => articleTopicSlug(article) === topic.slug);
 ---
-<BaseLayout title={topic.name} description={topic.description || `Recovered MarijuanaNews.com articles about ${topic.name}.`} canonical={`/topics/${topic.slug}/`}>
+<BaseLayout title={topic.name} description={topic.description || `Marijuana News articles about ${topic.name}.`} canonical={`/topics/${topic.slug}/`}>
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Topic file</p>
+      <p class="eyebrow">Topic desk</p>
       <h1>{topic.name}</h1>
-      <p class="lede">{topic.description || `${matches.length} recovered articles filed under this subject.`}</p>
+      <p class="lede">{topic.description || `${matches.length} Marijuana News articles filed under this subject.`}</p>
     </div>
   </section>
   <section class="section">
     <div class="container">
-      {matches.length === 0 ? <p class="empty-note">No recovered articles are filed under this topic.</p> : <div class="article-list">
+      {matches.length === 0 ? <p class="empty-note">No articles are filed under this topic yet.</p> : <div class="article-list">
         {matches.map((article) => <article class="article-row"><div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div><div><h2><a href={articleUrl(article)}>{article.title}</a></h2><p>{excerpt(article, 220)}</p></div></article>)}
       </div>}
     </div>

@@ -526,7 +526,7 @@ function backendHtml() {
 <body>
   <header>
     <h1>MarijuanaNews Backend</h1>
-    <div class="sub">Password-protected read-only control center for the recovered archive: inventory, search, routing, assets, external links, R2 objects, and migration audit.</div>
+    <div class="sub">Password-protected control center for the live Marijuana News publication: inventory, search, routing, assets, external links, R2 objects, and publication audit.</div>
   </header>
   <main>
     <nav class="tabs" id="tabs"></nav>
@@ -595,7 +595,7 @@ function backendHtml() {
         card('Redirects', o.stats.redirects.toLocaleString(), 'legacy URL preservation'),
         card('Assets', o.stats.assetReferences.toLocaleString(), o.stats.mirroredAssetReferences.toLocaleString() + ' mirrored references'),
         card('External links', o.stats.externalLinks.toLocaleString(), o.stats.externalHosts + ' top hosts tracked'),
-        card('FAQs', o.stats.faqs, 'recovered support content'),
+        card('FAQs', o.stats.faqs, 'reader and support content'),
         card('Topics', o.stats.topics, o.stats.categories + ' categories'),
         card('Images', o.stats.articlesWithImages.toLocaleString(), 'articles with image refs')
       ]));
@@ -635,7 +635,7 @@ function backendHtml() {
       const button = el('button', { class: 'btn primary', text: 'Search' });
       button.addEventListener('click', run);
       q.addEventListener('keydown', (event) => { if (event.key === 'Enter') run(); });
-      view.append(el('section', { class: 'panel' }, [el('h2', { text: 'Archive search' }), el('div', { class: 'toolbar' }, [q, category, year, button]), results]));
+      view.append(el('section', { class: 'panel' }, [el('h2', { text: 'Article search' }), el('div', { class: 'toolbar' }, [q, category, year, button]), results]));
       await run();
     }
 

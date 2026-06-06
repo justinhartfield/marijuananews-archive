@@ -14,12 +14,12 @@ const bioImage = displayAssetUrl((bioImageRecord as any)?.url || '');
 const bioName = bioProfile.name || 'Richard Cowan';
 const bioRole = bioProfile.role || 'Publisher';
 ---
-<BaseLayout title="Bio and archive note" description="Source and provenance note for the rebuilt MarijuanaNews.com archive." canonical="/bio/">
+<BaseLayout title="Richard Cowan" description="Richard Cowan publishes the revived Marijuana News daily cannabis news site." canonical="/bio/">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Bio and provenance</p>
-      <h1>The paper, the editor, the boundary.</h1>
-      <p class="lede">This page explains the recovered public source material. It is a curator and provenance note, not an admin dashboard or recreation of the old private app.</p>
+      <p class="eyebrow">Publisher and editor</p>
+      <h1>Richard Cowan and Marijuana News.</h1>
+      <p class="lede">Richard Cowan is publishing Marijuana News again as a live daily cannabis news site, revived from the independent MarijuanaNews.com project he launched in 1996.</p>
     </div>
   </section>
   <section class="section">
@@ -27,14 +27,14 @@ const bioRole = bioProfile.role || 'Publisher';
       <article class="legacy-content">
         <h2>{bioName}</h2>
         {bioImage && <img class="bio-image" src={bioImage} alt="" loading="lazy" decoding="async" />}
-        <p><strong>{bioName}</strong>{bioRole && <span> is listed by the live public {SOURCE_SITE_TITLE} bio endpoint as <strong>{bioRole}</strong>.</span>}</p>
-        {bioHtml ? <div set:html={bioHtml}></div> : <p>Recovered article metadata repeatedly identifies <strong>Richard Cowan</strong> as a former <strong>NORML National Director</strong>, and many records preserve source attribution and original source URLs when those fields existed in the dump.</p>}
-        <h2>Migration boundary</h2>
-        <p>The static site renders only sanitized public content. The exporter stripped scripts, unsafe URLs, event handlers, iframes, inline styling cruft, and other active legacy markup before Astro receives the HTML.</p>
-        <p>Private, auth, newsletter, user, and admin tables were intentionally excluded from the public build.</p>
+        <p><strong>{bioName}</strong>{bioRole && <span> is listed by the live public {SOURCE_SITE_TITLE} bio endpoint as <strong>{bioRole}</strong>.</span>} He founded the original MarijuanaNews.com in 1996 and is now publishing it again for today's cannabis policy fight.</p>
+        {bioHtml ? <div set:html={bioHtml}></div> : <p>Article metadata repeatedly identifies <strong>Richard Cowan</strong> as a former <strong>NORML National Director</strong>, and many records include source attribution and original source URLs when those fields existed.</p>}
+        <h2>Publication boundary</h2>
+        <p>The site renders sanitized public articles, FAQ notes, topics, categories, and source metadata. Scripts, unsafe URLs, event handlers, iframes, inline styling cruft, and other active old-site markup are stripped before publication.</p>
+        <p>Private, auth, newsletter, user, and admin tables are not part of the public site.</p>
       </article>
       <aside class="sidebar">
-        <section class="clipping-record"><h2>Archive sources</h2><dl>{topSources.map(([name, count]) => <div><dt>{count} articles</dt><dd>{name}</dd></div>)}</dl></section>
+        <section class="clipping-record"><h2>Reporting sources</h2><dl>{topSources.map(([name, count]) => <div><dt>{count} articles</dt><dd>{name}</dd></div>)}</dl></section>
         <section class="card"><h2>Excluded private tables</h2><div class="topic-chip-list">{privateTables.map((name) => <span class="pill">{name}</span>)}</div></section>
       </aside>
     </div>

@@ -1,44 +1,44 @@
 {
   "source": "https://www.marijuananews.com",
   "fetched_at": "2026-06-05T15:40:13.011Z",
-  "title": "MarijuanaNews.com",
-  "site_name": "MarijuanaNews.com",
-  "description": "Latest Cannabis News, Research and Industry Insights from MarijuanaNews.com",
+  "title": "Marijuana News",
+  "site_name": "Marijuana News",
+  "description": "Daily cannabis news, policy analysis, research, and industry coverage published by Richard Cowan.",
   "og": {
-    "title": "MarijuanaNews.com - Latest Cannabis News",
-    "description": "Latest Cannabis News, Research and Industry Insights from MarijuanaNews.com",
+    "title": "Marijuana News - Daily Cannabis Reporting by Richard Cowan",
+    "description": "Daily cannabis news, policy analysis, research, and industry coverage published by Richard Cowan.",
     "type": "website",
-    "url": "https://marijuananews.com/",
-    "image": "https://marijuananews.com/mj_logo.png"
+    "url": "https://marijuanareport.com/",
+    "image": "https://marijuanareport.com/mj_logo.png"
   },
   "twitter": {
     "card": "summary_large_image",
-    "title": "MarijuanaNews.com",
-    "description": "Latest Cannabis News, Research and Industry Insights from MarijuanaNews.com",
-    "image": "https://marijuananews.com/mj_logo.png"
+    "title": "Marijuana News",
+    "description": "Daily cannabis news, policy analysis, research, and industry coverage published by Richard Cowan.",
+    "image": "https://marijuanareport.com/mj_logo.png"
   },
   "google_analytics_id": "G-KVQC0147KK",
   "favicon": "/favicon.svg",
   "logo": "/mj_logo.png",
-  "canonical_origin": "https://marijuananews.com",
+  "canonical_origin": "https://marijuanareport.com",
   "legacy_origin": "https://www.marijuananews.com",
   "sitemap_routes": [
-    "https://marijuananews.com/",
-    "https://marijuananews.com/articles",
-    "https://marijuananews.com/chronological-index",
-    "https://marijuananews.com/memory-hole",
-    "https://marijuananews.com/bio",
-    "https://marijuananews.com/faq"
+    "https://marijuanareport.com/",
+    "https://marijuanareport.com/articles",
+    "https://marijuanareport.com/chronological-index",
+    "https://marijuanareport.com/memory-hole",
+    "https://marijuanareport.com/bio",
+    "https://marijuanareport.com/faq"
   ],
   "schema": {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "https://marijuananews.com/",
-    "name": "MarijuanaNews.com",
-    "description": "Latest Cannabis News, Research and Industry Insights",
+    "url": "https://marijuanareport.com/",
+    "name": "Marijuana News",
+    "description": "Daily cannabis news, policy analysis, research, and industry coverage published by Richard Cowan.",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://marijuananews.com/search?q={search_term_string}",
+      "target": "https://marijuanareport.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }

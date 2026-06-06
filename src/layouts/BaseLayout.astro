@@ -22,7 +22,7 @@ const analyticsId = siteMetadata.google_analytics_id || '';
 const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '';
 const articleCount = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
 const privateExcluded = ((auditReport.private_tables_intentionally_excluded as string[]) || []).length;
-const buildDate = 'Recovered public archive';
+const buildDate = 'Live daily cannabis news';
 ---
 <!doctype html>
 <html lang="en">
@@ -53,27 +53,26 @@ const buildDate = 'Recovered public archive';
       <div class="archive-strip">
         <div class="container">
           <span>{buildDate}</span>
-          <span>{articleCount} public articles · {privateExcluded} private table groups excluded</span>
+          <span>Richard Cowan publishing now · {articleCount} articles in the live library</span>
         </div>
       </div>
       <div class="container masthead-shell">
-        <div class="masthead-kicker">Cannabis policy record</div>
+        <div class="masthead-kicker">Cannabis policy reporting</div>
         <a class="masthead" href="/" aria-label="Marijuana News home">
-          <span class="masthead-title">Marijuana News</span>
-          <span class="masthead-subtitle">Independent reform paper archive</span>
+          <span class="masthead-title"><span class="masthead-word">Marijuana</span><span class="masthead-word">News</span></span>
+          <span class="masthead-subtitle">Daily cannabis news since 1996, publishing again</span>
         </a>
-        <div class="masthead-date">Public source edition</div>
+        <div class="masthead-date">Published by Richard Cowan</div>
       </div>
       <div class="nav-bar">
         <nav class="container site-nav" aria-label="Primary navigation">
-          <a href="/archive/">Archive</a>
-          <a href="/articles/">Articles</a>
+          <a href="/articles/">Latest</a>
+          <a href="/archive/">All Articles</a>
           <a href="/search/">Search</a>
           <a href="/topics/">Topics</a>
           <a href="/categories/">Categories</a>
           <a href="/faq/">FAQ</a>
-          <a href="/bio/">Bio</a>
-          <a href="/memory-hole/">Memory hole</a>
+          <a href="/bio/">Richard Cowan</a>
           <a href="/rss.xml">RSS</a>
         </nav>
       </div>
@@ -83,7 +82,7 @@ const buildDate = 'Recovered public archive';
     </main>
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p><strong>MarijuanaNews.com Archive</strong> preserves the public reading record. Private auth, admin, newsletter, and user tables are not part of this static edition.</p>
+        <p><strong>Marijuana News</strong> is a live cannabis news site published by <strong>Richard Cowan</strong>, revived from the independent MarijuanaNews.com project he started in 1996. The older record remains searchable alongside current reporting.</p>
         <p><a href="/sitemap.xml">Sitemap</a> · <a href="/rss.xml">RSS</a> · <a href="/search/">Search</a> · <a href="/articles/">Articles</a></p>
       </div>
     </footer>

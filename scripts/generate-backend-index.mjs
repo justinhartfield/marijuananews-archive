@@ -202,9 +202,9 @@ const index = {
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
   site: {
-    name: 'MarijuanaNews.com Archive',
-    publicUrl: 'https://marijuananews-archive.hartjr.workers.dev',
-    source: 'Recovered public archive artifacts plus live public metadata endpoints',
+    name: 'Marijuana News',
+    publicUrl: siteMetadata.canonical_origin || 'https://marijuanareport.com',
+    source: 'Live Marijuana News publication artifacts, legacy back-file data, and public metadata endpoints',
     liveMetadata: siteMetadata,
     bio: {
       name: bioProfile.name || '',

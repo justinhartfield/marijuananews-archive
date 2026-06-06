@@ -1,5 +1,5 @@
-const base = (process.env.SITE_URL || process.argv[2] || 'https://marijuananews.com').replace(/\/$/, '');
-const expectedTitle = 'MarijuanaNews.com Archive';
+const base = (process.env.SITE_URL || process.argv[2] || 'https://marijuanareport.com').replace(/\/$/, '');
+const expectedTitle = 'Marijuana News';
 
 const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';
 
@@ -30,8 +30,8 @@ function assert(condition, message, details = {}) {
 }
 
 const home = await fetchText('/');
-assert(home.text.includes(expectedTitle), 'home page missing archive title');
-assert(home.text.includes('Cannabis policy history'), 'home page missing public brand framing');
+assert(home.text.includes(expectedTitle), 'home page missing Marijuana News title');
+assert(home.text.includes('Daily cannabis news'), 'home page missing live publication framing');
 assert(!home.text.includes('_backend/index.json'), 'home page leaked backend index path');
 
 for (const path of ['/articles/', '/chronological-index/', '/search/', '/memory-hole/', '/rss.xml', '/sitemap.xml']) {

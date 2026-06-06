@@ -1,22 +1,22 @@
-# MarijuanaNews.com Astro archive shell
+# Marijuana News live publication shell
 
-This Astro site consumes the public migration artifacts in `src/data/public-content/` and builds a static reading surface for the recovered MarijuanaNews.com archive.
+This Astro site consumes the public content artifacts in `src/data/public-content/` and builds the live Marijuana News reading surface: daily cannabis news and analysis published again by Richard Cowan, revived from the MarijuanaNews.com project he launched in 1996.
 
 ## Included routes
 
-- `/` — archive home and migration stats.
-- `/articles/` — restored legacy article index route.
-- `/articles/[slug]/` — one static page per recovered public article.
-- `/archive/` and `/archive/[page]/` — paginated article archive.
-- `/chronological-index/` — restored legacy chronological index grouped by year.
+- `/` — live publication home and article/library stats.
+- `/articles/` — latest article index route.
+- `/articles/[slug]/` — one static page per public article.
+- `/archive/` and `/archive/[page]/` — paginated all-articles back file.
+- `/chronological-index/` — chronological index grouped by year.
 - `/search/` — public search page backed by the Worker read-only API.
 - `/memory-hole/` — safe review ledger for excluded source article rows; titles/classifications only, no raw body HTML.
 - `/topics/` and `/topics/[slug]/` — topic index and topic pages.
 - `/categories/` and `/categories/[slug]/` — category index and category pages.
-- `/faq/` — recovered FAQ entries.
-- `/bio/` — conservative provenance/bio note using recovered source metadata.
+- `/faq/` — FAQ and reader notes.
+- `/bio/` — Richard Cowan publisher/editor note using public source metadata.
 - `/api/overview`, `/api/search`, `/api/articles`, `/api/article`, `/api/faqs`, `/api/bio`, `/api/facets` — public read-only Worker API compatibility.
-- `/sitemap.xml` — static sitemap for articles, archive, search, memory-hole review, topics, categories, and core pages.
+- `/sitemap.xml` — static sitemap for articles, all-articles pages, search, review ledger, topics, categories, and core pages.
 - `/rss.xml` — latest 50 articles.
 - `public/_redirects` — generated legacy redirect map from `redirects.json`.
 
@@ -32,9 +32,9 @@ npm run preview
 
 ## Cloudflare Worker deploy
 
-This repo deploys the generated Astro `dist/` directory to R2 and serves it through a small Cloudflare Worker. This avoids Workers Assets metadata limits for the multi-thousand-file archive.
+This repo deploys the generated Astro `dist/` directory to R2 and serves it through a small Cloudflare Worker. This avoids Workers Assets metadata limits for the multi-thousand-file article library.
 
-The Worker exposes public read-only compatibility endpoints under `/api/*` and a password-protected read-only backend at `/backend/`. The backend includes archive inventory, search, article metadata, redirect lookup, asset/external-link audits, R2 object listing, and migration-audit views. Username is configured as non-secret `BACKEND_USER` in `wrangler.jsonc`; the password must be set as the Worker secret `BACKEND_PASSWORD` and must not be committed.
+The Worker exposes public read-only compatibility endpoints under `/api/*` and a password-protected read-only backend at `/backend/`. The backend includes publication inventory, search, article metadata, redirect lookup, asset/external-link audits, R2 object listing, and publication-audit views. Username is configured as non-secret `BACKEND_USER` in `wrangler.jsonc`; the password must be set as the Worker secret `BACKEND_PASSWORD` and must not be committed.
 
 ```bash
 npm ci
@@ -48,7 +48,7 @@ printf '%s' '<backend-password>' | CLOUDFLARE_API_TOKEN=... npx wrangler secret 
 npm run deploy:dry-run
 CLOUDFLARE_API_TOKEN=... npm run deploy
 npm run smoke:backend
-SITE_URL=https://marijuananews.com npm run smoke:live
+SITE_URL=https://marijuanareport.com npm run smoke:live
 ```
 
 `smoke:backend` exercises the Worker against the local `dist/` R2 fixture. `smoke:live` verifies the deployed public routes, `/api/*` compatibility endpoints, CORS preflight, and private backend-index block.
@@ -81,7 +81,7 @@ npm run wayback:bounded -- \
 
 The bounded manifest records selected, found, errored, and already-mirrored counts so Wayback throttling/timeouts do not block the whole migration. Pass that manifest to `npm run mirror:assets` to try recovered fallbacks.
 
-For the full archive, first run the Wayback collector from the parent migration workspace, then pass the resulting manifest here. Keep concurrency/rate low because Internet Archive CDX and replay endpoints throttle aggressively.
+For the full legacy back file, first run the Wayback collector from the parent migration workspace, then pass the resulting manifest here. Keep concurrency/rate low because Internet Archive CDX and replay endpoints throttle aggressively.
 
 ## Safety rule
 

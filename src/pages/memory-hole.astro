@@ -7,12 +7,12 @@ const counts = (summary.by_classification || {}) as Record<string, number>;
 const records = ((memoryHoleReview.records || []) as Array<Record<string, any>>).sort((a, b) => String(a.classification || '').localeCompare(String(b.classification || '')) || Number(a.id || 0) - Number(b.id || 0));
 const human = (value: string) => value.replace(/_/g, ' ');
 ---
-<BaseLayout title="Memory Hole Review" description="Review ledger for MarijuanaNews.com records excluded from the public archive pending human approval." canonical="/memory-hole/">
+<BaseLayout title="Editorial Review Ledger" description="Review ledger for Marijuana News records excluded from publication pending human approval." canonical="/memory-hole/">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Legacy route restored</p>
-      <h1>Memory hole review.</h1>
-      <p class="lede">These records were present in the source article table but excluded from the public archive because their source status was not classified as published. The page publishes only titles, IDs, classifications, and counts. Body HTML remains excluded unless a human explicitly approves it.</p>
+      <p class="eyebrow">Editorial review</p>
+      <h1>Publication review ledger.</h1>
+      <p class="lede">These records exist in the source article table but are excluded from public publication because their status was not classified as published. This page lists only titles, IDs, classifications, and counts. Body HTML remains excluded unless a human explicitly approves it.</p>
     </div>
   </section>
 
@@ -31,7 +31,7 @@ const human = (value: string) => value.replace(/_/g, ' ');
       </article>
       <article class="card">
         <h2>Decision so far</h2>
-        <p>The safe default is transparency without leakage: keep test placeholders and duplicates excluded, list review-needed candidates by title, and preserve the audit trail for future manual restoration.</p>
+        <p>The safe default is transparency without leakage: keep test placeholders and duplicates excluded, list review-needed candidates by title, and preserve the audit trail for future editorial review.</p>
       </article>
     </div>
   </section>

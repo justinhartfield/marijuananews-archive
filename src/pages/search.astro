@@ -2,18 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { categories } from '../lib/content';
 ---
-<BaseLayout title="Search" description="Search the recovered MarijuanaNews.com public article archive." canonical="/search/">
+<BaseLayout title="Search" description="Search Marijuana News cannabis reporting by title, issue, topic, source, and year." canonical="/search/">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Public search</p>
-      <h1>Search the archive.</h1>
-      <p class="lede">Search titles, excerpts, keywords, categories, topics, sources, and years. Results come from the public read-only archive API.</p>
+      <p class="eyebrow">Reporting search</p>
+      <h1>Search the reporting.</h1>
+      <p class="lede">Search titles, excerpts, keywords, categories, topics, sources, and years across current Marijuana News coverage and the older MarijuanaNews.com back file.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <form class="search-panel" id="archive-search" action="/search/" method="get">
+      <form class="search-panel" id="article-search" action="/search/" method="get">
         <label>
           <span class="label-text">Query</span>
           <input id="q" name="q" type="search" placeholder="medical marijuana, prohibition, NORML…" autocomplete="off" />
@@ -37,7 +37,7 @@ import { categories } from '../lib/content';
   </section>
 
   <script is:inline>
-    const form = document.getElementById('archive-search');
+    const form = document.getElementById('article-search');
     const q = document.getElementById('q');
     const category = document.getElementById('category');
     const year = document.getElementById('year');

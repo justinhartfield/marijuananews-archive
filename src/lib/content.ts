@@ -100,12 +100,12 @@ export const memoryHoleReview = memoryHoleReviewData as JsonMap & {
   policy?: JsonMap;
 };
 
-export const SITE_URL = cleanLabel(siteMetadata.canonical_origin) || 'https://marijuananews.com';
+export const SITE_URL = cleanLabel(siteMetadata.canonical_origin) || 'https://marijuanareport.com';
 export const SOURCE_SITE_TITLE = cleanLabel(siteMetadata.site_name || siteMetadata.title) || 'MarijuanaNews.com';
-export const SITE_TITLE = SOURCE_SITE_TITLE.toLowerCase().includes('archive') ? SOURCE_SITE_TITLE : `${SOURCE_SITE_TITLE} Archive`;
+export const SITE_TITLE = SOURCE_SITE_TITLE;
 export const SITE_DESCRIPTION = cleanLabel(siteMetadata.description)
-  ? `A rebuilt public archive preserving ${SOURCE_SITE_TITLE}: ${cleanLabel(siteMetadata.description)}`
-  : 'A rebuilt public archive of MarijuanaNews.com articles, FAQs, topics, and source-preserved cannabis policy history.';
+  ? cleanLabel(siteMetadata.description)
+  : 'Daily cannabis news, policy analysis, research, and industry coverage from Richard Cowan.';
 
 export const articles = (articlesData as Article[])
   .filter((article) => article.slug && article.title)

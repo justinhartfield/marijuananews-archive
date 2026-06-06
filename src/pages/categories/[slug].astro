@@ -9,18 +9,18 @@ export function getStaticPaths() {
 const { category } = Astro.props;
 const matches = articles.filter((article) => articleCategorySlug(article) === category.slug);
 ---
-<BaseLayout title={category.name} description={`Recovered MarijuanaNews.com articles in ${category.name}.`} canonical={`/categories/${category.slug}/`}>
+<BaseLayout title={category.name} description={`Marijuana News articles in ${category.name}.`} canonical={`/categories/${category.slug}/`}>
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Category file</p>
+      <p class="eyebrow">Category desk</p>
       <h1>{category.name}</h1>
-      <p class="lede">{matches.length} recovered articles from this legacy category.</p>
+      <p class="lede">{matches.length} Marijuana News articles filed under this category.</p>
     </div>
   </section>
   <section class="section">
     <div class="container">
-      {matches.length === 0 ? <p class="empty-note">No recovered articles are filed under this category.</p> : <div class="article-list">
-        {matches.map((article) => <article class="article-row"><div class="meta-rail">{formatDate(article.publication_date)}<br />{article.source || 'Source preserved when present'}</div><div><h2><a href={articleUrl(article)}>{article.title}</a></h2><p>{excerpt(article, 220)}</p></div></article>)}
+      {matches.length === 0 ? <p class="empty-note">No articles are filed under this category yet.</p> : <div class="article-list">
+        {matches.map((article) => <article class="article-row"><div class="meta-rail">{formatDate(article.publication_date)}<br />{article.source || 'Source listed when present'}</div><div><h2><a href={articleUrl(article)}>{article.title}</a></h2><p>{excerpt(article, 220)}</p></div></article>)}
       </div>}
     </div>
   </section>

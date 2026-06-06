@@ -14,12 +14,12 @@ const pageArticles = getArticlesPage(page);
 const prevUrl = page === 2 ? '/archive/' : `/archive/${page - 1}/`;
 const nextUrl = page < archivePageCount ? `/archive/${page + 1}/` : null;
 ---
-<BaseLayout title={`Archive page ${page}`} description={`Browse MarijuanaNews.com archive page ${page}.`} canonical={`/archive/${page}/`}>
+<BaseLayout title={`All Articles page ${page}`} description={`Browse Marijuana News reporting page ${page}.`} canonical={`/archive/${page}/`}>
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">Archive</p>
+      <p class="eyebrow">All articles</p>
       <h1>Articles, page {page}.</h1>
-      <p class="lede">Page {page} of {archivePageCount}. Each entry keeps the recovered date and category in the left rail for fast scanning.</p>
+      <p class="lede">Page {page} of {archivePageCount}. Each entry keeps the publication date and category in the left rail for fast scanning.</p>
     </div>
   </section>
   <section class="section">
@@ -36,7 +36,7 @@ const nextUrl = page < archivePageCount ? `/archive/${page + 1}/` : null;
     </div>
     <div class="container pagination">
       <a class="button secondary" href={prevUrl}>Newer articles</a>
-      {nextUrl ? <a class="button" href={nextUrl}>Older articles</a> : <span>End of archive</span>}
+      {nextUrl ? <a class="button" href={nextUrl}>Older articles</a> : <span>End of article list</span>}
     </div>
   </section>
 </BaseLayout>

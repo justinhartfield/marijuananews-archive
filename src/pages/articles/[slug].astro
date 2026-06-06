@@ -20,7 +20,7 @@ const tags = keywords(article);
 <BaseLayout title={title} description={description} canonical={canonical}>
   <header class="article-header">
     <div class="container">
-      <p class="eyebrow">Recovered article</p>
+      <p class="eyebrow">Marijuana News article</p>
       <h1>{article.title}</h1>
       <p class="meta">{formatDate(article.publication_date)}{article.category && <> · <a href={`/categories/${categorySlug}/`}>{article.category}</a></>}{article.topic?.name && topicSlug && <> · <a href={`/topics/${topicSlug}/`}>{article.topic.name}</a></>}{article.source && <> · {article.source}</>}</p>
       <p class="lede">{description}</p>
@@ -30,16 +30,16 @@ const tags = keywords(article);
 
   <div class="container article-shell">
     <article class="legacy-content" set:html={html}></article>
-    <aside class="sidebar" aria-label="Article clipping details">
+    <aside class="sidebar" aria-label="Article details">
       <section class="clipping-record">
-        <h2>Clipping record</h2>
+        <h2>Article record</h2>
         <dl>
           <div><dt>Date</dt><dd>{formatDate(article.publication_date)}</dd></div>
           {article.category && <div><dt>Category</dt><dd><a href={`/categories/${categorySlug}/`}>{article.category}</a></dd></div>}
           {article.topic?.name && topicSlug && <div><dt>Topic</dt><dd><a href={`/topics/${topicSlug}/`}>{article.topic.name}</a></dd></div>}
           {article.source && <div><dt>Source</dt><dd>{article.source}</dd></div>}
-          {article.source_url && <div><dt>Source URL</dt><dd><a href={article.source_url} rel="noopener noreferrer nofollow">Original record</a></dd></div>}
-          <div><dt>Archive path</dt><dd><code>{canonical}</code></dd></div>
+          {article.source_url && <div><dt>Source URL</dt><dd><a href={article.source_url} rel="noopener noreferrer nofollow">Original source</a></dd></div>}
+          <div><dt>Article path</dt><dd><code>{canonical}</code></dd></div>
         </dl>
       </section>
       {tags.length > 0 && <section class="card">
@@ -47,7 +47,7 @@ const tags = keywords(article);
         <div class="topic-chip-list">{tags.map((tag) => <span class="pill">{tag}</span>)}</div>
       </section>}
       {related.length > 0 && <section class="card">
-        <h2>Related clippings</h2>
+        <h2>Related articles</h2>
         <ul class="list">
           {related.map((item) => <li><a href={articleUrl(item)}>{item.title}</a><br /><span class="meta">{formatDate(item.publication_date)}</span></li>)}
         </ul>

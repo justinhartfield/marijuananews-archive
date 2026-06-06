@@ -2,17 +2,17 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { faqs, rewriteLegacyHtml } from '../lib/content';
 ---
-<BaseLayout title="FAQ" description="Recovered MarijuanaNews.com FAQ entries rendered from sanitized legacy HTML." canonical="/faq/">
+<BaseLayout title="FAQ" description="Marijuana News FAQ and reader notes from the live publication." canonical="/faq/">
   <section class="hero">
     <div class="container">
-      <p class="eyebrow">FAQ file</p>
-      <h1>Archived explanatory notes.</h1>
-      <p class="lede">Recovered FAQ entries are rendered from sanitized public rows. Scripts, unsafe URLs, event handlers, and active legacy markup are stripped before publication.</p>
+      <p class="eyebrow">FAQ and reader notes</p>
+      <h1>Answers from the publication.</h1>
+      <p class="lede">FAQ entries are rendered from sanitized public content. Scripts, unsafe URLs, event handlers, and active old-site markup are stripped before publication.</p>
     </div>
   </section>
   <section class="section">
     <div class="container article-list">
-      {faqs.map((faq) => <article class="article-row"><div class="meta-rail">FAQ #{faq.id}<br />{faq.category || 'Archive note'}</div><div><h2>{faq.question}</h2><div class="legacy-content" set:html={rewriteLegacyHtml(faq.content_html_sanitized)}></div></div></article>)}
+      {faqs.map((faq) => <article class="article-row"><div class="meta-rail">FAQ #{faq.id}<br />{faq.category || 'Reader note'}</div><div><h2>{faq.question}</h2><div class="legacy-content" set:html={rewriteLegacyHtml(faq.content_html_sanitized)}></div></div></article>)}
     </div>
   </section>
 </BaseLayout>

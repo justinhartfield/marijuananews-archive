@@ -15,16 +15,16 @@ const secondLatest = latest.slice(5, 10);
   <section class="hero">
     <div class="container front-page-layout">
       <div class="front-lead">
-        <p class="eyebrow">Recovered public archive</p>
-        <h1>Cannabis policy history, preserved in print.</h1>
-        <p class="lede">A restored public edition of MarijuanaNews.com: the articles, source labels, dates, topics, FAQs, redirects, and audit trail that survived the old site, without the private admin machinery.</p>
+        <p class="eyebrow">Live cannabis news</p>
+        <h1>Daily cannabis news, revived by Richard Cowan.</h1>
+        <p class="lede">Marijuana News is publishing again: current cannabis policy, medical marijuana, research, prohibition, courts, culture, and industry coverage from the independent voice Richard Cowan launched online in 1996.</p>
         <div class="front-lead-actions">
-          <a class="button" href="/archive/">Read the archive</a>
-          <a class="button secondary" href="/search/">Search by issue</a>
+          <a class="button" href="/articles/">Read latest articles</a>
+          <a class="button secondary" href="/search/">Search the reporting</a>
         </div>
       </div>
-      <aside class="archive-stat-box" aria-label="Archive audit summary">
-        <p class="eyebrow">Archive ledger</p>
+      <aside class="archive-stat-box" aria-label="Publication ledger">
+        <p class="eyebrow">Publication ledger</p>
         <dl>
           <div><dt>Articles</dt><dd>{exportedTotal}</dd></div>
           <div><dt>Topics</dt><dd>{topics.length}</dd></div>
@@ -40,7 +40,7 @@ const secondLatest = latest.slice(5, 10);
     <div class="container front-page-layout">
       <article class="featured-story">
         <div>
-          <p class="eyebrow">Front page clipping</p>
+          <p class="eyebrow">Lead story</p>
           <h2><a href={articleUrl(featured)}>{featured.title}</a></h2>
           <p class="meta">{formatDate(featured.publication_date)}{featured.category && <> · <a href={`/categories/${articleCategorySlug(featured)}/`}>{featured.category}</a></>}{featured.source && <> · {featured.source}</>}</p>
           <p>{excerpt(featured, 280)}</p>
@@ -49,8 +49,8 @@ const secondLatest = latest.slice(5, 10);
         {featuredImage && <img class="featured-image" src={featuredImage} alt="" loading="eager" decoding="async" />}
       </article>
       <aside class="public-notice">
-        <p class="eyebrow">Public notice</p>
-        <p><strong>This is a historical public archive.</strong> It preserves cannabis policy writing and source metadata for research and reference. Private, auth, admin, newsletter, and user tables were intentionally excluded.</p>
+        <p class="eyebrow">Live revival</p>
+        <p><strong>Marijuana News is active again.</strong> Richard Cowan is publishing new cannabis reporting on top of the older MarijuanaNews.com record, so readers can follow today's drug war, medical marijuana, legalization, and research stories in the same long-running editorial line.</p>
       </aside>
     </div>
   </section>
@@ -58,8 +58,8 @@ const secondLatest = latest.slice(5, 10);
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Latest recovered articles</h2>
-        <a href="/archive/">Full archive</a>
+        <h2>Latest articles</h2>
+        <a href="/archive/">All articles</a>
       </div>
       <div class="grid two">
         <div class="article-list">
