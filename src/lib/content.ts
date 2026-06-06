@@ -121,6 +121,7 @@ export const auditReport = auditReportData as JsonMap;
 export const assetRewriteMap = assetRewriteMapData as Record<string, string>;
 
 const articleSlugMap = new Map(articles.map((article) => [article.slug, article]));
+const legacyLinkTargets = buildLegacyLinkTargets();
 const topicByName = new Map(topics.map((topic) => [topic.name.toLowerCase(), topic]));
 
 const categoryCounts = new Map<string, number>();
@@ -275,8 +276,105 @@ export function rewriteLegacyHtml(html: string): string {
       return /\bloading=/i.test(rewritten) ? rewritten : rewritten.replace(/<img\b/i, '<img loading="lazy" decoding="async"');
     })
     .replace(/\b(href)=(['"])(.*?)\2/gi, (_match, attr: string, quote: string, value: string) => {
-      return `${attr}=${quote}${escapeAttribute(rewriteAssetUrl(value))}${quote}`;
+      return `${attr}=${quote}${escapeAttribute(rewriteLegacyLinkUrl(value))}${quote}`;
     });
+}
+
+function rewriteLegacyLinkUrl(url?: string | null): string {
+  const raw = (url || '').trim();
+  if (!raw || raw.startsWith('#') || raw.startsWith('mailto:') || raw.startsWith('tel:')) return raw;
+  if (/^(data:|javascript:|vbscript:)/i.test(raw)) return '';
+
+  const articlePath = normalizeLegacyArticlePath(raw);
+  if (articlePath) return articlePath;
+
+  for (const key of legacyLookupKeys(raw)) {
+    const target = legacyLinkTargets.get(key);
+    if (target) return target;
+  }
+
+  return rewriteAssetUrl(raw);
+}
+
+function normalizeLegacyArticlePath(raw: string): string | null {
+  const path = internalPathname(raw);
+  if (!path) return null;
+  const match = path.match(/^\/articles\/([^?#]+?)(?:\/legacy)?\/?$/i);
+  if (!match) return null;
+  const slug = match[1].replace(/\/+$/, '');
+  return articleSlugMap.has(slug) ? `/articles/${slug}/` : null;
+}
+
+function internalPathname(raw: string): string | null {
+  if (raw.startsWith('/')) return raw.split('?')[0].split('#')[0];
+  try {
+    const parsed = new URL(raw);
+    if (/^(www\.)?marijuananews\.com$/i.test(parsed.hostname)) return parsed.pathname;
+  } catch {
+    return null;
+  }
+  return null;
+}
+
+function buildLegacyLinkTargets(): Map<string, string> {
+  const buckets = new Map<string, Set<string>>();
+  for (const article of articles) {
+    const target = articleUrl(article);
+    for (const key of legacyLookupKeys(article.source_url || '')) {
+      if (isIgnoredLegacyKey(key)) continue;
+      if (!buckets.has(key)) buckets.set(key, new Set());
+      buckets.get(key)?.add(target);
+    }
+  }
+
+  const map = new Map<string, string>();
+  for (const [key, targets] of buckets.entries()) {
+    if (targets.size === 1) map.set(key, [...targets][0]);
+  }
+  return map;
+}
+
+function legacyLookupKeys(raw: string): string[] {
+  const keys = new Set<string>();
+  addLegacyFilenameKeys(raw, keys);
+  const unwrapped = unwrapWaybackUrl(raw);
+  if (unwrapped && unwrapped !== raw) addLegacyFilenameKeys(unwrapped, keys);
+  return [...keys];
+}
+
+function unwrapWaybackUrl(raw: string): string | null {
+  try {
+    const parsed = new URL(raw.trim());
+    if (parsed.hostname !== 'web.archive.org') return null;
+    const match = parsed.pathname.match(/^\/web\/\d+[a-z_]*\/(.+)$/i);
+    return match ? safeDecode(match[1]) : null;
+  } catch {
+    return null;
+  }
+}
+
+function addLegacyFilenameKeys(raw: string, keys: Set<string>): void {
+  const value = safeDecode(raw.trim()).replace(/\\/g, '/');
+  const withoutHash = value.split('#')[0];
+  const withoutQuery = withoutHash.split('?')[0];
+  const filename = withoutQuery.split('/').filter(Boolean).pop()?.toLowerCase();
+  if (!filename || isIgnoredLegacyKey(`file:${filename}`)) return;
+  keys.add(`file:${filename}`);
+  const withoutExt = filename.replace(/\.(s?html?|php3?|asp)$/i, '');
+  if (withoutExt && withoutExt !== filename) keys.add(`file:${withoutExt}`);
+}
+
+function safeDecode(value: string): string {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function isIgnoredLegacyKey(key: string): boolean {
+  return /(?:^|:)index(?:\.(?:s?html?|php3?|asp))?$/i.test(key)
+    || /(?:^|:)default(?:\.(?:s?html?|php3?|asp))?$/i.test(key);
 }
 
 export function escapeHtml(value: string): string {

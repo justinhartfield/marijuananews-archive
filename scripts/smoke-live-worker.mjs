@@ -37,6 +37,11 @@ assert(home.text.includes('class="tag-cloud"'), 'home page missing topic tag clo
 assert(home.text.includes('Richard Cowan'), 'home page missing Richard Cowan sidebar');
 assert(!home.text.includes('_backend/index.json'), 'home page leaked backend index path');
 
+const problemArticlePath = '/articles/the-very-sad-case-of-the-wall-street-journal-editorial-page-the-betrayal-of-their-own-principles-lying-to-their-readers-about-the-netherlands-and-the-benefits-of-freedom/legacy';
+const problemArticle = await fetchText(problemArticlePath);
+assert(problemArticle.text.includes('/articles/legalize-marijuana-and-improve-high-school-academic-performance-holland-ranks-first-the-us-very-low/'), 'problem article missing repaired bottom internal link');
+assert(!problemArticle.text.includes('file:///C:/Program'), 'problem article still contains broken FrontPage file link');
+
 for (const path of ['/articles/', '/chronological-index/', '/search/', '/memory-hole/', '/rss.xml', '/sitemap.xml']) {
   await fetchText(path);
 }
@@ -71,7 +76,7 @@ assert(privateIndex.status === 404, 'private backend index should not be public'
 console.log(JSON.stringify({
   ok: true,
   base,
-  checks: ['home', 'legacy route compatibility', 'rss', 'sitemap', 'public overview api', 'public search api', 'public articles api', 'public CORS preflight', 'private backend block'],
+  checks: ['home', 'legacy route compatibility', 'rendered legacy link repair', 'rss', 'sitemap', 'public overview api', 'public search api', 'public articles api', 'public CORS preflight', 'private backend block'],
   stats: overview.stats,
   firstResult: search.items[0]?.title
 }, null, 2));

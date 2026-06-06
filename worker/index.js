@@ -117,6 +117,14 @@ function redirectResponse(url, redirect) {
   return Response.redirect(target.toString(), redirect.status);
 }
 
+function legacyArticleRedirect(url) {
+  const match = url.pathname.match(/^\/articles\/([^/]+)\/legacy\/?$/i);
+  if (!match) return null;
+  const target = new URL(`/articles/${match[1]}/`, url.origin);
+  if (url.search) target.search = url.search;
+  return Response.redirect(target.toString(), 301);
+}
+
 async function serveObject(key, object) {
   const headers = new Headers();
   object.writeHttpMetadata(headers);
@@ -802,6 +810,9 @@ export default {
     if (isPrivateObjectKey(url.pathname)) {
       return new Response('Not Found', { status: 404, headers: noStoreHeaders('text/plain; charset=utf-8') });
     }
+
+    const legacyRedirect = legacyArticleRedirect(url);
+    if (legacyRedirect) return legacyRedirect;
 
     const hit = await firstExistingObject(env, url.pathname);
     if (hit) return serveObject(hit.key, hit.object);
