@@ -21,8 +21,14 @@ const logoHref = rewriteAssetUrl(siteMetadata.logo || '');
 const analyticsId = siteMetadata.google_analytics_id || '';
 const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '';
 const articleCount = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
-const privateExcluded = ((auditReport.private_tables_intentionally_excluded as string[]) || []).length;
-const buildDate = 'Live daily cannabis news';
+const navItems = [
+  ['Latest', '/articles/'],
+  ['Archive', '/archive/'],
+  ['Topics', '/topics/'],
+  ['FAQ', '/faq/'],
+  ['Richard Cowan', '/bio/'],
+  ['RSS', '/rss.xml'],
+];
 ---
 <!doctype html>
 <html lang="en">
@@ -50,31 +56,25 @@ const buildDate = 'Live daily cannabis news';
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="publication-header">
-      <div class="archive-strip">
-        <div class="container">
-          <span>{buildDate}</span>
-          <span>Richard Cowan publishing now · {articleCount} articles in the live library</span>
+      <div class="topbar">
+        <div class="container topbar-inner">
+          <a class="brand-lockup" href="/" aria-label="Marijuana News home">
+            {logoHref ? <img src={logoHref} alt="Marijuana News" decoding="async" /> : <span>Marijuana News</span>}
+          </a>
+          <form class="header-search" action="/search/" method="get" role="search">
+            <label class="sr-only" for="header-q">Search Marijuana News</label>
+            <input id="header-q" name="q" type="search" placeholder="Search for news, topics, or sources…" autocomplete="off" />
+            <button type="submit">Search</button>
+          </form>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">☾</button>
+          <a class="signin-link" href="/backend/" rel="nofollow">↪ Sign In</a>
         </div>
-      </div>
-      <div class="container masthead-shell">
-        <div class="masthead-kicker">Cannabis policy reporting</div>
-        <a class="masthead" href="/" aria-label="Marijuana News home">
-          <span class="masthead-title"><span class="masthead-word">Marijuana</span><span class="masthead-word">News</span></span>
-          <span class="masthead-subtitle">Daily cannabis news since 1996, publishing again</span>
-        </a>
-        <div class="masthead-date">Published by Richard Cowan</div>
-      </div>
-      <div class="nav-bar">
         <nav class="container site-nav" aria-label="Primary navigation">
-          <a href="/articles/">Latest</a>
-          <a href="/archive/">All Articles</a>
-          <a href="/search/">Search</a>
-          <a href="/topics/">Topics</a>
-          <a href="/categories/">Categories</a>
-          <a href="/faq/">FAQ</a>
-          <a href="/bio/">Richard Cowan</a>
-          <a href="/rss.xml">RSS</a>
+          {navItems.map(([label, href]) => <a href={href}>{label}</a>)}
         </nav>
+      </div>
+      <div class="quote-strip">
+        <div class="container">“The best two word explanation for Marijuana Prohibition is Bad Journalism.”</div>
       </div>
     </header>
     <main id="main">
@@ -82,9 +82,30 @@ const buildDate = 'Live daily cannabis news';
     </main>
     <footer class="site-footer">
       <div class="container footer-grid">
-        <p><strong>Marijuana News</strong> is a live cannabis news site published by <strong>Richard Cowan</strong>, revived from the independent MarijuanaNews.com project he started in 1996. The older record remains searchable alongside current reporting.</p>
+        <p><strong>Marijuana News</strong> is live daily cannabis reporting by <strong>Richard Cowan</strong>, revived from the independent MarijuanaNews.com project launched in 1996. The public library now contains <strong>{articleCount}</strong> searchable articles.</p>
         <p><a href="/sitemap.xml">Sitemap</a> · <a href="/rss.xml">RSS</a> · <a href="/search/">Search</a> · <a href="/articles/">Articles</a></p>
       </div>
     </footer>
+    <script is:inline>
+      (() => {
+        const button = document.querySelector('[data-theme-toggle]');
+        const root = document.documentElement;
+        const key = 'marijuananews-theme';
+        const setTheme = (theme) => {
+          root.dataset.theme = theme;
+          if (button) button.textContent = theme === 'dark' ? '☀' : '☾';
+        };
+        try {
+          setTheme(localStorage.getItem(key) || 'light');
+          button?.addEventListener('click', () => {
+            const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem(key, next);
+            setTheme(next);
+          });
+        } catch (_error) {
+          setTheme('light');
+        }
+      })();
+    </script>
   </body>
 </html>

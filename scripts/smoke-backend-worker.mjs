@@ -62,6 +62,7 @@ class LocalR2Object {
 class LocalR2Bucket {
   constructor(files) {
     this.files = files;
+    this.objects = new Map();
   }
 
   static async fromDist() {
@@ -74,10 +75,19 @@ class LocalR2Bucket {
   }
 
   async get(key) {
+    if (this.objects.has(key)) {
+      const record = this.objects.get(key);
+      return new LocalR2Object(key, key, Buffer.from(record.body), { size: Buffer.byteLength(record.body), mtime: new Date(record.uploaded) });
+    }
     const file = this.files.get(key);
     if (!file) return null;
     const [body, stats] = await Promise.all([readFile(file), stat(file)]);
     return new LocalR2Object(key, file, body, stats);
+  }
+
+  async put(key, body) {
+    const value = typeof body === 'string' ? body : String(body || '');
+    this.objects.set(key, { body: value, uploaded: new Date().toISOString() });
   }
 
   async list(options = {}) {
@@ -135,6 +145,21 @@ const publicFaqs = await (await expectStatus('/api/faqs?limit=3', 200)).json();
 if (!publicFaqs.items.length || !publicFaqs.items[0].question) throw new Error('public FAQs API failed');
 const publicBio = await (await expectStatus('/api/bio', 200)).json();
 if (!publicBio.ok || !publicBio.bio) throw new Error('public bio API failed');
+const newsletterInfo = await (await expectStatus('/api/newsletter', 200)).json();
+if (!newsletterInfo.ok || newsletterInfo.endpoint !== '/api/newsletter') throw new Error('newsletter metadata API failed');
+const badNewsletter = await (await expectStatus('/api/newsletter', 400, {
+  method: 'POST',
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({ email: 'not-an-email' })
+})).json();
+if (badNewsletter.ok !== false) throw new Error('invalid newsletter email was accepted');
+const goodNewsletter = await (await expectStatus('/api/newsletter', 200, {
+  method: 'POST',
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({ email: 'reader@example.com', source: 'smoke' })
+})).json();
+if (!goodNewsletter.ok || !goodNewsletter.subscribed) throw new Error('valid newsletter signup failed');
+await expectStatus('/_private/newsletter-signups/test.json', 404);
 const unauth = await expectStatus('/backend/', 401);
 if (!unauth.headers.get('www-authenticate')?.includes('MarijuanaNews Backend')) throw new Error('missing Basic auth challenge');
 await expectStatus('/backend/', 401, { headers: { authorization: authHeader('admin', 'wrong') } });
@@ -149,4 +174,4 @@ if (!files.objects.length || files.objects.some((object) => object.key.startsWit
 const directPrivate = await expectStatus('/backend/api/object?key=_backend/index.json', 400, { headers: { authorization: authHeader() } });
 if (!(await directPrivate.text()).includes('non-private key')) throw new Error('private object read was not blocked');
 
-console.log(JSON.stringify({ ok: true, checks: ['public route', 'legacy route compatibility', 'public search api', 'public api cors preflight', 'public articles api', 'public faqs api', 'public bio api', 'private index block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));
+console.log(JSON.stringify({ ok: true, checks: ['public route', 'legacy route compatibility', 'public search api', 'public api cors preflight', 'public articles api', 'public faqs api', 'public bio api', 'newsletter api', 'private index block', 'private newsletter block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));

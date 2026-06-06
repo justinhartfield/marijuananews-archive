@@ -32,6 +32,9 @@ function assert(condition, message, details = {}) {
 const home = await fetchText('/');
 assert(home.text.includes(expectedTitle), 'home page missing Marijuana News title');
 assert(home.text.includes('Daily cannabis news'), 'home page missing live publication framing');
+assert(home.text.includes('Subscribe to Newsletter'), 'home page missing newsletter signup');
+assert(home.text.includes('class="tag-cloud"'), 'home page missing topic tag cloud');
+assert(home.text.includes('Richard Cowan'), 'home page missing Richard Cowan sidebar');
 assert(!home.text.includes('_backend/index.json'), 'home page leaked backend index path');
 
 for (const path of ['/articles/', '/chronological-index/', '/search/', '/memory-hole/', '/rss.xml', '/sitemap.xml']) {
@@ -42,6 +45,9 @@ const overview = await fetchJson('/api/overview');
 assert(overview.ok === true, 'overview API not ok', overview);
 assert(overview.stats?.articles >= 2900, 'overview API article count too low', overview.stats || {});
 assert(overview.stats?.redirects >= 10000, 'overview API redirect count too low', overview.stats || {});
+
+const newsletter = await fetchJson('/api/newsletter');
+assert(newsletter.ok === true && newsletter.endpoint === '/api/newsletter', 'newsletter API metadata not ok', newsletter);
 
 const search = await fetchJson('/api/search?q=Peter&limit=5');
 assert(search.ok === true, 'search API not ok', search);

@@ -4,6 +4,7 @@ const BACKEND_API_PREFIX = '/backend/api';
 const PUBLIC_API_PREFIX = '/api';
 const BACKEND_INDEX_KEY = '_backend/index.json';
 const BACKEND_DEFAULT_USER = 'admin';
+const PRIVATE_OBJECT_PREFIXES = ['_backend/', '_private/', 'newsletter-signups/'];
 
 const CONTENT_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -32,6 +33,11 @@ function extensionFor(key) {
 
 function contentTypeFor(key) {
   return CONTENT_TYPES[extensionFor(key)] || 'application/octet-stream';
+}
+
+function isPrivateObjectKey(key) {
+  const clean = String(key || '').replace(/^\/+/, '');
+  return PRIVATE_OBJECT_PREFIXES.some((prefix) => clean === prefix.slice(0, -1) || clean.startsWith(prefix));
 }
 
 function cacheControlFor(key) {
@@ -68,6 +74,7 @@ function candidateKeys(pathname) {
 
 async function firstExistingObject(env, pathname) {
   for (const key of candidateKeys(pathname)) {
+    if (isPrivateObjectKey(key)) continue;
     const object = await env.ARCHIVE_ASSETS.get(key);
     if (object) return { key, object };
   }
@@ -141,7 +148,7 @@ function publicApiHeaders(contentType = 'application/json; charset=utf-8', statu
     'content-type': contentType,
     'cache-control': status === 200 ? 'public, max-age=300' : 'public, max-age=60',
     'access-control-allow-origin': '*',
-    'access-control-allow-methods': 'GET, HEAD, OPTIONS',
+    'access-control-allow-methods': 'GET, HEAD, POST, OPTIONS',
     'access-control-allow-headers': 'content-type',
     'x-content-type-options': 'nosniff'
   };
@@ -311,7 +318,7 @@ function overviewPayload(index) {
 
 function safeR2Key(raw) {
   const key = String(raw || '').replace(/^\/+/, '');
-  if (!key || key.includes('..') || key.startsWith(BACKEND_INDEX_KEY) || key.startsWith('_backend/')) return '';
+  if (!key || key.includes('..') || isPrivateObjectKey(key)) return '';
   return key;
 }
 
@@ -329,7 +336,7 @@ async function handleFilesApi(env, url) {
     cursor: listed.cursor || null,
     truncated: Boolean(listed.truncated),
     delimitedPrefixes: listed.delimitedPrefixes || [],
-    objects: (listed.objects || []).filter((object) => !object.key.startsWith('_backend/')).map((object) => ({
+    objects: (listed.objects || []).filter((object) => !isPrivateObjectKey(object.key)).map((object) => ({
       key: object.key,
       size: object.size,
       uploaded: object.uploaded,
@@ -412,14 +419,81 @@ function publicOverview(index) {
   };
 }
 
+async function parseNewsletterBody(request) {
+  const type = request.headers.get('content-type') || '';
+  if (type.includes('application/json')) {
+    try {
+      return await request.json();
+    } catch {
+      return {};
+    }
+  }
+  if (type.includes('application/x-www-form-urlencoded')) {
+    const params = new URLSearchParams(await request.text());
+    return Object.fromEntries(params.entries());
+  }
+  if (type.includes('multipart/form-data') && typeof request.formData === 'function') {
+    const form = await request.formData();
+    return Object.fromEntries(form.entries());
+  }
+  const text = await request.text();
+  return { email: text };
+}
+
+function normalizeEmail(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+async function sha256Hex(value) {
+  const input = new TextEncoder().encode(value);
+  const digest = await crypto.subtle.digest('SHA-256', input);
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function handleNewsletterApi(request, env) {
+  if (request.method === 'GET' || request.method === 'HEAD') {
+    return publicJsonResponse({ ok: true, endpoint: '/api/newsletter', accepts: ['POST'], fields: ['email'] });
+  }
+  if (request.method !== 'POST') {
+    return publicJsonResponse({ ok: false, error: 'Method Not Allowed' }, 405);
+  }
+  if (!env.ARCHIVE_ASSETS || typeof env.ARCHIVE_ASSETS.put !== 'function') {
+    return publicJsonResponse({ ok: false, error: 'Newsletter storage is not configured.' }, 503);
+  }
+
+  const body = await parseNewsletterBody(request);
+  const email = normalizeEmail(body.email);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return publicJsonResponse({ ok: false, error: 'A valid email address is required.' }, 400);
+  }
+
+  const createdAt = new Date().toISOString();
+  const hash = await sha256Hex(email);
+  const key = `_private/newsletter-signups/${createdAt.slice(0, 10)}/${hash}.json`;
+  const payload = {
+    email,
+    emailHash: hash,
+    createdAt,
+    source: String(body.source || 'homepage').slice(0, 80),
+    userAgent: String(request.headers.get('user-agent') || '').slice(0, 300),
+    referrer: String(request.headers.get('referer') || '').slice(0, 500)
+  };
+
+  await env.ARCHIVE_ASSETS.put(key, JSON.stringify(payload, null, 2), {
+    httpMetadata: { contentType: 'application/json; charset=utf-8' }
+  });
+  return publicJsonResponse({ ok: true, subscribed: true });
+}
+
 async function handlePublicApi(request, env, url) {
   if (request.method === 'OPTIONS') return publicOptionsResponse();
+  const path = url.pathname.slice(PUBLIC_API_PREFIX.length) || '/overview';
+  if (path === '/newsletter') return handleNewsletterApi(request, env);
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return publicJsonResponse({ ok: false, error: 'Method Not Allowed' }, 405);
   }
 
   const index = await getBackendIndex(env);
-  const path = url.pathname.slice(PUBLIC_API_PREFIX.length) || '/overview';
 
   if (path === '/overview' || path === '/') return publicJsonResponse(publicOverview(index));
   if (path === '/search' || path === '/articles') {
@@ -725,7 +799,7 @@ export default {
       return handleBackend(request, env, url);
     }
 
-    if (url.pathname === '/_backend' || url.pathname.startsWith('/_backend/')) {
+    if (isPrivateObjectKey(url.pathname)) {
       return new Response('Not Found', { status: 404, headers: noStoreHeaders('text/plain; charset=utf-8') });
     }
 

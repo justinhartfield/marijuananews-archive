@@ -1,107 +1,197 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { articles, categories, topics, faqs, redirects, auditReport, articleUrl, articleImageUrl, articleCategorySlug, excerpt, formatDate, SITE_DESCRIPTION, SITE_TITLE } from '../lib/content';
+import {
+  articles,
+  faqs,
+  redirects,
+  auditReport,
+  articleUrl,
+  articleImageUrl,
+  articleCategorySlug,
+  articleTopicSlug,
+  excerpt,
+  formatDate,
+  slugify,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+} from '../lib/content';
 
-const featured = articles.find((article) => articleImageUrl(article)) || articles[0];
-const featuredImage = featured ? articleImageUrl(featured) : '';
-const latest = articles.filter((article) => article.slug !== featured?.slug).slice(0, 10);
-const exportedTotal = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
-const assetTotal = Number((auditReport.assets as any)?.total_unique_asset_urls || 0).toLocaleString();
+const featured = articles.find((article) => article.is_featured) || articles[0];
+const latest = articles.slice(0, 7);
+const articleTotal = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
 const redirectTotal = redirects.length.toLocaleString();
-const firstLatest = latest.slice(0, 5);
-const secondLatest = latest.slice(5, 10);
+const faqTotal = faqs.length.toLocaleString();
+const logoPath = '/mj_logo.png';
+const richardPortrait = '/assets/richard-cowan-portrait.jpg';
+
+const topicMap = new Map<string, { name: string; slug: string; count: number }>();
+for (const article of articles) {
+  const name = article.topic?.name || article.category || 'General News';
+  const slug = articleTopicSlug(article) || slugify(name);
+  const existing = topicMap.get(slug) || { name, slug, count: 0 };
+  existing.count += 1;
+  topicMap.set(slug, existing);
+}
+const topicCloud = Array.from(topicMap.values())
+  .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+  .slice(0, 15);
+
+function readTimeLabel(article: typeof articles[number]): string {
+  const raw = Number(article.read_time || 0);
+  if (!Number.isFinite(raw) || raw <= 0) return '4 min';
+  return `${Math.max(1, Math.round(raw))} min`;
+}
+
+function relativeAgeLabel(raw?: string | null): string {
+  const time = Date.parse(raw || '');
+  if (!Number.isFinite(time)) return 'undated';
+  const days = Math.max(0, Math.round((Date.now() - time) / 86400000));
+  if (days < 2) return 'today';
+  if (days < 31) return `${days} days ago`;
+  if (days < 366) {
+    const months = Math.max(1, Math.round(days / 30));
+    return `${months} month${months === 1 ? '' : 's'} ago`;
+  }
+  const years = Math.max(1, Math.round(days / 365));
+  return `${years} year${years === 1 ? '' : 's'} ago`;
+}
+
+function storyTopic(article: typeof articles[number]) {
+  const name = article.topic?.name || article.category || 'General News';
+  const slug = articleTopicSlug(article) || articleCategorySlug(article);
+  return { name, slug };
+}
 ---
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION} canonical="/">
-  <section class="hero">
-    <div class="container front-page-layout">
-      <div class="front-lead">
-        <p class="eyebrow">Live cannabis news</p>
-        <h1>Daily cannabis news, revived by Richard Cowan.</h1>
-        <p class="lede">Marijuana News is publishing again: current cannabis policy, medical marijuana, research, prohibition, courts, culture, and industry coverage from the independent voice Richard Cowan launched online in 1996.</p>
-        <div class="front-lead-actions">
-          <a class="button" href="/articles/">Read latest articles</a>
-          <a class="button secondary" href="/search/">Search the reporting</a>
-        </div>
+  <section class="home-wrap">
+    <div class="container home-grid">
+      <div class="home-main">
+        <article class="featured-card">
+          <div class="featured-copy">
+            <div class="featured-meta">
+              <span>▣ Richard Cowan</span>
+              <span>▣ {formatDate(featured.publication_date)}</span>
+            </div>
+            <span class="featured-badge">Featured</span>
+            <h1><a href={articleUrl(featured)}>{featured.title}</a></h1>
+            <p>{excerpt(featured, 210)}</p>
+            <a class="button light" href={articleUrl(featured)}>Read Full Article →</a>
+          </div>
+          <div class="featured-mark" aria-hidden="true">
+            <img src={logoPath} alt="" decoding="async" />
+          </div>
+        </article>
+
+        <section class="article-stream" aria-labelledby="articles-heading">
+          <div class="section-header clean">
+            <h2 id="articles-heading">Articles</h2>
+            <a href="/archive/">View full archive</a>
+          </div>
+          <div class="story-list">
+            {latest.map((article) => {
+              const image = articleImageUrl(article);
+              const topic = storyTopic(article);
+              return (
+                <article class="story-card">
+                  {image && <a class="story-thumb" href={articleUrl(article)} aria-label={`Read ${article.title}`}><img src={image} alt="" loading="lazy" decoding="async" /></a>}
+                  <div class="story-body">
+                    <div class="story-meta">
+                      <span>Richard Cowan</span>
+                      <span>● {readTimeLabel(article)}</span>
+                      <span class="story-age">▣ {relativeAgeLabel(article.publication_date)}</span>
+                    </div>
+                    <h3><a href={articleUrl(article)}>{article.title}</a></h3>
+                    <p>{excerpt(article, 150)}</p>
+                    <div class="story-footer">
+                      <a class="topic-pill" href={`/topics/${topic.slug}/`}>{topic.name}</a>
+                      <div class="story-actions" aria-label="Story actions">
+                        <span title="Save">♡</span>
+                        <span title="Copy link">↗</span>
+                        <span title="Share">f</span>
+                        <span title="Share on X">𝕏</span>
+                        <span title="Share on LinkedIn">in</span>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
       </div>
-      <aside class="archive-stat-box" aria-label="Publication ledger">
-        <p class="eyebrow">Publication ledger</p>
-        <dl>
-          <div><dt>Articles</dt><dd>{exportedTotal}</dd></div>
-          <div><dt>Topics</dt><dd>{topics.length}</dd></div>
-          <div><dt>FAQs</dt><dd>{faqs.length}</dd></div>
-          <div><dt>Assets</dt><dd>{assetTotal}</dd></div>
-          <div><dt>Redirects</dt><dd>{redirectTotal}</dd></div>
-        </dl>
+
+      <aside class="home-sidebar" aria-label="Marijuana News sidebar">
+        <section class="sidebar-card author-card">
+          <img src={richardPortrait} alt="Richard Cowan" loading="eager" decoding="async" />
+          <div>
+            <h2>Richard Cowan</h2>
+            <a href="/bio/">View Bio →</a>
+          </div>
+        </section>
+
+        <section class="sidebar-card cta-card">
+          <h2>Chronological Index</h2>
+          <p>Explore the complete Marijuana News index, from the latest updates to articles dating back to 1997.</p>
+          <a class="outline-button" href="/chronological-index/">View full archive</a>
+        </section>
+
+        <section class="sidebar-card topics-card">
+          <h2>Topics</h2>
+          <div class="tag-cloud">
+            {topicCloud.map((topic) => <a href={`/topics/${topic.slug}/`}>{topic.name} <span>({topic.count})</span></a>)}
+          </div>
+        </section>
+
+        <section class="sidebar-card cta-card">
+          <h2>Frequently Asked Questions</h2>
+          <p>Find answers to common questions about marijuana legalization, medical research, policy changes, and industry developments.</p>
+          <a class="outline-button" href="/faq/">Browse FAQ Section</a>
+        </section>
+
+        <section class="sidebar-card newsletter-card">
+          <h2>Subscribe to Newsletter!</h2>
+          <p>Join readers getting cannabis policy, research, media criticism, and industry updates.</p>
+          <form class="newsletter-form" action="/api/newsletter" method="post" data-newsletter-form>
+            <label class="sr-only" for="newsletter-email">Your email address</label>
+            <input id="newsletter-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required />
+            <button type="submit">Subscribe</button>
+            <p class="newsletter-status" data-newsletter-status>Weekly dispatch. No spam.</p>
+          </form>
+        </section>
+
+        <section class="sidebar-card stats-card" aria-label="Library stats">
+          <div><strong>{articleTotal}</strong><span>articles</span></div>
+          <div><strong>{topicCloud.length}</strong><span>active topics</span></div>
+          <div><strong>{faqTotal}</strong><span>FAQs</span></div>
+          <div><strong>{redirectTotal}</strong><span>legacy redirects</span></div>
+        </section>
       </aside>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container front-page-layout">
-      <article class="featured-story">
-        <div>
-          <p class="eyebrow">Lead story</p>
-          <h2><a href={articleUrl(featured)}>{featured.title}</a></h2>
-          <p class="meta">{formatDate(featured.publication_date)}{featured.category && <> · <a href={`/categories/${articleCategorySlug(featured)}/`}>{featured.category}</a></>}{featured.source && <> · {featured.source}</>}</p>
-          <p>{excerpt(featured, 280)}</p>
-          <p><a class="button" href={articleUrl(featured)}>Read article</a></p>
-        </div>
-        {featuredImage && <img class="featured-image" src={featuredImage} alt="" loading="eager" decoding="async" />}
-      </article>
-      <aside class="public-notice">
-        <p class="eyebrow">Live revival</p>
-        <p><strong>Marijuana News is active again.</strong> Richard Cowan is publishing new cannabis reporting on top of the older MarijuanaNews.com record, so readers can follow today's drug war, medical marijuana, legalization, and research stories in the same long-running editorial line.</p>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2>Latest articles</h2>
-        <a href="/archive/">All articles</a>
-      </div>
-      <div class="grid two">
-        <div class="article-list">
-          {firstLatest.map((article) => (
-            <article class="article-row">
-              <div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div>
-              <div>
-                <h3><a href={articleUrl(article)}>{article.title}</a></h3>
-                <p>{excerpt(article, 185)}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div class="article-list">
-          {secondLatest.map((article) => (
-            <article class="article-row">
-              <div class="meta-rail">{formatDate(article.publication_date)}<br />{article.category || 'General'}</div>
-              <div>
-                <h3><a href={articleUrl(article)}>{article.title}</a></h3>
-                <p>{excerpt(article, 185)}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container grid two">
-      <div>
-        <div class="section-header"><h2>Issue categories</h2><a href="/categories/">All categories</a></div>
-        <div class="topic-chip-list">
-          {categories.slice(0, 14).map((category) => <a href={`/categories/${category.slug}/`}><strong>{category.name}</strong>&nbsp;{category.count}</a>)}
-        </div>
-      </div>
-      <div>
-        <div class="section-header"><h2>Topic desk</h2><a href="/topics/">All topics</a></div>
-        <div class="topic-chip-list">
-          {topics.slice(0, 14).map((topic) => <a href={`/topics/${topic.slug}/`}>{topic.name}</a>)}
-        </div>
-      </div>
-    </div>
-  </section>
+  <script is:inline>
+    (() => {
+      const form = document.querySelector('[data-newsletter-form]');
+      if (!form) return;
+      const status = form.querySelector('[data-newsletter-status]');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const email = new FormData(form).get('email');
+        if (status) status.textContent = 'Subscribing…';
+        try {
+          const response = await fetch('/api/newsletter', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json', accept: 'application/json' },
+            body: JSON.stringify({ email, source: 'homepage' })
+          });
+          const data = await response.json();
+          if (!response.ok || !data.ok) throw new Error(data.error || 'Newsletter signup failed.');
+          form.reset();
+          if (status) status.textContent = 'Subscribed. Check your inbox when the first dispatch goes out.';
+        } catch (error) {
+          if (status) status.textContent = error.message || 'Signup failed. Try again later.';
+        }
+      });
+    })();
+  </script>
 </BaseLayout>
