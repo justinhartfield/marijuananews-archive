@@ -128,6 +128,28 @@ async function expectStatus(pathname, status, options) {
   return response;
 }
 
+async function assertNoBrokenLocalFileLinks() {
+  const badPatterns = [
+    ['file protocol link', /file:\/\//i],
+    ['FrontPage temp path', /C:\/Program\s+Files\/Microsoft\s+FrontPage\/temp\//i],
+    ['Wayback wrapped file URL', /web\.archive\.org\/[^"'<>\s]+\/file:/i],
+    ['whitespace-prefixed href', /href=(['"])\s+[^'"]*\1/i],
+  ];
+  const failures = [];
+  for (const file of await walk(distDir)) {
+    if (!file.endsWith('.html')) continue;
+    const html = await readFile(file, 'utf8');
+    for (const [label, pattern] of badPatterns) {
+      const match = html.match(pattern);
+      if (match) {
+        failures.push(`${path.relative(distDir, file)}: ${label}: ${match[0].slice(0, 180)}`);
+        break;
+      }
+    }
+  }
+  if (failures.length) throw new Error(`broken local/FrontPage links remain:\n${failures.slice(0, 40).join('\n')}`);
+}
+
 await expectStatus('/', 200);
 await expectStatus('/articles', 200);
 await expectStatus('/articles/', 200);
@@ -153,6 +175,7 @@ if (problemArticleHtml.includes('file:///C:/Program')) throw new Error('rendered
 if (!problemArticleHtml.includes(`href="${FIXED_BOTTOM_LINK}"`)) throw new Error('rendered article missing repaired bottom MarijuanaNews article link');
 const legacyArticle = await expectStatus(`${PROBLEM_ARTICLE}legacy`, 301);
 if (!legacyArticle.headers.get('location')?.endsWith(PROBLEM_ARTICLE)) throw new Error('legacy article URL did not redirect to canonical article path');
+await assertNoBrokenLocalFileLinks();
 const newsletterInfo = await (await expectStatus('/api/newsletter', 200)).json();
 if (!newsletterInfo.ok || newsletterInfo.endpoint !== '/api/newsletter') throw new Error('newsletter metadata API failed');
 const badNewsletter = await (await expectStatus('/api/newsletter', 400, {
@@ -182,4 +205,4 @@ if (!files.objects.length || files.objects.some((object) => object.key.startsWit
 const directPrivate = await expectStatus('/backend/api/object?key=_backend/index.json', 400, { headers: { authorization: authHeader() } });
 if (!(await directPrivate.text()).includes('non-private key')) throw new Error('private object read was not blocked');
 
-console.log(JSON.stringify({ ok: true, checks: ['public route', 'legacy route compatibility', 'rendered legacy link repair', 'public search api', 'public api cors preflight', 'public articles api', 'public faqs api', 'public bio api', 'newsletter api', 'private index block', 'private newsletter block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));
+console.log(JSON.stringify({ ok: true, checks: ['public route', 'legacy route compatibility', 'rendered legacy link repair', 'full rendered local-file link scan', 'public search api', 'public api cors preflight', 'public articles api', 'public faqs api', 'public bio api', 'newsletter api', 'private index block', 'private newsletter block', 'basic auth', 'backend shell', 'overview api', 'search api', 'files api', 'private object block'] }, null, 2));

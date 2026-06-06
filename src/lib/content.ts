@@ -293,6 +293,8 @@ function rewriteLegacyLinkUrl(url?: string | null): string {
     if (target) return target;
   }
 
+  if (isFileLikeLegacyUrl(raw)) return '#legacy-link-unavailable';
+
   return rewriteAssetUrl(raw);
 }
 
@@ -356,6 +358,8 @@ function unwrapWaybackUrl(raw: string): string | null {
 function addLegacyFilenameKeys(raw: string, keys: Set<string>): void {
   const value = safeDecode(raw.trim()).replace(/\\/g, '/');
   const withoutHash = value.split('#')[0];
+  const sidMatch = withoutHash.match(/[?&]sid=([0-9]+)/i);
+  if (sidMatch) keys.add(`sid:${sidMatch[1]}`);
   const withoutQuery = withoutHash.split('?')[0];
   const filename = withoutQuery.split('/').filter(Boolean).pop()?.toLowerCase();
   if (!filename || isIgnoredLegacyKey(`file:${filename}`)) return;
@@ -375,6 +379,13 @@ function safeDecode(value: string): string {
 function isIgnoredLegacyKey(key: string): boolean {
   return /(?:^|:)index(?:\.(?:s?html?|php3?|asp))?$/i.test(key)
     || /(?:^|:)default(?:\.(?:s?html?|php3?|asp))?$/i.test(key);
+}
+
+function isFileLikeLegacyUrl(raw: string): boolean {
+  const value = safeDecode(raw.trim());
+  if (/^file:/i.test(value)) return true;
+  const unwrapped = unwrapWaybackUrl(value);
+  return Boolean(unwrapped && /^file:/i.test(unwrapped));
 }
 
 export function escapeHtml(value: string): string {

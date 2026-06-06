@@ -29,6 +29,43 @@ function assert(condition, message, details = {}) {
   }
 }
 
+function hasBrokenLocalFileLink(html) {
+  return /file:\/\//i.test(html)
+    || /C:\/Program\s+Files\/Microsoft\s+FrontPage\/temp\//i.test(html)
+    || /web\.archive\.org\/[^"'<>\s]+\/file:/i.test(html)
+    || /href=(['"])\s+[^'"]*\1/i.test(html);
+}
+
+async function assertNoBrokenLocalFileLinks() {
+  const sitemap = await fetchText('/sitemap.xml');
+  const rawUrls = [...sitemap.text.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+  const paths = rawUrls
+    .map((url) => {
+      try {
+        return new URL(url).pathname;
+      } catch {
+        return '';
+      }
+    })
+    .filter((path) => path === '/' || path.startsWith('/articles/') || path === '/chronological-index/' || path === '/search/' || path === '/memory-hole/');
+
+  const failures = [];
+  const concurrency = 24;
+  let cursor = 0;
+  async function worker() {
+    while (cursor < paths.length) {
+      const path = paths[cursor++];
+      const { text } = await fetchText(path);
+      if (hasBrokenLocalFileLink(text)) failures.push(path);
+      if (failures.length >= 40) return;
+    }
+  }
+
+  await Promise.all(Array.from({ length: concurrency }, () => worker()));
+  assert(failures.length === 0, 'live site still has broken local/FrontPage links', { count: failures.length, sample: failures.slice(0, 20) });
+  return paths.length;
+}
+
 const home = await fetchText('/');
 assert(home.text.includes(expectedTitle), 'home page missing Marijuana News title');
 assert(home.text.includes('Daily cannabis news'), 'home page missing live publication framing');
@@ -41,6 +78,7 @@ const problemArticlePath = '/articles/the-very-sad-case-of-the-wall-street-journ
 const problemArticle = await fetchText(problemArticlePath);
 assert(problemArticle.text.includes('/articles/legalize-marijuana-and-improve-high-school-academic-performance-holland-ranks-first-the-us-very-low/'), 'problem article missing repaired bottom internal link');
 assert(!problemArticle.text.includes('file:///C:/Program'), 'problem article still contains broken FrontPage file link');
+const scannedPages = await assertNoBrokenLocalFileLinks();
 
 for (const path of ['/articles/', '/chronological-index/', '/search/', '/memory-hole/', '/rss.xml', '/sitemap.xml']) {
   await fetchText(path);
@@ -76,7 +114,8 @@ assert(privateIndex.status === 404, 'private backend index should not be public'
 console.log(JSON.stringify({
   ok: true,
   base,
-  checks: ['home', 'legacy route compatibility', 'rendered legacy link repair', 'rss', 'sitemap', 'public overview api', 'public search api', 'public articles api', 'public CORS preflight', 'private backend block'],
+  checks: ['home', 'legacy route compatibility', 'rendered legacy link repair', 'full live local-file link scan', 'rss', 'sitemap', 'public overview api', 'public search api', 'public articles api', 'public CORS preflight', 'private backend block'],
   stats: overview.stats,
+  scannedPages,
   firstResult: search.items[0]?.title
 }, null, 2));
