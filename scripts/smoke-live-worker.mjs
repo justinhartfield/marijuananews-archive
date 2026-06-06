@@ -1,4 +1,4 @@
-const base = (process.env.SITE_URL || process.argv[2] || 'https://marijuanareport.com').replace(/\/$/, '');
+const base = (process.env.SITE_URL || process.argv[2] || 'https://marijuananews.com').replace(/\/$/, '');
 const expectedTitle = 'Marijuana News';
 
 const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36';

@@ -48,7 +48,7 @@ printf '%s' '<backend-password>' | CLOUDFLARE_API_TOKEN=... npx wrangler secret 
 npm run deploy:dry-run
 CLOUDFLARE_API_TOKEN=... npm run deploy
 npm run smoke:backend
-SITE_URL=https://marijuanareport.com npm run smoke:live
+SITE_URL=https://marijuananews.com npm run smoke:live
 ```
 
 `smoke:backend` exercises the Worker against the local `dist/` R2 fixture. `smoke:live` verifies the deployed public routes, `/api/*` compatibility endpoints, CORS preflight, and private backend-index block.

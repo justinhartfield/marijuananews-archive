@@ -203,7 +203,7 @@ const index = {
   generatedAt: new Date().toISOString(),
   site: {
     name: 'Marijuana News',
-    publicUrl: siteMetadata.canonical_origin || 'https://marijuanareport.com',
+    publicUrl: siteMetadata.canonical_origin || 'https://marijuananews.com',
     source: 'Live Marijuana News publication artifacts, legacy back-file data, and public metadata endpoints',
     liveMetadata: siteMetadata,
     bio: {

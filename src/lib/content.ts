@@ -100,7 +100,7 @@ export const memoryHoleReview = memoryHoleReviewData as JsonMap & {
   policy?: JsonMap;
 };
 
-export const SITE_URL = cleanLabel(siteMetadata.canonical_origin) || 'https://marijuanareport.com';
+export const SITE_URL = cleanLabel(siteMetadata.canonical_origin) || 'https://marijuananews.com';
 export const SOURCE_SITE_TITLE = cleanLabel(siteMetadata.site_name || siteMetadata.title) || 'MarijuanaNews.com';
 export const SITE_TITLE = SOURCE_SITE_TITLE;
 export const SITE_DESCRIPTION = cleanLabel(siteMetadata.description)
