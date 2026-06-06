@@ -7,7 +7,7 @@ const counts = (summary.by_classification || {}) as Record<string, number>;
 const records = ((memoryHoleReview.records || []) as Array<Record<string, any>>).sort((a, b) => String(a.classification || '').localeCompare(String(b.classification || '')) || Number(a.id || 0) - Number(b.id || 0));
 const human = (value: string) => value.replace(/_/g, ' ');
 ---
-<BaseLayout title="Editorial Review Ledger" description="Review ledger for Marijuana News records excluded from publication pending human approval." canonical="/memory-hole/">
+<BaseLayout title="Editorial Review Ledger" description="Review ledger for Marijuana News records excluded from publication pending human approval." canonical="/memory-hole/" noindex={true}>
   <section class="hero">
     <div class="container">
       <p class="eyebrow">Editorial review</p>

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { articles, articleUrl, articleCategorySlug, articleImageUrl, articleTopicSlug, excerpt, formatDate, getRelatedArticles, keywords, rewriteLegacyHtml } from '../../lib/content';
+import { SITE_TITLE, absoluteUrl, articles, articleUrl, articleCategorySlug, articleImageUrl, articleTopicSlug, excerpt, formatDate, getRelatedArticles, keywords, rewriteLegacyHtml } from '../../lib/content';
 
 export function getStaticPaths() {
   return articles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
@@ -16,15 +16,43 @@ const canonical = articleUrl(article);
 const topicSlug = articleTopicSlug(article);
 const categorySlug = articleCategorySlug(article);
 const tags = keywords(article);
+const articleSchema = {
+  '@type': 'NewsArticle',
+  headline: article.title,
+  description,
+  url: absoluteUrl(canonical),
+  mainEntityOfPage: absoluteUrl(canonical),
+  datePublished: article.publication_date || article.created_at || undefined,
+  dateModified: article.updated_at || article.publication_date || article.created_at || undefined,
+  author: { '@type': 'Person', name: 'Richard Cowan', url: absoluteUrl('/bio/') },
+  publisher: {
+    '@type': 'NewsMediaOrganization',
+    name: SITE_TITLE,
+    url: absoluteUrl('/'),
+    logo: { '@type': 'ImageObject', url: absoluteUrl('/mj_logo.png') },
+  },
+  articleSection: article.category || article.topic?.name || undefined,
+  keywords: tags.length ? tags.join(', ') : undefined,
+  image: cover ? [absoluteUrl(cover)] : undefined,
+  isAccessibleForFree: true,
+};
+const breadcrumbSchema = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: absoluteUrl('/') },
+    { '@type': 'ListItem', position: 2, name: 'Articles', item: absoluteUrl('/articles/') },
+    { '@type': 'ListItem', position: 3, name: article.title, item: absoluteUrl(canonical) },
+  ],
+};
 ---
-<BaseLayout title={title} description={description} canonical={canonical}>
+<BaseLayout title={title} description={description} canonical={canonical} image={cover} type="article" schema={[articleSchema, breadcrumbSchema]}>
   <header class="article-header">
     <div class="container">
       <p class="eyebrow">Marijuana News article</p>
       <h1>{article.title}</h1>
       <p class="meta">{formatDate(article.publication_date)}{article.category && <> · <a href={`/categories/${categorySlug}/`}>{article.category}</a></>}{article.topic?.name && topicSlug && <> · <a href={`/topics/${topicSlug}/`}>{article.topic.name}</a></>}{article.source && <> · {article.source}</>}</p>
       <p class="lede">{description}</p>
-      {cover && <img class="article-cover" src={cover} alt="" loading="eager" decoding="async" />}
+      {cover && <img class="article-cover" src={cover} alt={article.title} loading="eager" decoding="async" />}
     </div>
   </header>
 

@@ -6,20 +6,49 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  schema?: Record<string, unknown> | Array<Record<string, unknown>>;
+  noindex?: boolean;
 }
 
 const {
   title = SITE_TITLE,
   description = SITE_DESCRIPTION,
   canonical = '/',
+  image = '',
+  type = 'website',
+  schema,
+  noindex = false,
 } = Astro.props;
+
+function compactSchema(entry: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(entry)
+      .filter(([, value]) => value !== undefined && value !== null && value !== '')
+      .map(([key, value]) => [
+        key,
+        Array.isArray(value)
+          ? value.filter((item) => item !== undefined && item !== null && item !== '')
+          : value,
+      ])
+  );
+}
 
 const pageTitle = title === SITE_TITLE ? title : `${title} | ${SITE_TITLE}`;
 const canonicalUrl = canonical.startsWith('http') ? canonical : absoluteUrl(canonical);
 const faviconHref = rewriteAssetUrl(siteMetadata.favicon || '/favicon.svg');
 const logoHref = rewriteAssetUrl(siteMetadata.logo || '');
+const socialImageHref = image || logoHref;
 const analyticsId = siteMetadata.google_analytics_id || '';
-const schemaJson = siteMetadata.schema ? JSON.stringify(siteMetadata.schema) : '';
+const siteSchemas = siteMetadata.schema ? [siteMetadata.schema as Record<string, unknown>] : [];
+const pageSchemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+const schemaEntries = [...siteSchemas, ...pageSchemas]
+  .map((entry) => compactSchema(entry))
+  .map(({ ['@context']: _context, ...entry }) => entry);
+const schemaJson = schemaEntries.length
+  ? JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaEntries })
+  : '';
 const articleCount = Number((auditReport.article_counts as any)?.exported_total || articles.length).toLocaleString();
 const navItems = [
   ['Latest', '/articles/'],
@@ -37,17 +66,21 @@ const navItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
     <link rel="canonical" href={canonicalUrl} />
     {faviconHref && <link rel="icon" href={faviconHref} />}
     <style is:inline set:html={globalCss}></style>
     <meta property="og:site_name" content={SITE_TITLE} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
-    {logoHref && <meta property="og:image" content={absoluteUrl(logoHref)} />}
-    <meta name="twitter:card" content={logoHref ? 'summary_large_image' : 'summary'} />
-    {logoHref && <meta name="twitter:image" content={absoluteUrl(logoHref)} />}
+    {socialImageHref && <meta property="og:image" content={absoluteUrl(socialImageHref)} />}
+    {socialImageHref && <meta property="og:image:alt" content={pageTitle} />}
+    <meta name="twitter:card" content={socialImageHref ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {socialImageHref && <meta name="twitter:image" content={absoluteUrl(socialImageHref)} />}
     <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS`} href="/rss.xml" />
     {schemaJson && <script type="application/ld+json" set:html={schemaJson}></script>}
     {analyticsId && <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}></script>}

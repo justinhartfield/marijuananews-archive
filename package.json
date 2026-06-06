@@ -17,7 +17,8 @@
     "deploy": "wrangler deploy",
     "deploy:dry-run": "wrangler deploy --dry-run",
     "smoke:backend": "node scripts/smoke-backend-worker.mjs",
-    "smoke:live": "node scripts/smoke-live-worker.mjs"
+    "smoke:live": "node scripts/smoke-live-worker.mjs",
+    "seo:audit": "node scripts/audit-rendered-seo.mjs"
   },
   "devDependencies": {
     "astro": "latest",
